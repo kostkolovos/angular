@@ -7,6 +7,8 @@ import {AppRoutingModule} from './routing/app-routing.module';
 import {HeaderComponent} from './header/header.component';
 import {HttpClientModule} from '@angular/common/http';
 import { StorageComponent } from './storage/storage.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
     declarations: [
@@ -18,7 +20,8 @@ import { StorageComponent } from './storage/storage.component';
         BrowserModule,
         CoreModule,
         AppRoutingModule,
-        HttpClientModule
+        HttpClientModule,
+        ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
     ],
     providers: [],
     bootstrap: [AppComponent]
