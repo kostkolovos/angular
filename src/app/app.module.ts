@@ -6,9 +6,10 @@ import {CoreModule} from './shared/core.module';
 import {AppRoutingModule} from './routing/app-routing.module';
 import {HeaderComponent} from './header/header.component';
 import {HttpClientModule} from '@angular/common/http';
-import { StorageComponent } from './storage/storage.component';
-import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../environments/environment';
+import {StorageComponent} from './storage/storage.component';
+import {ServiceWorkerModule} from '@angular/service-worker';
+import {environment} from '../environments/environment';
+import {StorageModule} from './storage/storage.module';
 
 @NgModule({
     declarations: [
@@ -21,7 +22,8 @@ import { environment } from '../environments/environment';
         CoreModule,
         AppRoutingModule,
         HttpClientModule,
-        ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+        ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
+        StorageModule
     ],
     providers: [],
     bootstrap: [AppComponent]

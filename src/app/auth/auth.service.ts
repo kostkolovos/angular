@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {catchError, tap} from 'rxjs/operators';
 import {BehaviorSubject, throwError} from 'rxjs';
-import {User} from './user.model';
+import {User} from '../apiEntities/user.model';
 import {Router} from '@angular/router';
 import {environment} from '../../environments/environment';
 
@@ -21,7 +21,7 @@ interface SignUpResponce {
 })
 export class AuthService {
 
-  user = new BehaviorSubject<User>(null); // Subscribe in previes events like login and get token
+  user = new BehaviorSubject<User>(null); // Subscribe in previews events like login and get token
   tokenExpirationTime: any;
   private hardCodeExpirationTimer = 3600000;
 

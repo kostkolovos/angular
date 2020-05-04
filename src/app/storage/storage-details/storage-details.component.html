@@ -1,0 +1,39 @@
+<div *ngIf="storage">
+
+    <div class="row">
+        <div class="col-xs-12">
+            <h1>{{storage.title}}</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="btn-group" appDropdown>
+                <button type="button" class="btn btn-primary dropdown-toggle">
+                    Manage storage <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a style="cursor: pointer" (click)="onEditStorage()">Επεξεργασία</a></li>
+                    <li><a style="cursor: pointer" (click)="onDeleteStorage()">Διαγραφή</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <h3> {{storage.createdAt}} </h3>
+        </div>
+    </div>
+
+   <!-- <div class="row">
+        <div class="col-xs-12">
+            <ul class="list-group">
+                <li class="list-group-item" *ngFor="let ingredient of storage.ingredients">
+                    {{ingredient.name}} - {{ingredient.amount}}
+                </li>
+            </ul>
+        </div>
+    </div>-->
+
+</div>
