@@ -5,25 +5,22 @@
             <button type="button" class="navbar-toggle" (click)="collapsed = !collapsed">
                 <span class="icon-bar" *ngFor="let iconBar of [1, 2, 3]"></span>
             </button>
-            <a routerLink="/" class="navbar-brand">Αποθήκη</a>
+            <a routerLink="/" class="navbar-brand">Παραγγελίες</a>
         </div>
         <div class="navbar-collapse" [class.collapse]="collapsed" (window:resize)="collapsed = true">
 
             <div class="navbar-collapse" [class.collapse]="collapsed">
                 <ul class="nav navbar-nav">
-                    <li routerLinkActive="active"><a routerLink="/recipes" *ngIf="isAuthenticated">Recipe</a></li>
-                    <li routerLinkActive="active"><a routerLink="/auth" *ngIf="!isAuthenticated">Authenticate</a></li>
+                    <li routerLinkActive="active"><a routerLink="/storage" *ngIf="isAuthenticated">Αποθήκη</a></li>
+                    <li routerLinkActive="active"><a routerLink="/auth" *ngIf="!isAuthenticated">Σύνδεση</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li *ngIf="isAuthenticated">
-                        <a style="cursor: pointer" (click)="onLogout()">Logout</a>
-                    </li>
-                    <li class="dropdown" appDropdown *ngIf="isAuthenticated">
-                        <a style="cursor: pointer" class="dropdown-toggle" role="button">
-                            Manage <span class="caret"></span>
-                        </a>
+                        <a style="cursor: pointer" (click)="onLogout()">Αποσύνδεση</a>
                     </li>
                 </ul>
             </div>
 
         </div>
+    </div>
+</nav>
