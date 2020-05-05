@@ -5,6 +5,7 @@ import {StorageComponent} from '../storage/storage.component';
 import {StorageStartComponent} from '../storage/storage-start/storage-start.component';
 import {StorageResolverService} from '../storage/storage-resolver.service';
 import {StorageDetailsComponent} from '../storage/storage-details/storage-details.component';
+import {StorageEditComponent} from '../storage/storage-edit/storage-edit.component';
 
 const routes: Routes = [{
     path: '',
@@ -12,9 +13,9 @@ const routes: Routes = [{
     canActivate: [AuthGuard],
     children: [
         {path: '', component: StorageStartComponent, resolve: [StorageResolverService]},
-        // {path: 'new', component: RecipeEditComponent},
+        {path: 'new', component: StorageEditComponent},
         {path: ':id', component: StorageDetailsComponent, resolve: [StorageResolverService]},
-        // {path: ':id/edit', component: RecipeEditComponent, resolve: [StorageResolverService]},
+        {path: ':id/edit', component: StorageEditComponent, resolve: [StorageResolverService]},
     ]
 }];
 

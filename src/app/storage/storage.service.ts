@@ -34,7 +34,19 @@ export class StorageService {
         return this.storages[id];
     }
 
+
+    addStorages(storages: Storage) {
+        this.storages.push(storages);
+        this.storagesChanged.next(this.storages.slice());
+    }
+
+    updateStorages(index: number, newRecipe: Storage) {
+        this.storages[index] = newRecipe;
+        this.storagesChanged.next(this.storages.slice());
+    }
+
     /*Disabled storages*/
+
     disableStorage(index: number) {
         this.addDisabledStorage(this.storages[index]);
         this.storages[index].status = false;
@@ -53,4 +65,5 @@ export class StorageService {
         this.disabledStorages = storages;
     }
 
+    /*Disabled storages*/
 }
