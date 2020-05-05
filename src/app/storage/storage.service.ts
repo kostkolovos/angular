@@ -38,12 +38,13 @@ export class StorageService {
         this.http.post(this.storageUrl, storage).subscribe();
     }
 
-    updateStorages(index: number, storage: Storage) {
-        let oldStorage = this.getStorage(index);
-        oldStorage = storage;
+    updateStorages(id: number, storage: Storage) {
+        const index = this.storages.indexOf(this.getStorage(id));
+        this.storages[index] = storage;
         this.storagesChanged.next(this.storages.slice());
         this.http.put(this.storageUrl + '/' + storage.id, storage).subscribe();
     }
+
 
     fetchStorages() {
         return this.http.get<Storage[]>(this.storageUrl).pipe(
