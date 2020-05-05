@@ -41,9 +41,10 @@ export class StorageService {
 
     updateStorages(id: number, storage: Storage) {
         const index = this.storages.indexOf(this.getStorage(id));
-        this.storages[index] = storage;
-        this.storagesChanged.next(this.storages.slice());
-        this.http.put(this.storageUrl + '/' + storage.id, storage).subscribe();
+        this.http.put<Storage>(this.storageUrl + '/' + storage.id, storage).subscribe(storageEdit => {
+            this.storages[index] = storageEdit;
+            this.storagesChanged.next(this.storages.slice());
+        });
     }
 
 
