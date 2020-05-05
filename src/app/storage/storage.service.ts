@@ -16,7 +16,11 @@ export class StorageService {
     }
 
     getStorages() {
-        return this.storages.slice();
+        return this.storages.slice().filter(storage => storage.status === true);
+    }
+
+    getDisabledStorages() {
+        return this.storages.slice().filter(storage => storage.status === false);
     }
 
 
@@ -33,11 +37,11 @@ export class StorageService {
     /*Disabled storages*/
     disableStorage(index: number) {
         this.addDisabledStorage(this.storages[index]);
-        this.storages.splice(index, 1);
+        this.storages[index].status = false;
         this.storagesChanged.next(this.storages.slice());
     }
 
-    getDisabledStorages() {
+    getToDisableStorages() {
         return this.disabledStorages.slice();
     }
 

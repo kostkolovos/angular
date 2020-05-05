@@ -15,9 +15,9 @@ export class StorageResolverService implements Resolve<Storage[]> {
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Storage[]> | Promise<Storage[]> | Storage[] {
         const storages = this.storageService.getStorages();
-        const disabledStorages = this.storageService.getDisabledStorages();
+        const disabledStorages = this.storageService.getToDisableStorages();
 
-        if (disabledStorages.length) {
+        if (disabledStorages.length !== 0) {
             this.storageCall.disableStorages(disabledStorages);
         }
 
