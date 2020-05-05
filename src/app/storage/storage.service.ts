@@ -28,7 +28,7 @@ export class StorageService {
 
 
     getStorage(id: number) {
-        return this.storages[id];
+        return this.storages.find(storages => storages.id === id);
     }
 
 

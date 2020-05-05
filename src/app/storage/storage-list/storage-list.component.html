@@ -10,7 +10,7 @@
         <app-storage-item
                 *ngFor="let storeEl of storages | filterStatus:pipeStatus; let i = index"
                 [storage]="storeEl"
-                [index]="i">
+                [index]="storeEl.id">
         </app-storage-item>
     </div>
 </div>
