@@ -12,6 +12,7 @@ import {StorageService} from '../storage.service';
 export class StorageListComponent implements OnInit, OnDestroy {
     storages: Storage[];
     subscription: Subscription;
+    pipeStatus = true;
 
     constructor(private router: Router, private route: ActivatedRoute, private storageService: StorageService) {
     }
@@ -28,6 +29,10 @@ export class StorageListComponent implements OnInit, OnDestroy {
 
     onNewStore() {
         this.router.navigate(['new'], {relativeTo: this.route});
+    }
+
+    onChangeStatus() {
+        this.pipeStatus = !this.pipeStatus;
     }
 
     ngOnDestroy(): void {
