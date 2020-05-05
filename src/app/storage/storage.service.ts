@@ -33,9 +33,10 @@ export class StorageService {
 
 
     addStorages(storage: Storage) {
-        this.storages.push(storage);
-        this.storagesChanged.next(this.storages.slice());
-        this.http.post(this.storageUrl, storage).subscribe();
+        this.http.post<Storage>(this.storageUrl, storage).subscribe(storageAdded => {
+            this.storages.push(storageAdded);
+            this.storagesChanged.next(this.storages.slice());
+        });
     }
 
     updateStorages(id: number, storage: Storage) {
