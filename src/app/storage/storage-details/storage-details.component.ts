@@ -30,7 +30,7 @@ export class StorageDetailsComponent implements OnInit {
 
     onDisableStorage() {
         this.storageService.disableStorage(this.id);
-        this.router.navigate(['/storages']);
+        this.router.navigate(['../']);
     }
 
 }
