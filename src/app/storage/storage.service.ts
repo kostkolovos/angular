@@ -2,17 +2,20 @@ import {Injectable} from '@angular/core';
 import {Storage} from '../apiEntities/storage-entity.model';
 import {Subject} from 'rxjs';
 import {StorageCallsService} from '../apiEntities/storage-calls.service';
+import {environment} from '../../environments/environment';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
     providedIn: 'root'
 })
 export class StorageService {
     storagesChanged = new Subject<Storage[]>();
+    storageUrl = environment.apiUrl + 'api/storages';
 
     private storages: Storage[] = [];
     private disabledStorages: Storage[] = [];
 
-    constructor() {
+    constructor(private http: HttpClient) {
     }
 
     getStorages() {
@@ -35,14 +38,16 @@ export class StorageService {
     }
 
 
-    addStorages(storages: Storage) {
-        this.storages.push(storages);
+    addStorages(storage: Storage) {
+        this.storages.push(storage);
         this.storagesChanged.next(this.storages.slice());
+        this.http.post(this.storageUrl, storage).subscribe();
     }
 
-    updateStorages(index: number, newRecipe: Storage) {
-        this.storages[index] = newRecipe;
+    updateStorages(index: number, storage: Storage) {
+        this.storages[index] = storage;
         this.storagesChanged.next(this.storages.slice());
+        this.http.put(this.storageUrl + '/' + storage.id, storage).subscribe();
     }
 
     /*Disabled storages*/
