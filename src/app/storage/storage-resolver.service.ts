@@ -10,11 +10,17 @@ import {StorageService} from './storage.service';
 })
 export class StorageResolverService implements Resolve<Storage[]> {
 
-    constructor(private storageCall: StorageCallsService, private recipes: StorageService) {
+    constructor(private storageCall: StorageCallsService, private storageService: StorageService) {
     }
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Storage[]> | Promise<Storage[]> | Storage[] {
-        const storages = this.recipes.getStorages();
+        const storages = this.storageService.getStorages();
+        const disabledStorages = this.storageService.getDisabledStorages();
+
+        if (disabledStorages.length) {
+            this.storageCall.disableStorages(disabledStorages);
+        }
+
         if (storages.length === 0) {
             return this.storageCall.fetchStorages();
         } else {

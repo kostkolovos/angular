@@ -22,4 +22,15 @@ export class StorageCallsService {
             })
         );
     }
+
+    disableStorages(storages: Storage[]) {
+        for (const storage of storages) {
+            storage.status = false;
+            this.http.put(this.storageUrl + '/' + storage.id, storage).subscribe(responce => {
+            });
+        }
+
+        this.storageService.setDisabledStorage(null);
+    }
+
 }

@@ -14,7 +14,7 @@
                 </button>
                 <ul class="dropdown-menu">
                     <li><a style="cursor: pointer" (click)="onEditStorage()">Επεξεργασία</a></li>
-                    <li><a style="cursor: pointer" (click)="onDeleteStorage()">Διαγραφή</a></li>
+                    <li><a style="cursor: pointer" (click)="onDisableStorage()">Διαγραφή</a></li>
                 </ul>
             </div>
         </div>
@@ -26,14 +26,20 @@
         </div>
     </div>
 
-   <!-- <div class="row">
+    <div class="row">
         <div class="col-xs-12">
-            <ul class="list-group">
-                <li class="list-group-item" *ngFor="let ingredient of storage.ingredients">
-                    {{ingredient.name}} - {{ingredient.amount}}
-                </li>
-            </ul>
+            <h3> {{storage.status}} </h3>
         </div>
-    </div>-->
+    </div>
+
+    <!-- <div class="row">
+         <div class="col-xs-12">
+             <ul class="list-group">
+                 <li class="list-group-item" *ngFor="let ingredient of storage.ingredients">
+                     {{ingredient.name}} - {{ingredient.amount}}
+                 </li>
+             </ul>
+         </div>
+     </div>-->
 
 </div>
