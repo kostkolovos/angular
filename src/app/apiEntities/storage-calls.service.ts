@@ -17,8 +17,8 @@ export class StorageCallsService {
     fetchStorages() {
         return this.http.get<Storage[]>(this.storageUrl).pipe(
             /*Return only specific data from object*/
-            tap(recipes => {
-                this.storageService.setStorages(recipes['hydra:member']);
+            tap(storages => {
+                this.storageService.setStorages(storages['hydra:member']);
             })
         );
     }

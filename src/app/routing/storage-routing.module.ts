@@ -14,7 +14,7 @@ const routes: Routes = [{
         {path: '', component: StorageStartComponent, resolve: [StorageResolverService]},
         // {path: 'new', component: RecipeEditComponent},
         {path: ':id', component: StorageDetailsComponent, resolve: [StorageResolverService]},
-        // {path: ':id/edit', component: RecipeEditComponent, resolve: [RecipesResolverService]},
+        // {path: ':id/edit', component: RecipeEditComponent, resolve: [StorageResolverService]},
     ]
 }];
 
