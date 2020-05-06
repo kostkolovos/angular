@@ -35,16 +35,25 @@ export class StorageEditComponent implements OnInit {
     private initForm() {
         let storageTitle = '';
         let storageId = null;
+        let storageDescription = '';
+        let storagePieces = 0;
+        let storagePrice = 0;
 
         if (this.editMode) {
             const storage = this.storageService.getStorage(this.id);
             storageId = storage.id;
             storageTitle = storage.title;
+            storageDescription = storage.description;
+            storagePieces = storage.pieces;
+            storagePrice = storage.price;
         }
 
         this.storageForm = new FormGroup({
             title: new FormControl(storageTitle, Validators.required),
-            id: new FormControl(storageId)
+            id: new FormControl(storageId),
+            description: new FormControl(storageDescription),
+            pieces: new FormControl(storagePieces),
+            price: new FormControl(storagePrice),
         });
     }
 
