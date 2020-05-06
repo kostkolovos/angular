@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Storage} from '../../apiEntities/storage-entity.model';
 import {Subscription} from 'rxjs';
 import {StorageService} from '../storage.service';
+import {faPlus, faCheck, faMinus} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     selector: 'app-storage-list',
@@ -13,6 +14,9 @@ export class StorageListComponent implements OnInit, OnDestroy {
     storages: Storage[];
     subscription: Subscription;
     pipeStatus = true;
+    faPlus = faPlus;
+    faCheck = faCheck;
+    faMinus = faMinus;
 
     constructor(private router: Router, private route: ActivatedRoute, private storageService: StorageService) {
     }

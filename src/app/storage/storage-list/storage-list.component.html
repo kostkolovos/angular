@@ -1,7 +1,19 @@
 <div class="row">
     <div class="col-xs-12 btn-toolbar">
-        <button class="btn btn-success" (click)="onNewStore()">Νέα Αποθήκη</button>
-        <button class="btn btn-primary" (click)="onChangeStatus()">Δές {{pipeStatus ? 'Ανενεργές' : 'Ενεργές'}}</button>
+        <button class="btn btn-primary" (click)="onNewStore()">
+            <fa-icon [icon]="faPlus"></fa-icon>
+            Νέα Αποθήκη
+        </button>
+
+        <button class="btn btn-success" *ngIf="pipeStatus" (click)="onChangeStatus()">
+            <fa-icon [icon]="faCheck"></fa-icon>
+            Ενεργές
+        </button>
+        <button class="btn btn-danger" *ngIf="!pipeStatus" (click)="onChangeStatus()">
+            <fa-icon [icon]="faMinus"></fa-icon>
+            Ανενεργές
+        </button>
+
     </div>
 </div>
 <hr>
