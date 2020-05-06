@@ -5,9 +5,14 @@
             <div class="row form-group">
                 <div class="col-xs-12">
                     <div class="btn-toolbar">
-                        <button class="btn btn-success" type="submit" [disabled]="!storageForm.valid">Αποθήκευση
+                        <button class="btn btn-success" type="submit" [disabled]="!storageForm.valid">
+                            <fa-icon [icon]="faSave"></fa-icon>
+                            Αποθήκευση
                         </button>
-                        <button class="btn btn-danger" type="button" (click)="onCancel()">Ακύρωση</button>
+                        <button class="btn btn-danger" type="button" (click)="onCancel()">
+                            <fa-icon [icon]="faWindowClose"></fa-icon>
+                            Ακύρωση
+                        </button>
                     </div>
                 </div>
             </div>

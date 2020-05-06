@@ -7,16 +7,19 @@
     </div>
 
     <div class="row">
-        <div class="col-xs-12">
-            <div class="btn-group" appDropdown>
-                <button type="button" class="btn btn-primary dropdown-toggle">
-                    Manage storage <span class="caret"></span>
+        <div class="col-xs-12 btn-toolbar">
+
+            <div class="btn-toolbar">
+                <button class="btn btn-primary" (click)="onEditStorage()">
+                    <fa-icon [icon]="faEdit"></fa-icon>
+                    Επεξεργασία
                 </button>
-                <ul class="dropdown-menu">
-                    <li><a style="cursor: pointer" (click)="onEditStorage()">Επεξεργασία</a></li>
-                    <li><a style="cursor: pointer" (click)="onDisableStorage()">Διαγραφή</a></li>
-                </ul>
+                <button class="btn btn-danger" (click)="onDisableStorage()">
+                    <fa-icon [icon]="faTrash"></fa-icon>
+                    Διαγραφή
+                </button>
             </div>
+
         </div>
     </div>
 

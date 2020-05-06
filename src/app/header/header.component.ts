@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 // import {DataStorageService} from '../shared/data-storage.service';
 import {AuthService} from '../auth/auth.service';
 import {Subscription} from 'rxjs';
+import {faWarehouse, faSignOutAlt, faSignInAlt} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     selector: 'app-header',
@@ -12,6 +13,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     collapsed = true;
     private userSubscribe: Subscription;
     isAuthenticated = false;
+    faWarehouse = faWarehouse;
+    faSignOutAlt = faSignOutAlt;
+    faSignInAlt = faSignInAlt;
 
     constructor(/*private dataStorageService: DataStorageService,*/ private authService: AuthService) {
     }

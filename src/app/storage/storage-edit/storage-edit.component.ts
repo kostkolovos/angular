@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {StorageService} from '../storage.service';
+import {faSave, faWindowClose} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     selector: 'app-storage-edit',
@@ -12,6 +13,8 @@ export class StorageEditComponent implements OnInit {
     id: number;
     editMode = false;
     storageForm: FormGroup;
+    faSave = faSave;
+    faWindowClose = faWindowClose;
 
     constructor(
         private activatedRoute: ActivatedRoute,
