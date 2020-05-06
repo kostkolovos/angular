@@ -3,7 +3,7 @@ import {Storage} from '../../apiEntities/storage-entity.model';
 import {StorageService} from '../storage.service';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {Subscription} from 'rxjs';
-import {faEdit, faTrash} from '@fortawesome/free-solid-svg-icons';
+import {faBoxes, faEdit, faEuroSign, faTrash} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     selector: 'app-storage-details',
@@ -16,6 +16,8 @@ export class StorageDetailsComponent implements OnInit, OnDestroy {
     subscription: Subscription;
     faEdit = faEdit;
     faTrash = faTrash;
+    faEuroSign = faEuroSign;
+    faBoxes = faBoxes;
 
     constructor(private storageService: StorageService, private route: ActivatedRoute, private router: Router) {
     }

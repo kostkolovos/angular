@@ -1,9 +1,11 @@
 <a style="cursor: pointer" class="list-group-item clearfix" [routerLink]="[index]" routerLinkActive="active">
     <div class="pull-left">
         <h4 class="list-group-item-heading">
-            {{storage.title}} / {{storage.price}}
-            <fa-icon [icon]="faEuroSign"></fa-icon>
-            / {{storage.pieces}}
+            {{storage.title}}
+            <fa-icon [icon]="faEllipsisV"></fa-icon>
+            {{storage.price}}
+            <fa-icon [icon]="faEuroSign"></fa-icon>&nbsp;<fa-icon [icon]="faEllipsisV"></fa-icon>
+            {{storage.pieces}}
             <fa-icon [icon]="faBoxes"></fa-icon>
         </h4>
     </div>
