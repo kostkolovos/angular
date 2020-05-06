@@ -12,7 +12,6 @@ import {Router} from '@angular/router';
 export class AuthComponent implements OnInit, OnDestroy {
 
     isLoginMode = true;
-    isLoading = false;
     error: string = null;
     private closeSub: Subscription;
 
@@ -41,7 +40,6 @@ export class AuthComponent implements OnInit, OnDestroy {
         const password = authForm.value.password;
         let authObs: Observable<any>;
 
-        this.isLoading = true;
         if (this.isLoginMode) {
             authObs = this.auth.login(username, password);
         } else {
@@ -49,11 +47,9 @@ export class AuthComponent implements OnInit, OnDestroy {
         }
 
         authObs.subscribe(resData => {
-            this.isLoading = false;
             this.router.navigate(['/storage']);
         }, errorMessage => {
             this.error = errorMessage;
-            this.isLoading = false;
         });
 
         authForm.reset();
