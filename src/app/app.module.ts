@@ -10,6 +10,7 @@ import {StorageComponent} from './storage/storage.component';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
 import {StorageModule} from './storage/storage.module';
+import {SharedModule} from './shared/shared.module';
 
 @NgModule({
     declarations: [
@@ -23,7 +24,8 @@ import {StorageModule} from './storage/storage.module';
         AppRoutingModule,
         HttpClientModule,
         ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
-        StorageModule
+        StorageModule,
+        SharedModule
     ],
     providers: [],
     bootstrap: [AppComponent]
