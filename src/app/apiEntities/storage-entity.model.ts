@@ -1,3 +1,5 @@
+import {StorageTypes} from './storage-types-entity.model';
+
 export class Storage {
     public id?: number;
     public title: string;
@@ -7,6 +9,7 @@ export class Storage {
     public description?: string;
     public pieces?: number;
     public price?: number;
+    public storageTypes?: StorageTypes;
 
 
     constructor(
@@ -17,7 +20,8 @@ export class Storage {
         status: boolean,
         description: string,
         pieces: number,
-        price: number
+        price: number,
+        storageTypes: StorageTypes,
     ) {
         this.title = title;
         this.createdAt = createdAt;
@@ -27,5 +31,6 @@ export class Storage {
         this.description = description;
         this.pieces = pieces;
         this.price = price;
+        this.storageTypes = storageTypes;
     }
 }

@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {StorageService} from '../storage.service';
 import {faSave, faWindowClose} from '@fortawesome/free-solid-svg-icons';
+import {StorageTypeService} from '../storage-type.service';
 
 @Component({
     selector: 'app-storage-edit',
@@ -15,10 +16,13 @@ export class StorageEditComponent implements OnInit {
     storageForm: FormGroup;
     faSave = faSave;
     faWindowClose = faWindowClose;
+    storageTypes = this.storageTypeService.getstorageTypes();
+
 
     constructor(
         private activatedRoute: ActivatedRoute,
         private storageService: StorageService,
+        private storageTypeService: StorageTypeService,
         private router: Router,
         private route: ActivatedRoute
     ) {
@@ -38,6 +42,7 @@ export class StorageEditComponent implements OnInit {
         let storageDescription = '';
         let storagePieces = 0;
         let storagePrice = 0;
+        let defaultSelect = this.storageTypes.indexOf(this.storageTypes.find(types => types.sort === 1));
 
         if (this.editMode) {
             const storage = this.storageService.getStorage(this.id);
@@ -46,6 +51,7 @@ export class StorageEditComponent implements OnInit {
             storageDescription = storage.description;
             storagePieces = storage.pieces;
             storagePrice = storage.price;
+            defaultSelect = this.storageTypes.indexOf(this.storageTypes.find(types => types.id === storage.storageTypes.id));
         }
 
         this.storageForm = new FormGroup({
@@ -54,6 +60,7 @@ export class StorageEditComponent implements OnInit {
             description: new FormControl(storageDescription),
             pieces: new FormControl(storagePieces),
             price: new FormControl(storagePrice),
+            storageType: new FormControl(this.storageTypes[defaultSelect]),
         });
     }
 
