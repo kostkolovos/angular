@@ -18,6 +18,8 @@ export class StorageDetailsComponent implements OnInit, OnDestroy {
     faTrash = faTrash;
     faEuroSign = faEuroSign;
     faBoxes = faBoxes;
+    disabled: boolean;
+
 
     constructor(private storageService: StorageService, private route: ActivatedRoute, private router: Router) {
     }
@@ -33,9 +35,12 @@ export class StorageDetailsComponent implements OnInit, OnDestroy {
             (params: Params) => {
                 this.id = +params['id'];
                 this.storage = this.storageService.getStorage(this.id);
+                this.disabled = this.storage.status;
             }
         );
+
     }
+
 
     onEditStorage() {
         this.router.navigate(['edit'], {relativeTo: this.route});
