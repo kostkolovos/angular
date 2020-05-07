@@ -13,7 +13,7 @@ const routes: Routes = [{
     canActivate: [AuthGuard],
     children: [
         {path: '', component: StorageStartComponent, resolve: [StorageResolverService]},
-        {path: 'new', component: StorageEditComponent},
+        {path: 'new', component: StorageEditComponent, resolve: [StorageResolverService]},
         {path: ':id', component: StorageDetailsComponent, resolve: [StorageResolverService]},
         {path: ':id/edit', component: StorageEditComponent, resolve: [StorageResolverService]},
     ]
