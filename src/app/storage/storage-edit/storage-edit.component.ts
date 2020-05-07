@@ -60,7 +60,7 @@ export class StorageEditComponent implements OnInit {
             description: new FormControl(storageDescription),
             pieces: new FormControl(storagePieces),
             price: new FormControl(storagePrice),
-            storageType: new FormControl(this.storageTypes[defaultSelect]),
+            storageTypes: new FormControl(this.storageTypes[defaultSelect]),
         });
     }
 
