@@ -58,9 +58,9 @@ export class StorageEditComponent implements OnInit {
             title: new FormControl(storageTitle, Validators.required),
             id: new FormControl(storageId),
             description: new FormControl(storageDescription),
-            pieces: new FormControl(storagePieces),
-            price: new FormControl(storagePrice),
-            storageTypes: new FormControl(this.storageTypes[defaultSelect]),
+            pieces: new FormControl(storagePieces, Validators.required),
+            price: new FormControl(storagePrice, Validators.required),
+            storageTypes: new FormControl(this.storageTypes[defaultSelect], Validators.required),
         });
     }
 
