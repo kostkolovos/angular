@@ -4,6 +4,7 @@ import {ActivatedRoute, Params, Router} from '@angular/router';
 import {StorageService} from '../storage.service';
 import {faSave, faWindowClose} from '@fortawesome/free-solid-svg-icons';
 import {StorageTypeService} from '../storage-type.service';
+import {StorageTypes} from '../../apiEntities/storage-types-entity.model';
 
 @Component({
     selector: 'app-storage-edit',
@@ -17,6 +18,7 @@ export class StorageEditComponent implements OnInit {
     faSave = faSave;
     faWindowClose = faWindowClose;
     storageTypes = this.storageTypeService.getstorageTypes();
+    currentType: StorageTypes;
 
 
     constructor(
@@ -42,7 +44,8 @@ export class StorageEditComponent implements OnInit {
         let storageDescription = '';
         let storagePieces = 0;
         let storagePrice = 0;
-        let defaultSelect = this.storageTypes.indexOf(this.storageTypes.find(types => types.sort === 1));
+        this.currentType = this.storageTypes.find(types => types.sort === 1);
+        let defaultSelect = this.storageTypes.indexOf(this.currentType);
 
         if (this.editMode) {
             const storage = this.storageService.getStorage(this.id);
@@ -51,7 +54,8 @@ export class StorageEditComponent implements OnInit {
             storageDescription = storage.description;
             storagePieces = storage.pieces;
             storagePrice = storage.price;
-            defaultSelect = this.storageTypes.indexOf(this.storageTypes.find(types => types.id === storage.storageTypes.id));
+            this.currentType = this.storageTypes.find(types => types.id === storage.storageTypes.id);
+            defaultSelect = this.storageTypes.indexOf(this.currentType);
         }
 
         this.storageForm = new FormGroup({
@@ -62,7 +66,12 @@ export class StorageEditComponent implements OnInit {
             price: new FormControl(storagePrice, Validators.required),
             storageTypes: new FormControl(this.storageTypes[defaultSelect], Validators.required),
         });
+
+        this.storageForm.valueChanges.subscribe(val => {
+            this.currentType = val.storageTypes;
+        });
     }
+
 
     onSubmit() {
         if (this.editMode) {
