@@ -34,11 +34,6 @@ export class StorageTypeService {
 
 
     getstorageType(id: number) {
-
-        if (this.storageTypes.length === 0) {
-            this.fetchstorageTypes();
-        }
-
         return this.storageTypes.find(storageTypes => storageTypes.id === id);
     }
 
