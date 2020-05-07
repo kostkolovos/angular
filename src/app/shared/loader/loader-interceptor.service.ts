@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse} from '@angular/common/http';
 import {LoaderService} from './loader.service';
 import {Observable} from 'rxjs';
+import {Router} from '@angular/router';
 
 @Injectable({
     providedIn: 'root'
@@ -9,7 +10,7 @@ import {Observable} from 'rxjs';
 export class LoaderInterceptorService implements HttpInterceptor {
     private requests: HttpRequest<any>[] = [];
 
-    constructor(private loaderService: LoaderService) {
+    constructor(private loaderService: LoaderService, private router: Router) {
     }
 
     removeRequest(req: HttpRequest<any>) {
@@ -35,9 +36,10 @@ export class LoaderInterceptorService implements HttpInterceptor {
                         }
                     },
                     err => {
-                        alert('error' + err);
+                       /* alert('error' + err.error.code);
                         this.removeRequest(req);
-                        observer.error(err);
+                        observer.error(err);*/
+                        this.router.navigate(['/storage']);
                     },
                     () => {
                         this.removeRequest(req);
