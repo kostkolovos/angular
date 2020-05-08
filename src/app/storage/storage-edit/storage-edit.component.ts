@@ -54,6 +54,7 @@ export class StorageEditComponent implements OnInit {
         this.currentType = this.storageTypesApi.find(types => types.sort === 1);
         let defaultSelect = this.storageTypesApi.indexOf(this.currentType);
         const storagePetType = new FormArray([]);
+        let piecesDisabledValue = false;
 
         if (this.editMode) {
             const storage = this.storageService.getStorage(this.id);
@@ -67,6 +68,7 @@ export class StorageEditComponent implements OnInit {
 
             if (storage['storagePetTypes'].length) {
                 for (const storageItem of storage.storagePetTypes) {
+                    piecesDisabledValue = true;
                     this.defaultBookletStates = storageItem.booklet;
                     storagePetType.push(
                         this.addFormGroupPetType(storageItem.microchip, storageItem.male, storageItem.female, storageItem.booklet)
@@ -84,7 +86,7 @@ export class StorageEditComponent implements OnInit {
             title: new FormControl(storageTitle, Validators.required),
             id: new FormControl(storageId),
             description: new FormControl(storageDescription),
-            pieces: new FormControl(storagePieces, Validators.required),
+            pieces: new FormControl({value: storagePieces, disabled: piecesDisabledValue}, Validators.required),
             price: new FormControl(storagePrice, Validators.required),
             storageTypes: new FormControl(this.storageTypesApi[defaultSelect], Validators.required),
             storagePetTypes: storagePetType
@@ -97,8 +99,10 @@ export class StorageEditComponent implements OnInit {
             this.currentType = val;
             if (this.currentType.title === this.storagePetTypeValue) {
                 microchipStoragePetTypesControl.setValidators(Validators.required);
+                this.storageForm.get('pieces').disable();
             } else {
                 microchipStoragePetTypesControl.clearValidators();
+                this.storageForm.get('pieces').enable();
             }
             microchipStoragePetTypesControl.updateValueAndValidity();
         });
