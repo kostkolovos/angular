@@ -49,11 +49,6 @@ export class StorageEditComponent implements OnInit {
         this.currentType = this.storageTypesApi.find(types => types.sort === 1);
         let defaultSelect = this.storageTypesApi.indexOf(this.currentType);
         const storagePetType = new FormArray([]);
-        storagePetType.push(
-            new FormGroup({
-                microchip: new FormControl(null, Validators.required)
-            })
-        );
 
         if (this.editMode) {
             const storage = this.storageService.getStorage(this.id);
@@ -65,16 +60,16 @@ export class StorageEditComponent implements OnInit {
             this.currentType = this.storageTypesApi.find(types => types.id === storage.storageTypes.id);
             defaultSelect = this.storageTypesApi.indexOf(this.currentType);
 
-            if (storage['storagePetTypes']) {
+            if (storage['storagePetTypes'].length) {
                 for (const storageItem of storage.storagePetTypes) {
-                    storagePetType.push(
-                        new FormGroup({
-                            microchip: new FormControl(storageItem.microchip, Validators.required)
-                        })
-                    );
+                    storagePetType.push(this.addFormGroupPetType(storageItem.microchip));
                 }
+            } else {
+                storagePetType.push(this.addFormGroupPetType());
             }
 
+        } else {
+            storagePetType.push(this.addFormGroupPetType());
         }
 
         this.storageForm = new FormGroup({
@@ -110,5 +105,11 @@ export class StorageEditComponent implements OnInit {
 
     get controls() { // a getter!
         return (<FormArray> this.storageForm.get('storagePetTypes')).controls;
+    }
+
+    addFormGroupPetType(microchip = null) {
+        return new FormGroup({
+            microchip: new FormControl(microchip, Validators.required)
+        });
     }
 }
