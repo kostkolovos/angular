@@ -1,8 +1,7 @@
-import {Injectable, OnInit} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Subject} from 'rxjs';
 import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
-import {tap} from 'rxjs/operators';
 import {StorageTypes} from '../apiEntities/storage-types-entity.model';
 
 @Injectable({
