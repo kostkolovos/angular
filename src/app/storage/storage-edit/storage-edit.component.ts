@@ -62,7 +62,9 @@ export class StorageEditComponent implements OnInit {
 
             if (storage['storagePetTypes'].length) {
                 for (const storageItem of storage.storagePetTypes) {
-                    storagePetType.push(this.addFormGroupPetType(storageItem.microchip));
+                    storagePetType.push(
+                        this.addFormGroupPetType(storageItem.microchip, storageItem.male, storageItem.female, storageItem.booklet)
+                    );
                 }
             } else {
                 storagePetType.push(this.addFormGroupPetType());
@@ -116,9 +118,13 @@ export class StorageEditComponent implements OnInit {
         return (<FormArray> this.storageForm.get('storagePetTypes')).controls;
     }
 
-    addFormGroupPetType(microchip = null) {
+    addFormGroupPetType(microchip = null, male = null, female = null, booklet = null) {
+
         return new FormGroup({
-            microchip: new FormControl(microchip)
+            microchip: new FormControl(microchip),
+            male: new FormControl(male),
+            female: new FormControl(female),
+            booklet: new FormControl(booklet),
         });
     }
 }

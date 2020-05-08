@@ -67,10 +67,39 @@
                 <div class="col-xs-12" formArrayName="storagePetTypes">
                     <div class="row" *ngFor="let ingredientCtrl of controls; let i = index" [formGroupName]="i"
                          style="margin-top: 10px">
-                        <div class="col-xs-6">
-                            <label for="microchip">Microchip</label>
-                            <input type="text" class="form-control" id="microchip" formControlName="microchip">
+
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="col-xs-6">
+                                    <label for="microchip">Microchip</label>
+                                    <input type="text" class="form-control" id="microchip" formControlName="microchip">
+                                </div>
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+                                        <label for="booklet">Βιβλιάριο</label>
+                                        <input type="text" id="booklet" class="form-control" formControlName="booklet">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+                                        <label for="male">Αρσενικά</label>
+                                        <input type="number" id="male" class="form-control" formControlName="male">
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+                                        <label for="female">Θηλυκό</label>
+                                        <input type="number" id="female" class="form-control" formControlName="female">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
