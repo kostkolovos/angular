@@ -20,7 +20,12 @@ export class StorageEditComponent implements OnInit {
     storageTypesApi: StorageTypes[];
     currentType: StorageTypes;
     storagePetTypeValue = 'StoragePetType';
-
+    defaultBookletStates = null;
+    bookletStates = [
+        {value: null, text: 'Χωρίς'},
+        {value: 'GR', text: 'Ελληνικό'},
+        {value: 'EU', text: 'Ευρωπαικό'},
+    ];
 
     constructor(
         private activatedRoute: ActivatedRoute,
@@ -62,6 +67,7 @@ export class StorageEditComponent implements OnInit {
 
             if (storage['storagePetTypes'].length) {
                 for (const storageItem of storage.storagePetTypes) {
+                    this.defaultBookletStates = storageItem.booklet;
                     storagePetType.push(
                         this.addFormGroupPetType(storageItem.microchip, storageItem.male, storageItem.female, storageItem.booklet)
                     );
