@@ -63,7 +63,18 @@
                 </div>
             </div>
 
-            <div class="row" *ngIf="currentType && currentType.title === 'Pets'">{{currentType.title}}</div>
+            <div class="row" *ngIf="currentType && currentType.title === storagePetTypeValue">
+                <div class="col-xs-12" formArrayName="storagePetTypes">
+                    <div class="row" *ngFor="let ingredientCtrl of controls; let i = index" [formGroupName]="i"
+                         style="margin-top: 10px">
+                        <div class="col-xs-6">
+                            <label for="microchip">Microchip</label>
+                            <input type="text" class="form-control" id="microchip" formControlName="microchip">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
         </form>
     </div>

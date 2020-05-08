@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {StorageService} from '../storage.service';
 import {faSave, faWindowClose} from '@fortawesome/free-solid-svg-icons';
@@ -19,6 +19,7 @@ export class StorageEditComponent implements OnInit {
     faWindowClose = faWindowClose;
     storageTypesApi: StorageTypes[];
     currentType: StorageTypes;
+    storagePetTypeValue = 'StoragePetType';
 
 
     constructor(
@@ -47,6 +48,12 @@ export class StorageEditComponent implements OnInit {
         this.storageTypesApi = this.storageTypeService.getstorageTypes();
         this.currentType = this.storageTypesApi.find(types => types.sort === 1);
         let defaultSelect = this.storageTypesApi.indexOf(this.currentType);
+        const storagePetType = new FormArray([]);
+        storagePetType.push(
+            new FormGroup({
+                microchip: new FormControl(null, Validators.required)
+            })
+        );
 
         if (this.editMode) {
             const storage = this.storageService.getStorage(this.id);
@@ -57,6 +64,17 @@ export class StorageEditComponent implements OnInit {
             storagePrice = storage.price;
             this.currentType = this.storageTypesApi.find(types => types.id === storage.storageTypes.id);
             defaultSelect = this.storageTypesApi.indexOf(this.currentType);
+
+            if (storage['storagePetTypes']) {
+                for (const storageItem of storage.storagePetTypes) {
+                    storagePetType.push(
+                        new FormGroup({
+                            microchip: new FormControl(storageItem.microchip, Validators.required)
+                        })
+                    );
+                }
+            }
+
         }
 
         this.storageForm = new FormGroup({
@@ -66,6 +84,7 @@ export class StorageEditComponent implements OnInit {
             pieces: new FormControl(storagePieces, Validators.required),
             price: new FormControl(storagePrice, Validators.required),
             storageTypes: new FormControl(this.storageTypesApi[defaultSelect], Validators.required),
+            storagePetTypes: storagePetType
         });
 
         this.storageForm.valueChanges.subscribe(val => {
@@ -86,5 +105,10 @@ export class StorageEditComponent implements OnInit {
 
     onCancel() {
         this.router.navigate(['../'], {relativeTo: this.route});
+    }
+
+
+    get controls() { // a getter!
+        return (<FormArray> this.storageForm.get('storagePetTypes')).controls;
     }
 }
