@@ -83,7 +83,7 @@ export class StorageEditComponent implements OnInit {
         });
 
         const storagePetTypesControl = this.storageForm.get('storagePetTypes');
-        const microchipStoragePetTypesControl: FormArray = storagePetTypesControl.controls[0].get('microchip');
+        const microchipStoragePetTypesControl = storagePetTypesControl['controls'][0].get('microchip');
         this.storageForm.get('storageTypes').valueChanges.subscribe((val) => {
             this.currentType = val;
             if (this.currentType.title === this.storagePetTypeValue) {
