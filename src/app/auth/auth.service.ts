@@ -50,6 +50,7 @@ export class AuthService {
             response => {
                 loadedUser._refreshToken = response.refresh_token;
                 loadedUser._token = response.token;
+                localStorage.setItem('token', JSON.stringify(loadedUser));
             }, error => {
                 if (error.error.code === 401) {
                     this.logout();
