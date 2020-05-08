@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {StorageService} from '../storage.service';
 import {faSave, faWindowClose} from '@fortawesome/free-solid-svg-icons';
@@ -17,7 +17,7 @@ export class StorageEditComponent implements OnInit {
     storageForm: FormGroup;
     faSave = faSave;
     faWindowClose = faWindowClose;
-    storageTypes = this.storageTypeService.getstorageTypes();
+    storageTypesApi: StorageTypes[];
     currentType: StorageTypes;
 
 
@@ -44,8 +44,9 @@ export class StorageEditComponent implements OnInit {
         let storageDescription = '';
         let storagePieces = 0;
         let storagePrice = 0;
-        this.currentType = this.storageTypes.find(types => types.sort === 1);
-        let defaultSelect = this.storageTypes.indexOf(this.currentType);
+        this.storageTypesApi = this.storageTypeService.getstorageTypes();
+        this.currentType = this.storageTypesApi.find(types => types.sort === 1);
+        let defaultSelect = this.storageTypesApi.indexOf(this.currentType);
 
         if (this.editMode) {
             const storage = this.storageService.getStorage(this.id);
@@ -54,8 +55,8 @@ export class StorageEditComponent implements OnInit {
             storageDescription = storage.description;
             storagePieces = storage.pieces;
             storagePrice = storage.price;
-            this.currentType = this.storageTypes.find(types => types.id === storage.storageTypes.id);
-            defaultSelect = this.storageTypes.indexOf(this.currentType);
+            this.currentType = this.storageTypesApi.find(types => types.id === storage.storageTypes.id);
+            defaultSelect = this.storageTypesApi.indexOf(this.currentType);
         }
 
         this.storageForm = new FormGroup({
@@ -64,7 +65,7 @@ export class StorageEditComponent implements OnInit {
             description: new FormControl(storageDescription),
             pieces: new FormControl(storagePieces, Validators.required),
             price: new FormControl(storagePrice, Validators.required),
-            storageTypes: new FormControl(this.storageTypes[defaultSelect], Validators.required),
+            storageTypes: new FormControl(this.storageTypesApi[defaultSelect], Validators.required),
         });
 
         this.storageForm.valueChanges.subscribe(val => {
