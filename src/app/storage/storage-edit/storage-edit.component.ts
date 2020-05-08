@@ -82,8 +82,16 @@ export class StorageEditComponent implements OnInit {
             storagePetTypes: storagePetType
         });
 
-        this.storageForm.valueChanges.subscribe(val => {
-            this.currentType = val.storageTypes;
+        const storagePetTypesControl = this.storageForm.get('storagePetTypes');
+        const microchipStoragePetTypesControl: FormArray = storagePetTypesControl.controls[0].get('microchip');
+        this.storageForm.get('storageTypes').valueChanges.subscribe((val) => {
+            this.currentType = val;
+            if (this.currentType.title === this.storagePetTypeValue) {
+                microchipStoragePetTypesControl.setValidators(Validators.required);
+            } else {
+                microchipStoragePetTypesControl.clearValidators();
+            }
+            microchipStoragePetTypesControl.updateValueAndValidity();
         });
     }
 
@@ -109,7 +117,7 @@ export class StorageEditComponent implements OnInit {
 
     addFormGroupPetType(microchip = null) {
         return new FormGroup({
-            microchip: new FormControl(microchip, Validators.required)
+            microchip: new FormControl(microchip)
         });
     }
 }
