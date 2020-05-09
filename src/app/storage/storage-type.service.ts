@@ -58,5 +58,19 @@ export class StorageTypeService {
             this.setstorageTypes(storageTypes['hydra:member']);
         }));
     }
+
+
+
+    getStoragePetTypeValue() {
+        return 'StoragePetType';
+    }
+
+    getBookletValues() {
+        return [
+            {value: null, text: 'Χωρίς'},
+            {value: 'GR', text: 'Ελληνικό'},
+            {value: 'EU', text: 'Ευρωπαικό'},
+        ];
+    }
 }
 

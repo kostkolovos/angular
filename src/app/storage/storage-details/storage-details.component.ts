@@ -3,7 +3,8 @@ import {Storage} from '../../apiEntities/storage-entity.model';
 import {StorageService} from '../storage.service';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {Subscription} from 'rxjs';
-import {faBoxes, faEdit, faEuroSign, faTrash} from '@fortawesome/free-solid-svg-icons';
+import {faBoxes, faEdit, faEuroSign, faTrash, faMars, faVenus, faBook} from '@fortawesome/free-solid-svg-icons';
+import {StorageTypeService} from '../storage-type.service';
 
 @Component({
     selector: 'app-storage-details',
@@ -18,13 +19,23 @@ export class StorageDetailsComponent implements OnInit, OnDestroy {
     faTrash = faTrash;
     faEuroSign = faEuroSign;
     faBoxes = faBoxes;
+    faMars = faMars;
+    faVenus = faVenus;
+    faBook = faBook;
     disabled: boolean;
+    storagePetTypeValue = this.storageTypeService.getStoragePetTypeValue();
 
 
-    constructor(private storageService: StorageService, private route: ActivatedRoute, private router: Router) {
+    constructor(
+        private storageService: StorageService,
+        private route: ActivatedRoute,
+        private router: Router,
+        private storageTypeService: StorageTypeService
+    ) {
     }
 
     ngOnInit(): void {
+
         this.subscription = this.storageService.storagesChanged.subscribe(
             (storages: Storage[]) => {
                 this.storage = this.storageService.getStorage(this.id);
@@ -38,7 +49,6 @@ export class StorageDetailsComponent implements OnInit, OnDestroy {
                 this.disabled = this.storage.status;
             }
         );
-
     }
 
 

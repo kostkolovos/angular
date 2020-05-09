@@ -5,6 +5,7 @@ import {StorageService} from '../storage.service';
 import {faSave, faWindowClose} from '@fortawesome/free-solid-svg-icons';
 import {StorageTypeService} from '../storage-type.service';
 import {StorageTypes} from '../../apiEntities/storage-types-entity.model';
+import {StoragePetType} from '../../apiEntities/storage-pet-type-entity.model';
 
 @Component({
     selector: 'app-storage-edit',
@@ -19,13 +20,9 @@ export class StorageEditComponent implements OnInit {
     faWindowClose = faWindowClose;
     storageTypesApi: StorageTypes[];
     currentType: StorageTypes;
-    storagePetTypeValue = 'StoragePetType';
+    storagePetTypeValue = this.storageTypeService.getStoragePetTypeValue();
+    bookletStates = this.storageTypeService.getBookletValues();
     defaultBookletStates = null;
-    bookletStates = [
-        {value: null, text: 'Χωρίς'},
-        {value: 'GR', text: 'Ελληνικό'},
-        {value: 'EU', text: 'Ευρωπαικό'},
-    ];
 
     constructor(
         private activatedRoute: ActivatedRoute,
