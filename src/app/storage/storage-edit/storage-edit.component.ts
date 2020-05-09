@@ -54,7 +54,6 @@ export class StorageEditComponent implements OnInit {
         this.currentType = this.storageTypesApi.find(types => types.sort === 1);
         let defaultSelect = this.storageTypesApi.indexOf(this.currentType);
         const storagePetType = new FormArray([]);
-        let piecesDisabledValue = false;
 
         if (this.editMode) {
             const storage = this.storageService.getStorage(this.id);
@@ -68,7 +67,6 @@ export class StorageEditComponent implements OnInit {
 
             if (storage['storagePetTypes'].length) {
                 for (const storageItem of storage.storagePetTypes) {
-                    piecesDisabledValue = true;
                     this.defaultBookletStates = storageItem.booklet;
                     storagePetType.push(
                         this.addFormGroupPetType(storageItem.microchip, storageItem.male, storageItem.female, storageItem.booklet)
@@ -86,7 +84,7 @@ export class StorageEditComponent implements OnInit {
             title: new FormControl(storageTitle, Validators.required),
             id: new FormControl(storageId),
             description: new FormControl(storageDescription),
-            pieces: new FormControl({value: storagePieces, disabled: piecesDisabledValue}, Validators.required),
+            pieces: new FormControl(storagePieces, Validators.required),
             price: new FormControl(storagePrice, Validators.required),
             storageTypes: new FormControl(this.storageTypesApi[defaultSelect], Validators.required),
             storagePetTypes: storagePetType
@@ -121,6 +119,7 @@ export class StorageEditComponent implements OnInit {
 
         /*On load type*/
         if (this.currentType.title === this.storagePetTypeValue) {
+            piecesControl.disable();
             maleStoragePetTypesControl.valueChanges.forEach((value: number) => {
                 piecesControl.setValue(maleStoragePetTypesControl.value + femaleStoragePetTypesControl.value);
             });
@@ -165,6 +164,8 @@ export class StorageEditComponent implements OnInit {
     checkBeforeSubmit() {
         if (this.currentType.title !== this.storagePetTypeValue) {
             this.storageForm.get('storagePetTypes').disable();
+        } else {
+            this.storageForm.get('pieces').enable();
         }
     }
 }
