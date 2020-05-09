@@ -94,22 +94,46 @@ export class StorageEditComponent implements OnInit {
 
         const storagePetTypesControl = this.storageForm.get('storagePetTypes') as FormArray;
         const microchipStoragePetTypesControl = storagePetTypesControl.controls.find(Boolean).get('microchip');
+        const maleStoragePetTypesControl = storagePetTypesControl.controls.find(Boolean).get('male');
+        const femaleStoragePetTypesControl = storagePetTypesControl.controls.find(Boolean).get('female');
+        const piecesControl = this.storageForm.get('pieces');
 
+        /*On change type*/
         this.storageForm.get('storageTypes').valueChanges.subscribe((val) => {
             this.currentType = val;
             if (this.currentType.title === this.storagePetTypeValue) {
                 microchipStoragePetTypesControl.setValidators(Validators.required);
-                this.storageForm.get('pieces').disable();
+                piecesControl.disable();
+
+                maleStoragePetTypesControl.valueChanges.forEach((value: number) => {
+                    piecesControl.setValue(maleStoragePetTypesControl.value + femaleStoragePetTypesControl.value);
+                });
+                femaleStoragePetTypesControl.valueChanges.forEach((value: number) => {
+                    piecesControl.setValue(maleStoragePetTypesControl.value + femaleStoragePetTypesControl.value);
+                });
+
             } else {
                 microchipStoragePetTypesControl.clearValidators();
-                this.storageForm.get('pieces').enable();
+                piecesControl.enable();
             }
             microchipStoragePetTypesControl.updateValueAndValidity();
         });
+
+        /*On load type*/
+        if (this.currentType.title === this.storagePetTypeValue) {
+            maleStoragePetTypesControl.valueChanges.forEach((value: number) => {
+                piecesControl.setValue(maleStoragePetTypesControl.value + femaleStoragePetTypesControl.value);
+            });
+            femaleStoragePetTypesControl.valueChanges.forEach((value: number) => {
+                piecesControl.setValue(maleStoragePetTypesControl.value + femaleStoragePetTypesControl.value);
+            });
+        }
+
     }
 
 
     onSubmit() {
+        this.checkBeforeSubmit();
         if (this.editMode) {
             this.storageService.updateStorages(this.id, this.storageForm.value);
         } else {
@@ -136,5 +160,11 @@ export class StorageEditComponent implements OnInit {
             female: new FormControl(female),
             booklet: new FormControl(booklet),
         });
+    }
+
+    checkBeforeSubmit() {
+        if (this.currentType.title !== this.storagePetTypeValue) {
+            this.storageForm.get('storagePetTypes').disable();
+        }
     }
 }
