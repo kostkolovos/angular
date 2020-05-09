@@ -38,8 +38,8 @@ export class StorageEditComponent implements OnInit {
 
     ngOnInit(): void {
         this.activatedRoute.params.subscribe((params: Params) => {
-            this.id = +params['id'];
-            this.editMode = params['id'] != null;
+            this.id = +params.id;
+            this.editMode = params.id != null;
             this.initForm();
         });
     }
@@ -65,7 +65,7 @@ export class StorageEditComponent implements OnInit {
             this.currentType = this.storageTypesApi.find(types => types.id === storage.storageTypes.id);
             defaultSelect = this.storageTypesApi.indexOf(this.currentType);
 
-            if (storage['storagePetTypes'].length) {
+            if (storage.storagePetTypes.length) {
                 for (const storageItem of storage.storagePetTypes) {
                     this.defaultBookletStates = storageItem.booklet;
                     storagePetType.push(
