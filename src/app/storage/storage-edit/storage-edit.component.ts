@@ -99,7 +99,6 @@ export class StorageEditComponent implements OnInit {
 
             switch (this.currentType.title) {
                 case this.storagePetTypeValue:
-                    microchipStoragePetTypesControl.setValidators(Validators.required);
                     this.storagePetTypePetHandler(storagePetTypesControl);
                     break;
                 default:
@@ -166,6 +165,8 @@ export class StorageEditComponent implements OnInit {
         const maleStoragePetTypesControl = storagePetTypesControl.controls.find(Boolean).get('male');
         const femaleStoragePetTypesControl = storagePetTypesControl.controls.find(Boolean).get('female');
         const piecesControl = this.storageForm.get('pieces');
+
+        storagePetTypesControl.controls.find(Boolean).get('microchip').setValidators(Validators.required);
         piecesControl.disable();
         maleStoragePetTypesControl.valueChanges.forEach((value: number) => {
             piecesControl.setValue(maleStoragePetTypesControl.value + femaleStoragePetTypesControl.value);
