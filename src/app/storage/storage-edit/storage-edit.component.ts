@@ -153,10 +153,10 @@ export class StorageEditComponent implements OnInit {
     checkBeforeSubmit() {
         switch (this.currentType.title) {
             case this.storagePetTypeValue:
-                this.storageForm.get('storagePetTypes').disable();
+                this.storageForm.get('pieces').enable();
                 break;
             default:
-                this.storageForm.get('pieces').enable();
+                this.storageForm.get('storagePetTypes').disable();
                 break;
         }
     }
