@@ -1,5 +1,4 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-// import {DataStorageService} from '../shared/data-storage.service';
 import {AuthService} from '../auth/auth.service';
 import {Subscription} from 'rxjs';
 import {faWarehouse, faSignOutAlt, faSignInAlt} from '@fortawesome/free-solid-svg-icons';
@@ -17,7 +16,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     faSignOutAlt = faSignOutAlt;
     faSignInAlt = faSignInAlt;
 
-    constructor(/*private dataStorageService: DataStorageService,*/ private authService: AuthService) {
+    constructor(private authService: AuthService) {
     }
 
     ngOnInit(): void {
