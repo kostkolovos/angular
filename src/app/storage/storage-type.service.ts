@@ -60,7 +60,6 @@ export class StorageTypeService {
     }
 
 
-
     getStoragePetTypeValue() {
         return 'StoragePetType';
     }
@@ -71,6 +70,11 @@ export class StorageTypeService {
             {value: 'GR', text: 'Ελληνικό'},
             {value: 'EU', text: 'Ευρωπαικό'},
         ];
+    }
+
+    getBookletValue(booklet) {
+        const bookletValues = this.getBookletValues();
+        return bookletValues.find(value => value.value == booklet).text;
     }
 }
 

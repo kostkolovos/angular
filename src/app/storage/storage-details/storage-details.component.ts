@@ -24,6 +24,7 @@ export class StorageDetailsComponent implements OnInit, OnDestroy {
     faBook = faBook;
     disabled: boolean;
     storagePetTypeValue = this.storageTypeService.getStoragePetTypeValue();
+    bookletText: string;
 
 
     constructor(
@@ -44,9 +45,14 @@ export class StorageDetailsComponent implements OnInit, OnDestroy {
 
         this.route.params.subscribe(
             (params: Params) => {
-                this.id = +params['id'];
+                this.id = +params.id;
                 this.storage = this.storageService.getStorage(this.id);
                 this.disabled = this.storage.status;
+
+                if (this.storage.storageTypes.title === this.storagePetTypeValue) {
+                    this.bookletText = this.storageTypeService.getBookletValue(this.storage.storagePetTypes.find(Boolean).booklet);
+                }
+
             }
         );
     }
