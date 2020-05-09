@@ -96,21 +96,26 @@ export class StorageEditComponent implements OnInit {
         /*On change type*/
         this.storageForm.get('storageTypes').valueChanges.subscribe((val) => {
             this.currentType = val;
-            if (this.currentType.title === this.storagePetTypeValue) {
-                microchipStoragePetTypesControl.setValidators(Validators.required);
-                this.storagePetTypePetHandler(storagePetTypesControl);
-            } else {
-                microchipStoragePetTypesControl.clearValidators();
-                this.storageForm.get('pieces').enable();
+
+            switch (this.currentType.title) {
+                case this.storagePetTypeValue:
+                    microchipStoragePetTypesControl.setValidators(Validators.required);
+                    this.storagePetTypePetHandler(storagePetTypesControl);
+                    break;
+                default:
+                    microchipStoragePetTypesControl.clearValidators();
+                    this.storageForm.get('pieces').enable();
+                    break;
             }
             microchipStoragePetTypesControl.updateValueAndValidity();
         });
+        /*On change type*/
 
         /*On load type*/
         if (this.currentType.title === this.storagePetTypeValue) {
             this.storagePetTypePetHandler(storagePetTypesControl);
         }
-
+        /*On load type*/
     }
 
 
@@ -145,10 +150,13 @@ export class StorageEditComponent implements OnInit {
     }
 
     checkBeforeSubmit() {
-        if (this.currentType.title !== this.storagePetTypeValue) {
-            this.storageForm.get('storagePetTypes').disable();
-        } else {
-            this.storageForm.get('pieces').enable();
+        switch (this.currentType.title) {
+            case this.storagePetTypeValue:
+                this.storageForm.get('storagePetTypes').disable();
+                break;
+            default:
+                this.storageForm.get('pieces').enable();
+                break;
         }
     }
 
