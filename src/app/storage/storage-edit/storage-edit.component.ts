@@ -136,7 +136,8 @@ export class StorageEditComponent implements OnInit {
 
 
     get controls() { // a getter!
-        return (<FormArray> this.storageForm.get('storagePetTypes')).controls;
+        const formArray = this.storageForm.get('storagePetTypes') as FormArray;
+        return formArray.controls;
     }
 
     addFormGroupPetType(microchip = null, male = 0, female = 0, booklet = null) {
