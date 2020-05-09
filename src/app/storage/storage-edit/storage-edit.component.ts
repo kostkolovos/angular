@@ -128,7 +128,7 @@ export class StorageEditComponent implements OnInit {
         return (<FormArray> this.storageForm.get('storagePetTypes')).controls;
     }
 
-    addFormGroupPetType(microchip = null, male = null, female = null, booklet = null) {
+    addFormGroupPetType(microchip = null, male = 0, female = 0, booklet = null) {
 
         return new FormGroup({
             microchip: new FormControl(microchip),
