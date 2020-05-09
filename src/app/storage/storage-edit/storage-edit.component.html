@@ -63,7 +63,7 @@
                 </div>
             </div>
 
-            <div class="row" *ngIf="currentType && currentType.title === storagePetTypeValue">
+            <div *ngIf="currentType && currentType.title === storagePetTypeValue">
                 <div class="col-xs-12" formArrayName="storagePetTypes">
                     <div class="row" *ngFor="let ingredientCtrl of controls; let i = index" [formGroupName]="i"
                          style="margin-top: 10px">
