@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default" (mouseleave)="collapsed = true">
     <div class="container-fluid">
 
         <div class="navbar-header">
@@ -7,15 +7,19 @@
             </button>
             <a routerLink="/" class="navbar-brand">Παραγγελίες</a>
         </div>
-        <div class="navbar-collapse" [class.collapse]="collapsed" (window:resize)="collapsed = true" (mouseover)="collapsed = true">
+        <div class="navbar-collapse" [class.collapse]="collapsed" (window:resize)="collapsed = true"
+             (mouseenter)="collapsed=true">
             <ul class="nav navbar-nav">
 
                 <li routerLinkActive="active"><a routerLink="/storage" *ngIf="isAuthenticated">
                     <fa-icon [icon]="faWarehouse"></fa-icon>
-                    Αποθήκη</a></li>
+                    Αποθήκη</a>
+                </li>
                 <li routerLinkActive="active"><a routerLink="/auth" *ngIf="!isAuthenticated">
                     <fa-icon [icon]="faSignInAlt"></fa-icon>
-                    Σύνδεση</a></li>
+                    Σύνδεση</a>
+                </li>
+
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li *ngIf="isAuthenticated">
