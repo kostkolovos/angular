@@ -8,13 +8,16 @@ import {faArrowCircleLeft} from '@fortawesome/free-solid-svg-icons';
     styleUrls: ['./mobile-back.component.css']
 })
 export class MobileBackComponent implements OnInit {
-    @Input() mobile: boolean;
+    mobile: boolean;
     faArrowCircleLeft = faArrowCircleLeft;
 
     constructor(private router: Router, private route: ActivatedRoute) {
     }
 
     ngOnInit(): void {
+        if (window.screen.width < 768) {
+            this.mobile = true;
+        }
     }
 
 
