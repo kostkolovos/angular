@@ -1,6 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {faArrowCircleLeft} from '@fortawesome/free-solid-svg-icons';
-import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
     selector: 'app-storage',
@@ -12,9 +10,8 @@ export class StorageComponent implements OnInit {
     hideList: boolean;
     hideItems: boolean;
     mobile = false;
-    faArrowCircleLeft = faArrowCircleLeft;
 
-    constructor(private router: Router, private route: ActivatedRoute) {
+    constructor() {
     }
 
     ngOnInit(): void {
@@ -56,9 +53,4 @@ export class StorageComponent implements OnInit {
 
         this.hasChanged = true;
     }
-
-    onBackToStorageList() {
-        this.router.navigate([''], {relativeTo: this.route});
-    }
-
 }

@@ -3,17 +3,7 @@
         <app-storage-list></app-storage-list>
     </div>
     <div class="col-md-7" [hidden]="hideItems">
-
-        <div class="text-center">
-            <a *ngIf="mobile" style="cursor: pointer" class="list-group-item clearfix" (click)="onBackToStorageList()"
-               routerLinkActive="active">
-                <h4 class="list-group-item-heading">
-                    <fa-icon [icon]="faArrowCircleLeft"></fa-icon>
-                    Πίσω στην λίστα
-                </h4>
-            </a>
-        </div>
-
+        <app-mobile-back [mobile]="mobile"></app-mobile-back>
         <router-outlet (activate)="onActivate($event)" (deactivate)="onDeactivate($event)"></router-outlet>
     </div>
 </div>
