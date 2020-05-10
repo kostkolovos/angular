@@ -7,26 +7,23 @@
             </button>
             <a routerLink="/" class="navbar-brand">Παραγγελίες</a>
         </div>
-        <div class="navbar-collapse" [class.collapse]="collapsed" (window:resize)="collapsed = true">
+        <div class="navbar-collapse" [class.collapse]="collapsed" (window:resize)="collapsed = true" (mouseover)="collapsed = true">
+            <ul class="nav navbar-nav">
 
-            <div class="navbar-collapse" [class.collapse]="collapsed">
-                <ul class="nav navbar-nav">
-                    <li routerLinkActive="active"><a routerLink="/storage" *ngIf="isAuthenticated">
-                        <fa-icon [icon]="faWarehouse"></fa-icon>
-                        Αποθήκη</a></li>
-                    <li routerLinkActive="active"><a routerLink="/auth" *ngIf="!isAuthenticated">
-                        <fa-icon [icon]="faSignInAlt"></fa-icon>
-                        Σύνδεση</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li *ngIf="isAuthenticated">
-                        <a style="cursor: pointer" (click)="onLogout()">
-                            <fa-icon [icon]="faSignOutAlt"></fa-icon>
-                            Αποσύνδεση</a>
-                    </li>
-                </ul>
-            </div>
-
+                <li routerLinkActive="active"><a routerLink="/storage" *ngIf="isAuthenticated">
+                    <fa-icon [icon]="faWarehouse"></fa-icon>
+                    Αποθήκη</a></li>
+                <li routerLinkActive="active"><a routerLink="/auth" *ngIf="!isAuthenticated">
+                    <fa-icon [icon]="faSignInAlt"></fa-icon>
+                    Σύνδεση</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li *ngIf="isAuthenticated">
+                    <a style="cursor: pointer" (click)="onLogout()">
+                        <fa-icon [icon]="faSignOutAlt"></fa-icon>
+                        Αποσύνδεση</a>
+                </li>
+            </ul>
         </div>
     </div>
 </nav>
