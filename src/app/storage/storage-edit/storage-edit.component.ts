@@ -173,4 +173,8 @@ export class StorageEditComponent implements OnInit {
         });
 
     }
+
+    typeText(title) {
+        return this.storageTypeService.getTypeValue(title);
+    }
 }

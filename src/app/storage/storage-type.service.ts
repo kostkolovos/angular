@@ -76,5 +76,17 @@ export class StorageTypeService {
         const bookletValues = this.getBookletValues();
         return bookletValues.find(value => value.value == booklet).text;
     }
+
+    getTypeValues() {
+        return [
+            {value: 'Simple', text: 'Γενικό'},
+            {value: 'StoragePetType', text: 'Κατοικίδια'},
+        ];
+    }
+
+    getTypeValue(type) {
+        const typeValues = this.getTypeValues();
+        return typeValues.find(value => value.value == type).text;
+    }
 }
 
