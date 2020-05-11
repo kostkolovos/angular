@@ -20,9 +20,9 @@
 <div class="row">
     <div class="col-xs-12">
         <app-order-item
-                *ngFor="let storeEl of orders | filterStatus:pipeStatus; let i = index"
-                [order]="storeEl"
-                [index]="storeEl.id">
+                *ngFor="let orderEl of orders | filterStatus:pipeStatus; let i = index"
+                [order]="orderEl"
+                [index]="orderEl.id">
         </app-order-item>
     </div>
 </div>

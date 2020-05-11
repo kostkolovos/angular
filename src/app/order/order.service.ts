@@ -32,4 +32,29 @@ export class OrderService {
         this.orders = orders;
         this.ordersChanged.next(this.orders.slice());
     }
+
+    getOrder(id: number) {
+        return this.orders.find(orders => orders.id === id);
+    }
+
+    disableOrder(index: number) {
+        const order = this.getOrder(index);
+        order.status = false;
+        this.updateOrders(index, order);
+    }
+
+    updateOrders(id: number, order: Order) {
+        const index = this.orders.indexOf(this.getOrder(id));
+        this.http.put<Order>(this.orderUrl + '/' + order.id, order).subscribe(orderEdit => {
+            this.orders[index] = orderEdit;
+            this.ordersChanged.next(this.orders.slice());
+        });
+    }
+
+    addOrders(order: Order) {
+        this.http.post<Order>(this.orderUrl, order).subscribe(orderAdded => {
+            this.orders.push(orderAdded);
+            this.ordersChanged.next(this.orders.slice());
+        });
+    }
 }

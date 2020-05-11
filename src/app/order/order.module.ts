@@ -7,10 +7,11 @@ import { OrderComponent } from './order.component';
 import { OrderStartComponent } from './order-start/order-start.component';
 import { OrderListComponent } from './order-list/order-list.component';
 import { OrderItemComponent } from './order-list/order-item/order-item.component';
+import { OrderDetailsComponent } from './order-details/order-details.component';
 
 
 @NgModule({
-    declarations: [OrderComponent, OrderStartComponent, OrderListComponent, OrderItemComponent],
+    declarations: [OrderComponent, OrderStartComponent, OrderListComponent, OrderItemComponent, OrderDetailsComponent],
     imports: [
         CommonModule,
         OrderRoutingModule,
