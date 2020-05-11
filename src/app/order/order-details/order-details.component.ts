@@ -56,7 +56,7 @@ export class OrderDetailsComponent implements OnInit, OnDestroy {
 
     onDisableOrder() {
         this.orderService.disableOrder(this.id);
-        this.router.navigate(['../']);
+        this.router.navigate(['order']);
     }
 
     ngOnDestroy(): void {
