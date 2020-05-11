@@ -55,7 +55,7 @@ export class OrderEditComponent implements OnInit {
 
         this.orderForm = new FormGroup({
             id: new FormControl(orderId),
-            storages: orderStorages
+            storage: orderStorages
         });
     }
 
