@@ -1,0 +1,115 @@
+<br>
+<div class="row">
+    <div class="col-xs-12">
+        <form [formGroup]="orderForm" (ngSubmit)="onSubmit()">
+
+            <div class="row form-group">
+                <div class="col-xs-12">
+                    <div class="btn-toolbar">
+                        <button class="btn btn-success" type="submit" [disabled]="!orderForm.valid">
+                            <fa-icon [icon]="faSave"></fa-icon>
+                            Αποθήκευση
+                        </button>
+                        <button class="btn btn-danger" type="button" (click)="onCancel()">
+                            <fa-icon [icon]="faWindowClose"></fa-icon>
+                            Ακύρωση
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="title">Τίτλος</label>
+                        <input type="text" id="title" class="form-control" formControlName="title">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="col-xs-4">
+                        <div class="form-group">
+                            <label for="price">Ποσό</label>
+                            <input type="number" id="price" class="form-control" formControlName="price">
+                        </div>
+                    </div>
+                    <div class="col-xs-4">
+                        <div class="form-group">
+                            <label for="pieces">Τεμάχια</label>
+                            <input type="number" id="pieces" class="form-control" formControlName="pieces">
+                        </div>
+                    </div>
+                    <div class="col-xs-4">
+                        <div class="form-group">
+                            <label for="storageTypes">Είδος</label>
+                            <select class="form-control" id="storageTypes" formControlName="storageTypes">
+                                <option *ngFor="let types of storageTypesApi" [ngValue]="types">
+                                    {{ typeText(types.title) }}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="description">Περιγραφή</label>
+                        <textarea name="description" id="description" class="form-control" rows="4"
+                                  formControlName="description"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="currentType && currentType.title === storagePetTypeValue">
+                <div class="col-xs-12" formArrayName="storagePetTypes">
+                    <div class="row" *ngFor="let ingredientCtrl of controls; let i = index" [formGroupName]="i"
+                         style="margin-top: 10px">
+
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="col-xs-6">
+                                    <label for="microchip">Microchip</label>
+                                    <input type="text" class="form-control" id="microchip" formControlName="microchip">
+                                </div>
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+                                        <label for="booklet">Βιβλιάριο</label>
+                                        <select formControlName="booklet" id="booklet" class="form-control">
+                                            <option *ngFor="let state of bookletStates" [ngValue]="state.value"
+                                                    [selected]="state.value === null">{{ state.text}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+                                        <label for="male">Αρσενικά</label>
+                                        <input type="number" id="male" class="form-control" formControlName="male">
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+                                        <label for="female">Θηλυκό</label>
+                                        <input type="number" id="female" class="form-control" formControlName="female">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+</div>

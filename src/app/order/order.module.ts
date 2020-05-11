@@ -3,15 +3,16 @@ import {CommonModule} from '@angular/common';
 import {SharedModule} from '../shared/shared.module';
 import {ReactiveFormsModule} from '@angular/forms';
 import {OrderRoutingModule} from '../routing/order-routing.module';
-import { OrderComponent } from './order.component';
-import { OrderStartComponent } from './order-start/order-start.component';
-import { OrderListComponent } from './order-list/order-list.component';
-import { OrderItemComponent } from './order-list/order-item/order-item.component';
-import { OrderDetailsComponent } from './order-details/order-details.component';
+import {OrderComponent} from './order.component';
+import {OrderStartComponent} from './order-start/order-start.component';
+import {OrderListComponent} from './order-list/order-list.component';
+import {OrderItemComponent} from './order-list/order-item/order-item.component';
+import {OrderDetailsComponent} from './order-details/order-details.component';
+import {OrderEditComponent} from './order-edit/order-edit.component';
 
 
 @NgModule({
-    declarations: [OrderComponent, OrderStartComponent, OrderListComponent, OrderItemComponent, OrderDetailsComponent],
+    declarations: [OrderComponent, OrderStartComponent, OrderListComponent, OrderItemComponent, OrderDetailsComponent, OrderEditComponent],
     imports: [
         CommonModule,
         OrderRoutingModule,
