@@ -5,6 +5,7 @@ const appRoutes: Routes = [
     {path: '', redirectTo: '/storage', pathMatch: 'full'},
     {path: 'storage', loadChildren: () => import('../storage/storage.module').then(m => m.StorageModule)},
     {path: 'auth', loadChildren: () => import('../auth/auth.module').then(m => m.AuthModule)},
+    {path: 'order', loadChildren: () => import('../order/order.module').then(m => m.OrderModule)},
 ];
 
 @NgModule({

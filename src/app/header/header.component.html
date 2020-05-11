@@ -17,6 +17,12 @@
                     </a>
                 </li>
                 <li routerLinkActive="active">
+                    <a (click)="collapsed=true" routerLink="/order" *ngIf="isAuthenticated">
+                        <fa-icon [icon]="faShippingFast"></fa-icon>
+                        Παραγγελίες
+                    </a>
+                </li>
+                <li routerLinkActive="active">
                     <a (click)="collapsed=true" routerLink="/auth" *ngIf="!isAuthenticated">
                         <fa-icon [icon]="faSignInAlt"></fa-icon>
                         Σύνδεση
