@@ -5,7 +5,6 @@ import {StorageService} from '../storage.service';
 import {faSave, faWindowClose} from '@fortawesome/free-solid-svg-icons';
 import {StorageTypeService} from '../storage-type.service';
 import {StorageTypes} from '../../apiEntities/storage-types-entity.model';
-import {StoragePetType} from '../../apiEntities/storage-pet-type-entity.model';
 
 @Component({
     selector: 'app-storage-edit',
