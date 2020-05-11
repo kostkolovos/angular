@@ -34,14 +34,28 @@ export class OrderEditComponent implements OnInit {
 
     private initForm() {
         let orderId = null;
+        const orderStorages = new FormArray([]);
 
         if (this.editMode) {
             const order = this.orderService.getOrder(this.id);
             orderId = order.id;
+
+            if (order.storage) {
+                console.log(order.storage);
+                for (const storageItem of order.storage) {
+                    orderStorages.push(
+                        new FormGroup({
+                            title: new FormControl(storageItem.title, Validators.required)
+                        })
+                    );
+                }
+            }
+
         }
 
         this.orderForm = new FormGroup({
             id: new FormControl(orderId),
+            storages: orderStorages
         });
     }
 
@@ -59,4 +73,18 @@ export class OrderEditComponent implements OnInit {
     onCancel() {
         this.router.navigate(['order'], {relativeTo: this.route});
     }
+
+    get controls() { // a getter!
+        const formArray = this.orderForm.get('storages') as FormArray;
+        return formArray.controls;
+    }
+
+    onAddStorage() {
+        (this.orderForm.get('storages') as FormArray).push(
+            new FormGroup({
+                title: new FormControl(null, Validators.required)
+            })
+        );
+    }
+
 }
