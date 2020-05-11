@@ -31,7 +31,7 @@ export class StorageListComponent implements OnInit, OnDestroy {
         this.storages = this.storageService.getStorages();
     }
 
-    onNewStore() {
+    onNewStorage() {
         this.router.navigate(['new'], {relativeTo: this.route});
     }
 
