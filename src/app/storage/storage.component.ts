@@ -24,12 +24,12 @@ export class StorageComponent implements OnInit {
 
 
     onActivate(event: any) {
-        const constructorName = event.constructor.name;
+        const hasException = event.hasOwnProperty('hiddenException');
 
-        if (window.screen.width < 768 && constructorName === 'StorageStartComponent') {
+        if (window.screen.width < 768 && hasException) {
             this.hideItems = true;
             this.hideList = false;
-        } else if (window.screen.width < 768 && constructorName !== 'StorageStartComponent') {
+        } else if (window.screen.width < 768 && !hasException) {
             this.hideItems = false;
             this.hideList = true;
         }
@@ -38,8 +38,8 @@ export class StorageComponent implements OnInit {
     }
 
     onDeactivate(event: any) {
-        const constructorName = event.constructor.name;
-        if (window.screen.width < 768 && constructorName === 'StorageStartComponent') {
+        const hasException = event.hasOwnProperty('hiddenException');
+        if (window.screen.width < 768 && hasException) {
             this.hideItems = true;
             this.hideList = false;
         }

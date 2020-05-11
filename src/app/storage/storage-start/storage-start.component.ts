@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'app-storage-start',
-  templateUrl: './storage-start.component.html',
-  styleUrls: ['./storage-start.component.css']
+    selector: 'app-storage-start',
+    templateUrl: './storage-start.component.html',
+    styleUrls: ['./storage-start.component.css']
 })
 export class StorageStartComponent implements OnInit {
+    hiddenException = true;
 
-  constructor() { }
+    constructor() {
+    }
 
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {
+    }
 
 }
