@@ -45,12 +45,14 @@ export class OrderEditComponent implements OnInit {
             const order = this.orderService.getOrder(this.id);
             orderId = order.id;
 
-            if (order.storage.length) {
+            if (order.storage) {
                 for (const storageItem of order.storage) {
-                    orderStorages.push(this.addFormGroupStorage(storageItem));
+                    const current = this.storageApi.find(types => types.id === storageItem.id);
+                    const defaultSelect = this.storageApi.indexOf(current);
+                    orderStorages.push(new FormControl(this.storageApi[defaultSelect], Validators.required));
                 }
             } else {
-                orderStorages.push(this.addFormGroupStorage());
+                orderStorages.push(new FormControl(null, Validators.required));
             }
 
         }
@@ -73,7 +75,7 @@ export class OrderEditComponent implements OnInit {
     }
 
     onCancel() {
-        this.router.navigate(['order'], {relativeTo: this.route});
+        this.router.navigate(['../'], {relativeTo: this.route});
     }
 
     get controls() { // a getter!
