@@ -22,7 +22,7 @@ export class MobileBackComponent implements OnInit {
 
 
     onBackToStorageList() {
-        this.router.navigate([''], {relativeTo: this.route});
+        this.router.navigate(['./'], {relativeTo: this.route});
     }
 
 }
