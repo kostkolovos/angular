@@ -52,7 +52,7 @@ export class OrderEditComponent implements OnInit {
                     orderStorages.push(new FormControl(this.storageApi[defaultSelect], Validators.required));
                 }
             } else {
-                orderStorages.push(new FormControl(null, Validators.required));
+                orderStorages.push(new FormControl(this.storageApi, Validators.required));
             }
 
         }
@@ -84,18 +84,7 @@ export class OrderEditComponent implements OnInit {
     }
 
     onAddStorage() {
-        (this.orderForm.get('storage') as FormArray).push(
-            new FormGroup({
-                title: new FormControl(null, Validators.required)
-            })
-        );
-    }
-
-    addFormGroupStorage(storageDefault = null) {
-        const defaultSelect = this.storageApi.indexOf(this.storageApi.find(types => types.id === storageDefault.id));
-        return new FormGroup({
-            storageItem: new FormControl(this.storageApi[defaultSelect], Validators.required)
-        });
+        (this.orderForm.get('storage') as FormArray).push(new FormControl(this.storageApi, Validators.required));
     }
 
     onDeleteStorage(i: number) {
