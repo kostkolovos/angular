@@ -9,8 +9,10 @@ import {environment} from '../environments/environment';
     styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+    favIcon: HTMLLinkElement = document.querySelector('#favIconHeader');
 
     constructor(private authService: AuthService, private titleService: Title) {
+        this.favIcon.href = environment.favIconHeader;
     }
 
     ngOnInit(): void {
