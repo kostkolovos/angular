@@ -56,6 +56,10 @@ export class StorageService {
         );
     }
 
+    getAvailableStorages() {
+        return this.storages.filter(value => value.status === true);
+    }
+
     disableStorage(index: number) {
         const storage = this.getStorage(index);
         storage.status = false;

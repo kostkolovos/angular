@@ -19,18 +19,25 @@
             </div>
 
             <div class="row">
-                <div class="col-xs-12" formArrayName="storages">
-                    <div class="row" *ngFor="let storage of controls; let i = index" [formGroupName]="i"
-                         style="margin-top: 10px">
+                <div class="col-xs-12" formArrayName="storage">
 
-                        <div class="col-xs-8">
-                            <input type="text" class="form-control" formControlName="title">
+                    <div class="row" *ngFor="let storageControls of controls; let i = index" [formGroupName]="i">
+                        <div class="col-xs-4">
+                            <div class="form-group">
+                                <label for="storageItem">Προϊόν</label>
+                                <select class="form-control" id="storageItem" formControlName="storageItem">
+                                    <option *ngFor="let types of storageApi" [ngValue]="types">
+                                        {{ types.title }}
+                                    </option>
+                                </select>
+                            </div>
                         </div>
 
-                        <!--  <div class="col-xs-2">
-                              <button class="btn btn-danger" type="button" (click)="onDeleteIngredients(i)">x</button>
-                          </div>-->
+                        <!-- <div class="col-xs-2">
+                             <button class="btn btn-danger" type="button" (click)="onDeleteIngredients(i)">x</button>
+                         </div>-->
                     </div>
+
                     <hr>
                     <div class="row">
                         <div class="col-xs-12">
