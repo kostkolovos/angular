@@ -39,27 +39,33 @@ export class OrderEditComponent implements OnInit {
 
     private initForm() {
         let orderId = null;
-        const orderStorages = new FormArray([]);
+        const orderStorageCalculatorsApi = new FormArray([]);
+        let defaultSelect = null;
 
         if (this.editMode) {
             const order = this.orderService.getOrder(this.id);
             orderId = order.id;
 
-            if (order.storage) {
-                for (const storageItem of order.storage) {
-                    const current = this.storageApi.find(types => types.id === storageItem.id);
-                    const defaultSelect = this.storageApi.indexOf(current);
-                    orderStorages.push(this.addStoragesFormCotrols(defaultSelect));
+            if (order.orderStorageCalculators) {
+                for (const orderStorageCalculatorItem of order.orderStorageCalculators) {
+                    const current = this.storageApi.find(types => types.id === orderStorageCalculatorItem.storage.id);
+                    defaultSelect = this.storageApi.indexOf(current);
+
+                    orderStorageCalculatorsApi.push(
+                        new FormGroup({
+                            id: new FormControl(orderStorageCalculatorItem.id),
+                            pieces: new FormControl(orderStorageCalculatorItem.pieces, Validators.required),
+                            storage: new FormControl(this.storageApi[defaultSelect], Validators.required)
+                        })
+                    );
                 }
-            } else {
-                orderStorages.push(this.addStoragesFormCotrols());
             }
 
         }
 
         this.orderForm = new FormGroup({
             id: new FormControl(orderId),
-            storage: orderStorages
+            orderStorageCalculators: orderStorageCalculatorsApi
         });
     }
 
@@ -80,6 +86,11 @@ export class OrderEditComponent implements OnInit {
 
     get controls() { // a getter!
         const formArray = this.orderForm.get('storage') as FormArray;
+        return formArray.controls;
+    }
+
+    get orderStorageCalculators() {
+        const formArray = this.orderForm.get('orderStorageCalculators') as FormArray;
         return formArray.controls;
     }
 
