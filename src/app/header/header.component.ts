@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AuthService} from '../auth/auth.service';
 import {Subscription} from 'rxjs';
 import {faWarehouse, faSignOutAlt, faSignInAlt, faShippingFast} from '@fortawesome/free-solid-svg-icons';
+import {environment} from '../../environments/environment';
 
 @Component({
     selector: 'app-header',
@@ -16,6 +17,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     faSignOutAlt = faSignOutAlt;
     faSignInAlt = faSignInAlt;
     faShippingFast = faShippingFast;
+    applicationTitle = environment.applicationTitle;
 
     constructor(private authService: AuthService) {
     }
