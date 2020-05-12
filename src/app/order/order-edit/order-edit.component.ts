@@ -98,4 +98,9 @@ export class OrderEditComponent implements OnInit {
         });
     }
 
+    onDeleteStorage(i: number) {
+        const formArray = this.orderForm.get('storage') as FormArray;
+        formArray.removeAt(i);
+    }
+
 }
