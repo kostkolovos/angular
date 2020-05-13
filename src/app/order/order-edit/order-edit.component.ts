@@ -5,6 +5,7 @@ import {ActivatedRoute, Params, Router} from '@angular/router';
 import {OrderService} from '../order.service';
 import {StorageService} from '../../storage/storage.service';
 import {Storage} from '../../apiEntities/storage-entity.model';
+import {StorageTypeService} from '../../storage/storage-type.service';
 
 @Component({
     selector: 'app-order-edit',
@@ -18,13 +19,15 @@ export class OrderEditComponent implements OnInit {
     faSave = faSave;
     faWindowClose = faWindowClose;
     storageApi: Storage[];
+    storagePetTypeValue = this.storageTypeService.getStoragePetTypeValue();
 
     constructor(
         private activatedRoute: ActivatedRoute,
         private orderService: OrderService,
         private router: Router,
         private route: ActivatedRoute,
-        private storageService: StorageService
+        private storageService: StorageService,
+        private storageTypeService: StorageTypeService
     ) {
     }
 
@@ -104,6 +107,21 @@ export class OrderEditComponent implements OnInit {
             pieces: new FormControl(pieces, Validators.required),
             storage: new FormControl(this.storageApi[defaultSelect], Validators.required)
         });
+    }
+
+    onChange(i: number) {
+        const formArray = this.orderForm.get('orderStorageCalculators') as FormArray;
+        const currentControl = formArray.controls[i];
+        const object = currentControl.value;
+
+        switch (object.storage.storageTypes.title) {
+            case this.storagePetTypeValue:
+                currentControl.get('pieces').disable();
+                break;
+            default:
+                currentControl.get('pieces').enable();
+                break;
+        }
     }
 
 }

@@ -21,7 +21,7 @@
             <div class="row">
                 <div class="col-xs-12" formArrayName="orderStorageCalculators">
                     <div class="row" *ngFor="let orderStorageCalculator of orderStorageCalculators; let i = index"
-                         [formGroupName]="i" style="margin-top: 10px">
+                         [formGroupName]="i" style="margin-top: 10px" (change)="onChange(i)">
                         <div class="col-xs-8 col-md-7">
                             <label for="storage">Τεμάχια</label>
                             <select class="form-control" id="storage" formControlName="storage">
