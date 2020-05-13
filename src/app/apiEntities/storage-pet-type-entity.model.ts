@@ -1,6 +1,6 @@
 export class StoragePetType {
     public id?: number;
-    public microchip: string;
+    public microchip?: string;
     public male?: number;
     public female?: number;
     public booklet?: string;

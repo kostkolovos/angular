@@ -7,6 +7,7 @@ import {StorageService} from '../../storage/storage.service';
 import {Storage} from '../../apiEntities/storage-entity.model';
 import {StorageTypeService} from '../../storage/storage-type.service';
 import {StorageTypes} from '../../apiEntities/storage-types-entity.model';
+import {StoragePetType} from '../../apiEntities/storage-pet-type-entity.model';
 
 @Component({
     selector: 'app-order-edit',
@@ -47,6 +48,8 @@ export class OrderEditComponent implements OnInit {
         const orderStorageCalculatorsApi = new FormArray([]);
         let defaultSelect = null;
         const currentStorageTypes = [];
+        let storagePetType: StoragePetType[];
+
         if (this.editMode) {
             const order = this.orderService.getOrder(this.id);
             orderId = order.id;
@@ -56,11 +59,18 @@ export class OrderEditComponent implements OnInit {
                     const current = this.storageApi.find(types => types.id === orderStorageCalculatorItem.storage.id);
                     defaultSelect = this.storageApi.indexOf(current);
                     currentStorageTypes.push(current.storageTypes);
+
+                    if (current.storageTypes.title === this.storagePetTypeValue) {
+                        /*Only one value is expected*/
+                        storagePetType = orderStorageCalculatorItem.storagePetType;
+                    }
+
                     orderStorageCalculatorsApi.push(
                         this.addOrderStorageCalculatorsFormGroup(
                             orderStorageCalculatorItem.id,
                             orderStorageCalculatorItem.pieces,
-                            defaultSelect
+                            defaultSelect,
+                            storagePetType
                         ));
                 }
             }
@@ -105,11 +115,31 @@ export class OrderEditComponent implements OnInit {
         formArray.removeAt(i);
     }
 
-    addOrderStorageCalculatorsFormGroup(id = null, pieces = null, defaultSelect = null) {
+    addOrderStorageCalculatorsFormGroup(id = null, pieces = null, defaultSelect = null, storagePetTypes: StoragePetType[] = null) {
+        let storagePetTypeMale = null;
+        let storagePetTypeFemale = null;
+        let storagePetTypeId = null;
+        const storagePetTypeArray = new FormArray([]);
+
+        if (storagePetTypes) {
+            /*Only on is expected*/
+            const storagePetType = storagePetTypes.find(Boolean);
+            storagePetTypeMale = storagePetType.male;
+            storagePetTypeFemale = storagePetType.female;
+            storagePetTypeId = storagePetType.id;
+        }
+
+        storagePetTypeArray.push(new FormGroup({
+            id: new FormControl(storagePetTypeId),
+            male: new FormControl(storagePetTypeMale),
+            female: new FormControl(storagePetTypeFemale)
+        }));
+
         return new FormGroup({
             id: new FormControl(id),
             pieces: new FormControl(pieces, Validators.required),
-            storage: new FormControl(this.storageApi[defaultSelect], Validators.required)
+            storage: new FormControl(this.storageApi[defaultSelect], Validators.required),
+            storagePetType: storagePetTypeArray
         });
     }
 

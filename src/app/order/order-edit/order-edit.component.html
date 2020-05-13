@@ -36,7 +36,23 @@
                             <input type="number" id="pieces" class="form-control" formControlName="pieces">
                         </div>
 
-                        <div *ngIf="currentStorageTypes[i].title === storagePetTypeValue"></div>
+                        <div *ngIf="currentStorageTypes[i] && currentStorageTypes[i].title === storagePetTypeValue">
+                            <div class="col-xs-12" formArrayName="storagePetType">
+                                <div class="row"
+                                     *ngFor="let orderStorageCalculator of orderStorageCalculator.get('storagePetType').value; let i = index"
+                                     [formGroupName]="i">
+                                    <div class="col-xs-2">
+                                        <label for="male">male</label>
+                                        <input type="number" id="male" class="form-control" formControlName="male">
+                                    </div>
+                                    <div class="col-xs-2">
+                                        <label for="female">female</label>
+                                        <input type="number" id="female" class="form-control"
+                                               formControlName="female">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                         <div class="col-xs-2">
                             <br>
