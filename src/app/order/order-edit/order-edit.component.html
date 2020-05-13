@@ -36,6 +36,8 @@
                             <input type="number" id="pieces" class="form-control" formControlName="pieces">
                         </div>
 
+                        <div *ngIf="currentStoragesTypes[i].title === storagePetTypeValue"></div>
+
                         <div class="col-xs-2">
                             <br>
                             <button class="btn btn-danger" type="button" (click)="onDeleteOrderStorageCalculators(i)"

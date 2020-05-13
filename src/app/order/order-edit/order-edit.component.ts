@@ -6,6 +6,7 @@ import {OrderService} from '../order.service';
 import {StorageService} from '../../storage/storage.service';
 import {Storage} from '../../apiEntities/storage-entity.model';
 import {StorageTypeService} from '../../storage/storage-type.service';
+import {StorageTypes} from '../../apiEntities/storage-types-entity.model';
 
 @Component({
     selector: 'app-order-edit',
@@ -20,6 +21,7 @@ export class OrderEditComponent implements OnInit {
     faWindowClose = faWindowClose;
     storageApi: Storage[];
     storagePetTypeValue = this.storageTypeService.getStoragePetTypeValue();
+    currentStoragesTypes: StorageTypes[];
 
     constructor(
         private activatedRoute: ActivatedRoute,
@@ -44,7 +46,7 @@ export class OrderEditComponent implements OnInit {
         let orderId = null;
         const orderStorageCalculatorsApi = new FormArray([]);
         let defaultSelect = null;
-
+        const currentStorageTypes = [];
         if (this.editMode) {
             const order = this.orderService.getOrder(this.id);
             orderId = order.id;
@@ -53,6 +55,7 @@ export class OrderEditComponent implements OnInit {
                 for (const orderStorageCalculatorItem of order.orderStorageCalculators) {
                     const current = this.storageApi.find(types => types.id === orderStorageCalculatorItem.storage.id);
                     defaultSelect = this.storageApi.indexOf(current);
+                    currentStorageTypes.push(current.storageTypes);
                     orderStorageCalculatorsApi.push(
                         this.addOrderStorageCalculatorsFormGroup(
                             orderStorageCalculatorItem.id,
@@ -61,7 +64,6 @@ export class OrderEditComponent implements OnInit {
                         ));
                 }
             }
-
         } else {
             orderStorageCalculatorsApi.push(this.addOrderStorageCalculatorsFormGroup());
         }
@@ -70,6 +72,8 @@ export class OrderEditComponent implements OnInit {
             id: new FormControl(orderId),
             orderStorageCalculators: orderStorageCalculatorsApi
         });
+
+        this.currentStoragesTypes = currentStorageTypes;
     }
 
 
@@ -113,6 +117,7 @@ export class OrderEditComponent implements OnInit {
         const formArray = this.orderForm.get('orderStorageCalculators') as FormArray;
         const currentControl = formArray.controls[i];
         const object = currentControl.value;
+        this.currentStoragesTypes[i] = object.storage.storageTypes;
 
         switch (object.storage.storageTypes.title) {
             case this.storagePetTypeValue:
