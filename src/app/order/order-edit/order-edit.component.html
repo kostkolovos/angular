@@ -23,7 +23,7 @@
                     <div class="row" *ngFor="let orderStorageCalculator of orderStorageCalculators; let i = index"
                          [formGroupName]="i" style="margin-top: 10px" (change)="onChange(i)">
                         <div class="col-xs-8 col-md-7">
-                            <label for="storage">Τεμάχια</label>
+                            <label for="storage">Προΐόν</label>
                             <select class="form-control" id="storage" formControlName="storage">
                                 <option *ngFor="let types of storageApi; let i = index" [ngValue]=types>
                                     {{ types.title }}
