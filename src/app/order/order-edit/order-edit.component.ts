@@ -50,17 +50,17 @@ export class OrderEditComponent implements OnInit {
                 for (const orderStorageCalculatorItem of order.orderStorageCalculators) {
                     const current = this.storageApi.find(types => types.id === orderStorageCalculatorItem.storage.id);
                     defaultSelect = this.storageApi.indexOf(current);
-
                     orderStorageCalculatorsApi.push(
-                        new FormGroup({
-                            id: new FormControl(orderStorageCalculatorItem.id),
-                            pieces: new FormControl(orderStorageCalculatorItem.pieces, Validators.required),
-                            storage: new FormControl(this.storageApi[defaultSelect], Validators.required)
-                        })
-                    );
+                        this.addOrderStorageCalculatorsFormGroup(
+                            orderStorageCalculatorItem.id,
+                            orderStorageCalculatorItem.pieces,
+                            defaultSelect
+                        ));
                 }
             }
 
+        } else {
+            orderStorageCalculatorsApi.push(this.addOrderStorageCalculatorsFormGroup());
         }
 
         this.orderForm = new FormGroup({
