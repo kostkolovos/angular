@@ -84,27 +84,26 @@ export class OrderEditComponent implements OnInit {
         this.router.navigate(['../'], {relativeTo: this.route});
     }
 
-    get controls() { // a getter!
-        const formArray = this.orderForm.get('storage') as FormArray;
-        return formArray.controls;
-    }
-
     get orderStorageCalculators() {
         const formArray = this.orderForm.get('orderStorageCalculators') as FormArray;
         return formArray.controls;
     }
 
-    onAddStorage() {
-        (this.orderForm.get('storage') as FormArray).push(this.addStoragesFormCotrols());
+    onAddOrderStorageCalculators() {
+        (this.orderForm.get('orderStorageCalculators') as FormArray).push(this.addOrderStorageCalculatorsFormGroup());
     }
 
-    onDeleteStorage(i: number) {
-        const formArray = this.orderForm.get('storage') as FormArray;
+    onDeleteOrderStorageCalculators(i: number) {
+        const formArray = this.orderForm.get('orderStorageCalculators') as FormArray;
         formArray.removeAt(i);
     }
 
-    addStoragesFormCotrols(defaultSelect = null) {
-        return new FormControl(this.storageApi[defaultSelect], Validators.required);
+    addOrderStorageCalculatorsFormGroup(id = null, pieces = null, defaultSelect = null) {
+        return new FormGroup({
+            id: new FormControl(id),
+            pieces: new FormControl(pieces, Validators.required),
+            storage: new FormControl(this.storageApi[defaultSelect], Validators.required)
+        });
     }
 
 }
