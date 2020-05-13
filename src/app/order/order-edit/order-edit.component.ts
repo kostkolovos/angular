@@ -21,7 +21,7 @@ export class OrderEditComponent implements OnInit {
     faWindowClose = faWindowClose;
     storageApi: Storage[];
     storagePetTypeValue = this.storageTypeService.getStoragePetTypeValue();
-    currentStoragesTypes: StorageTypes[];
+    currentStorageTypes: StorageTypes[];
 
     constructor(
         private activatedRoute: ActivatedRoute,
@@ -73,7 +73,7 @@ export class OrderEditComponent implements OnInit {
             orderStorageCalculators: orderStorageCalculatorsApi
         });
 
-        this.currentStoragesTypes = currentStorageTypes;
+        this.currentStorageTypes = currentStorageTypes;
     }
 
 
@@ -117,7 +117,7 @@ export class OrderEditComponent implements OnInit {
         const formArray = this.orderForm.get('orderStorageCalculators') as FormArray;
         const currentControl = formArray.controls[i];
         const object = currentControl.value;
-        this.currentStoragesTypes[i] = object.storage.storageTypes;
+        this.currentStorageTypes[i] = object.storage.storageTypes;
 
         switch (object.storage.storageTypes.title) {
             case this.storagePetTypeValue:
