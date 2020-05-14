@@ -36,6 +36,13 @@
                             <input type="number" id="pieces" class="form-control" formControlName="pieces">
                         </div>
 
+                        <div class="col-xs-2">
+                            <br>
+                            <button class="btn btn-danger" type="button" (click)="onDeleteOrderStorageCalculators(i)"
+                                    style="margin-top: 5px;">x
+                            </button>
+                        </div>
+
                         <div *ngIf="currentStorageTypes[i] && currentStorageTypes[i].title === storagePetTypeValue">
                             <div class="col-xs-12" formArrayName="storagePetType" (change)="onChange(i)">
                                 <div class="row"
@@ -54,12 +61,6 @@
                             </div>
                         </div>
 
-                        <div class="col-xs-2">
-                            <br>
-                            <button class="btn btn-danger" type="button" (click)="onDeleteOrderStorageCalculators(i)"
-                                    style="margin-top: 5px;">x
-                            </button>
-                        </div>
                     </div>
                     <hr>
                     <div class="row">
