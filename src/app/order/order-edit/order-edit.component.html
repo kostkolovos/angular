@@ -18,6 +18,17 @@
                 </div>
             </div>
 
+            <div class="row" formArrayName="customer">
+                <div class="col-xs-6">
+                    <label for="fullName">Όνομα</label>
+                    <input type="text" id="fullName" class="form-control" formControlName="fullName">
+                </div>
+                <div class="col-xs-6">
+                    <label for="mobile">Τηλέφωνο</label>
+                    <input type="text" id="mobile" class="form-control" formControlName="mobile">
+                </div>
+            </div>
+
             <div class="row">
                 <div class="col-xs-12" formArrayName="orderStorageCalculators">
                     <div class="row" *ngFor="let orderStorageCalculator of orderStorageCalculators; let i = index"

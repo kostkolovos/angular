@@ -50,11 +50,13 @@ export class OrderEditComponent implements OnInit {
         let defaultSelect = null;
         const currentStorageTypes = [];
         let storagePetType: StoragePetType[];
+        let customerFormGroup = this.addCustomerFormGroup();
 
         if (this.editMode) {
             const order = this.orderService.getOrder(this.id);
             orderId = order.id;
             orderDescription = order.description;
+            customerFormGroup = this.addCustomerFormGroup(order.customer.id, order.customer.fullName, order.customer.mobile);
 
             if (order.orderStorageCalculators) {
                 for (const orderStorageCalculatorItem of order.orderStorageCalculators) {
@@ -84,7 +86,8 @@ export class OrderEditComponent implements OnInit {
         this.orderForm = new FormGroup({
             id: new FormControl(orderId),
             orderStorageCalculators: orderStorageCalculatorsApi,
-            description: new FormControl(orderDescription)
+            description: new FormControl(orderDescription),
+            customer: customerFormGroup
         });
 
         this.currentStorageTypes = currentStorageTypes;
@@ -167,6 +170,14 @@ export class OrderEditComponent implements OnInit {
                 currentControl.get('pieces').enable();
                 break;
         }
+    }
+
+    addCustomerFormGroup(id = null, fullName = null, mobile = null) {
+        return new FormGroup({
+            id: new FormControl(id),
+            fullName: new FormControl(fullName),
+            mobile: new FormControl(mobile)
+        });
     }
 
 }
