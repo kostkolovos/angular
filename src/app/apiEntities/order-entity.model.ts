@@ -1,4 +1,5 @@
 import {OrderStorageCalculator} from './order-storage-calculator.model';
+import {Customer} from './customer-entity.model';
 
 export class Order {
     public id?: number;
@@ -6,6 +7,8 @@ export class Order {
     public updatedAt?: Date;
     public status: boolean;
     public orderStorageCalculators?: OrderStorageCalculator[];
+    public description?: string;
+    public customer: Customer;
 
     constructor(
         id: number,
@@ -13,12 +16,16 @@ export class Order {
         createdAt: Date,
         updatedAt: Date,
         status: boolean,
-        orderStorageCalculators: OrderStorageCalculator[]
+        orderStorageCalculators: OrderStorageCalculator[],
+        description: string,
+        customer: Customer
     ) {
         this.id = id;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.status = status;
         this.orderStorageCalculators = orderStorageCalculators;
+        this.description = description;
+        this.customer = customer;
     }
 }

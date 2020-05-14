@@ -45,6 +45,7 @@ export class OrderEditComponent implements OnInit {
 
     private initForm() {
         let orderId = null;
+        let orderDescription = null;
         const orderStorageCalculatorsApi = new FormArray([]);
         let defaultSelect = null;
         const currentStorageTypes = [];
@@ -53,6 +54,7 @@ export class OrderEditComponent implements OnInit {
         if (this.editMode) {
             const order = this.orderService.getOrder(this.id);
             orderId = order.id;
+            orderDescription = order.description;
 
             if (order.orderStorageCalculators) {
                 for (const orderStorageCalculatorItem of order.orderStorageCalculators) {
@@ -81,7 +83,8 @@ export class OrderEditComponent implements OnInit {
 
         this.orderForm = new FormGroup({
             id: new FormControl(orderId),
-            orderStorageCalculators: orderStorageCalculatorsApi
+            orderStorageCalculators: orderStorageCalculatorsApi,
+            description: new FormControl(orderDescription)
         });
 
         this.currentStorageTypes = currentStorageTypes;
