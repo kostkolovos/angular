@@ -37,7 +37,7 @@
                         </div>
 
                         <div *ngIf="currentStorageTypes[i] && currentStorageTypes[i].title === storagePetTypeValue">
-                            <div class="col-xs-12" formArrayName="storagePetType">
+                            <div class="col-xs-12" formArrayName="storagePetType" (change)="onChange(i)">
                                 <div class="row"
                                      *ngFor="let orderStorageCalculator of orderStorageCalculator.get('storagePetType').value; let i = index"
                                      [formGroupName]="i">

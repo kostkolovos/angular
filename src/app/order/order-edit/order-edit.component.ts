@@ -154,6 +154,10 @@ export class OrderEditComponent implements OnInit {
 
         switch (object.storage.storageTypes.title) {
             case this.storagePetTypeValue:
+                const currentStoragePetType = currentControl.get('storagePetType').value.find(Boolean);
+                const male = currentStoragePetType.male;
+                const female = currentStoragePetType.female;
+                currentControl.get('pieces').setValue(male + female);
                 currentControl.get('pieces').disable();
                 break;
             default:
