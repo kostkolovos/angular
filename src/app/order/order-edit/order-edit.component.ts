@@ -128,6 +128,9 @@ export class OrderEditComponent implements OnInit {
         let storagePetTypeId = null;
         const storagePetTypeArray = new FormArray([]);
         let disabledPieces = false;
+        let piecesMax = null;
+        let maleMax = null;
+        let femaleMax = null;
 
         if (storagePetTypes) {
             /*Only on is expected*/
@@ -138,15 +141,27 @@ export class OrderEditComponent implements OnInit {
             disabledPieces = true;
         }
 
+        if (defaultSelect !== null) {
+            const storageDefaultSelect = this.storageApi[defaultSelect];
+            piecesMax = storageDefaultSelect.pieces;
+
+            if (storageDefaultSelect.storagePetTypes.length) {
+                maleMax = storageDefaultSelect.storagePetTypes.find(Boolean).male;
+                femaleMax = storageDefaultSelect.storagePetTypes.find(Boolean).female;
+            }
+
+        }
+
         storagePetTypeArray.push(new FormGroup({
             id: new FormControl(storagePetTypeId),
-            male: new FormControl(storagePetTypeMale),
-            female: new FormControl(storagePetTypeFemale)
+            male: new FormControl(storagePetTypeMale, Validators.max(maleMax)),
+            female: new FormControl(storagePetTypeFemale, Validators.max(femaleMax))
         }));
+
 
         return new FormGroup({
             id: new FormControl(id),
-            pieces: new FormControl({value: pieces, disabled: disabledPieces}, Validators.required),
+            pieces: new FormControl({value: pieces, disabled: disabledPieces}, [Validators.required, Validators.max(+piecesMax)]),
             storage: new FormControl(this.storageApi[defaultSelect], Validators.required),
             storagePetType: storagePetTypeArray
         });
