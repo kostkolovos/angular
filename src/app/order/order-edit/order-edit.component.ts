@@ -90,9 +90,9 @@ export class OrderEditComponent implements OnInit {
 
     onSubmit() {
         if (this.editMode) {
-            this.orderService.updateOrders(this.id, this.orderForm.value);
+            this.orderService.updateOrders(this.id, this.orderForm.getRawValue());
         } else {
-            this.orderService.addOrders(this.orderForm.value);
+            this.orderService.addOrders(this.orderForm.getRawValue());
         }
 
         this.onCancel();
