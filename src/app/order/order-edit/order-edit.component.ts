@@ -56,6 +56,7 @@ export class OrderEditComponent implements OnInit {
 
             if (order.orderStorageCalculators) {
                 for (const orderStorageCalculatorItem of order.orderStorageCalculators) {
+                    storagePetType = null;
                     const current = this.storageApi.find(types => types.id === orderStorageCalculatorItem.storage.id);
                     defaultSelect = this.storageApi.indexOf(current);
                     currentStorageTypes.push(current.storageTypes);
@@ -120,6 +121,7 @@ export class OrderEditComponent implements OnInit {
         let storagePetTypeFemale = null;
         let storagePetTypeId = null;
         const storagePetTypeArray = new FormArray([]);
+        let disabledPieces = false;
 
         if (storagePetTypes) {
             /*Only on is expected*/
@@ -127,6 +129,7 @@ export class OrderEditComponent implements OnInit {
             storagePetTypeMale = storagePetType.male;
             storagePetTypeFemale = storagePetType.female;
             storagePetTypeId = storagePetType.id;
+            disabledPieces = true;
         }
 
         storagePetTypeArray.push(new FormGroup({
@@ -137,7 +140,7 @@ export class OrderEditComponent implements OnInit {
 
         return new FormGroup({
             id: new FormControl(id),
-            pieces: new FormControl(pieces, Validators.required),
+            pieces: new FormControl({value: pieces, disabled: disabledPieces}, Validators.required),
             storage: new FormControl(this.storageApi[defaultSelect], Validators.required),
             storagePetType: storagePetTypeArray
         });
