@@ -44,7 +44,7 @@
 
                         <div class="col-xs-2">
                             <label for="pieces">Τεμάχια</label>
-                            <input type="number" id="pieces" class="form-control" formControlName="pieces">
+                            <input type="number" min="0" id="pieces" class="form-control" formControlName="pieces">
                         </div>
 
                         <div class="col-xs-2">
@@ -61,11 +61,12 @@
                                      [formGroupName]="i">
                                     <div class="col-xs-2">
                                         <label for="male">Αρσενικό</label>
-                                        <input type="number" id="male" class="form-control" formControlName="male">
+                                        <input type="number" min="0" id="male" class="form-control"
+                                               formControlName="male">
                                     </div>
                                     <div class="col-xs-2">
                                         <label for="female">Θηλυκό</label>
-                                        <input type="number" id="female" class="form-control"
+                                        <input type="number" id="female" class="form-control" min="0"
                                                formControlName="female">
                                     </div>
                                 </div>

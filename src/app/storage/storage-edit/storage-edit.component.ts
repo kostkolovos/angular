@@ -80,7 +80,7 @@ export class StorageEditComponent implements OnInit {
             title: new FormControl(storageTitle, Validators.required),
             id: new FormControl(storageId),
             description: new FormControl(storageDescription),
-            pieces: new FormControl(storagePieces, Validators.required),
+            pieces: new FormControl(storagePieces, [Validators.required, Validators.min(0)]),
             price: new FormControl(storagePrice, Validators.required),
             storageTypes: new FormControl(this.storageTypesApi[defaultSelect], Validators.required),
             storagePetTypes: storagePetType
@@ -139,8 +139,8 @@ export class StorageEditComponent implements OnInit {
 
         return new FormGroup({
             microchip: new FormControl(microchip),
-            male: new FormControl(male),
-            female: new FormControl(female),
+            male: new FormControl(male, Validators.min(0)),
+            female: new FormControl(female, Validators.min(0)),
             booklet: new FormControl(booklet),
         });
     }

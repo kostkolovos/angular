@@ -154,14 +154,16 @@ export class OrderEditComponent implements OnInit {
 
         storagePetTypeArray.push(new FormGroup({
             id: new FormControl(storagePetTypeId),
-            male: new FormControl(storagePetTypeMale, Validators.max(maleMax)),
-            female: new FormControl(storagePetTypeFemale, Validators.max(femaleMax))
+            male: new FormControl(storagePetTypeMale, [Validators.max(maleMax), Validators.min(0)]),
+            female: new FormControl(storagePetTypeFemale, [Validators.max(femaleMax), Validators.min(0)])
         }));
 
 
         return new FormGroup({
             id: new FormControl(id),
-            pieces: new FormControl({value: pieces, disabled: disabledPieces}, [Validators.required, Validators.max(+piecesMax)]),
+            pieces: new FormControl({value: pieces, disabled: disabledPieces},
+                [Validators.required, Validators.max(+piecesMax), Validators.min(0)]
+            ),
             storage: new FormControl(this.storageApi[defaultSelect], Validators.required),
             storagePetType: storagePetTypeArray
         });
