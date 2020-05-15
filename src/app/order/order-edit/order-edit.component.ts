@@ -172,12 +172,17 @@ export class OrderEditComponent implements OnInit {
         const currentControl = formArray.controls[i];
         const object = currentControl.value;
         this.currentStorageTypes[i] = object.storage.storageTypes;
+        currentControl.get('pieces').setValidators(Validators.max(object.storage.pieces));
 
         switch (object.storage.storageTypes.title) {
             case this.storagePetTypeValue:
+                const menMax = object.storage.storagePetTypes.find(Boolean).male;
+                const femaleMax = object.storage.storagePetTypes.find(Boolean).female;
                 const currentStoragePetType = currentControl.get('storagePetType').value.find(Boolean);
                 const male = currentStoragePetType.male;
                 const female = currentStoragePetType.female;
+                currentStoragePetType.male.setValidators(Validators.max(menMax));
+                currentStoragePetType.female.setValidators(Validators.max(femaleMax));
                 currentControl.get('pieces').setValue(male + female);
                 currentControl.get('pieces').disable();
                 break;
