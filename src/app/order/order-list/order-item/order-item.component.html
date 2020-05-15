@@ -1,7 +1,31 @@
 <a style="cursor: pointer" class="list-group-item clearfix" [routerLink]="[index]" routerLinkActive="active">
     <div class="pull-left">
         <h4 class="list-group-item-heading">
-            {{order.createdAt}}
+            {{order.customer.fullName}}
+            <div *ngFor="let orderStorageCalculators of order.orderStorageCalculators">
+
+                <div *ngIf="orderStorageCalculators.storage.storageTypes && orderStorageCalculators.storage.storageTypes.title === storagePetTypeValue">
+                    <div *ngFor="let storagePetType of orderStorageCalculators.storagePetType">
+                        {{orderStorageCalculators.storage.title}}
+                        <ng-container *ngIf="storagePetType.male">
+                            {{storagePetType.male}}
+                            <fa-icon [icon]="faMars"></fa-icon>
+                        </ng-container>
+
+                        <ng-container *ngIf="storagePetType.female">
+                            {{storagePetType.female}}
+                            <fa-icon [icon]="faVenus"></fa-icon>
+                        </ng-container>
+                    </div>
+                </div>
+
+                <div *ngIf="!orderStorageCalculators.storage.storageTypes ||
+                 orderStorageCalculators.storage.storageTypes && orderStorageCalculators.storage.storageTypes.title !== storagePetTypeValue">
+                    {{orderStorageCalculators.storage.title}} {{orderStorageCalculators.pieces}}
+                    <fa-icon [icon]="faBoxes"></fa-icon>
+                </div>
+
+            </div>
         </h4>
     </div>
 </a>
