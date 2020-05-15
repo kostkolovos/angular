@@ -174,7 +174,7 @@ export class OrderEditComponent implements OnInit {
         const currentControl = formArray.controls[i];
         const object = currentControl.value;
         this.currentStorageTypes[i] = object.storage.storageTypes;
-        currentControl.get('pieces').setValidators(Validators.max(object.storage.pieces));
+        currentControl.get('pieces').setValidators([Validators.max(object.storage.pieces), Validators.min(0), Validators.required]);
 
         switch (object.storage.storageTypes.title) {
             case this.storagePetTypeValue:
