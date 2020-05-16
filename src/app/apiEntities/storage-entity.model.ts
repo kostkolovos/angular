@@ -1,6 +1,7 @@
 import {StorageTypes} from './storage-types-entity.model';
 import {StoragePetType} from './storage-pet-type-entity.model';
 import {OrderStorageCalculator} from './order-storage-calculator.model';
+import {Price} from './price-entity.model';
 
 export class Storage {
     public id?: number;
@@ -10,7 +11,7 @@ export class Storage {
     public status?: boolean;
     public description?: string;
     public pieces?: number;
-    public price?: number;
+    public price: Price;
     public storageTypes?: StorageTypes;
     public storagePetTypes?: StoragePetType[];
     public orderStorageCalculators?: OrderStorageCalculator[];
@@ -24,7 +25,7 @@ export class Storage {
         status: boolean,
         description: string,
         pieces: number,
-        price: number,
+        price: Price,
         storageTypes: StorageTypes,
         storagePetTypes: StoragePetType[],
         orderStorageCalculators: OrderStorageCalculator[]

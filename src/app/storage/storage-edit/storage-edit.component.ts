@@ -5,6 +5,7 @@ import {StorageService} from '../storage.service';
 import {faSave, faWindowClose} from '@fortawesome/free-solid-svg-icons';
 import {StorageTypeService} from '../storage-type.service';
 import {StorageTypes} from '../../apiEntities/storage-types-entity.model';
+import {Price} from '../../apiEntities/price-entity.model';
 
 @Component({
     selector: 'app-storage-edit',
@@ -45,7 +46,7 @@ export class StorageEditComponent implements OnInit {
         let storageId = null;
         let storageDescription = '';
         let storagePieces = 0;
-        let storagePrice = 0;
+        let storagePrice = null;
         this.storageTypesApi = this.storageTypeService.getstorageTypes();
         this.currentType = this.storageTypesApi.find(types => types.sort === 1);
         let defaultSelect = this.storageTypesApi.indexOf(this.currentType);
@@ -81,7 +82,7 @@ export class StorageEditComponent implements OnInit {
             id: new FormControl(storageId),
             description: new FormControl(storageDescription),
             pieces: new FormControl(storagePieces, [Validators.required, Validators.min(0)]),
-            price: new FormControl(storagePrice, Validators.required),
+            price: this.addPriceFormGroup(storagePrice),
             storageTypes: new FormControl(this.storageTypesApi[defaultSelect], Validators.required),
             storagePetTypes: storagePetType
         });
@@ -175,5 +176,20 @@ export class StorageEditComponent implements OnInit {
 
     typeText(title) {
         return this.storageTypeService.getTypeValue(title);
+    }
+
+    addPriceFormGroup(storagePrice: Price) {
+        return new FormGroup({
+            id: new FormControl(storagePrice.id),
+            total: new FormControl({value: storagePrice.total, disabled: true}),
+            initial: new FormControl(storagePrice.initial),
+            profit: new FormControl(storagePrice.profit),
+            shipping: new FormControl(storagePrice.shipping),
+        });
+    }
+
+    onChangePrice() {
+        const price = this.storageForm.get('price');
+        price.get('total').setValue(price.get('initial').value + price.get('profit').value);
     }
 }
