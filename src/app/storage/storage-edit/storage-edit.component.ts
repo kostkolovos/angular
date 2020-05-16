@@ -58,7 +58,13 @@ export class StorageEditComponent implements OnInit {
             storageTitle = storage.title;
             storageDescription = storage.description;
             storagePieces = storage.pieces;
-            storagePrice = storage.price;
+            storagePrice = this.addPriceFormGroup(
+                storage.price.id,
+                storage.price.total,
+                storage.price.initial,
+                storage.price.profit,
+                storage.price.shipping
+            );
             this.currentType = this.storageTypesApi.find(types => types.id === storage.storageTypes.id);
             defaultSelect = this.storageTypesApi.indexOf(this.currentType);
 
@@ -74,6 +80,7 @@ export class StorageEditComponent implements OnInit {
             }
 
         } else {
+            storagePrice = this.addPriceFormGroup();
             storagePetType.push(this.addFormGroupPetType());
         }
 
@@ -82,7 +89,7 @@ export class StorageEditComponent implements OnInit {
             id: new FormControl(storageId),
             description: new FormControl(storageDescription),
             pieces: new FormControl(storagePieces, [Validators.required, Validators.min(0)]),
-            price: this.addPriceFormGroup(storagePrice),
+            price: storagePrice,
             storageTypes: new FormControl(this.storageTypesApi[defaultSelect], Validators.required),
             storagePetTypes: storagePetType
         });
@@ -178,13 +185,13 @@ export class StorageEditComponent implements OnInit {
         return this.storageTypeService.getTypeValue(title);
     }
 
-    addPriceFormGroup(storagePrice: Price) {
+    addPriceFormGroup(id = null, total = null, initial = null, profit = null, shipping = null) {
         return new FormGroup({
-            id: new FormControl(storagePrice.id),
-            total: new FormControl({value: storagePrice.total, disabled: true}),
-            initial: new FormControl(storagePrice.initial),
-            profit: new FormControl(storagePrice.profit),
-            shipping: new FormControl(storagePrice.shipping),
+            id: new FormControl(id),
+            total: new FormControl({value: total, disabled: true}),
+            initial: new FormControl(initial),
+            profit: new FormControl(profit),
+            shipping: new FormControl(shipping)
         });
     }
 
