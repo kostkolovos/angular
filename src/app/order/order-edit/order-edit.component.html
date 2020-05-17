@@ -36,10 +36,10 @@
             <div class="row">
                 <div class="col-xs-12" formArrayName="orderStorageCalculators">
                     <div class="row" *ngFor="let orderStorageCalculator of orderStorageCalculators; let i = index"
-                         [formGroupName]="i" style="margin-top: 10px" (change)="onChange(i)">
+                         [formGroupName]="i" style="margin-top: 10px">
                         <div class="col-xs-6">
                             <label for="storage">Προΐόν</label>
-                            <select class="form-control" id="storage" formControlName="storage">
+                            <select (change)="onChange(i)" class="form-control" id="storage" formControlName="storage">
                                 <option *ngFor="let types of storageApi; let i = index" [ngValue]=types>
                                     {{ types.title }}
                                 </option>
@@ -48,7 +48,8 @@
 
                         <div class="col-xs-4">
                             <label for="pieces">Τεμάχια</label>
-                            <input type="number" min="0" id="pieces" class="form-control" formControlName="pieces">
+                            <input type="number" min="0" id="pieces" class="form-control"
+                                   formControlName="pieces">
                         </div>
 
                         <div class="col-xs-2">
@@ -61,8 +62,8 @@
                         <div *ngIf="currentStorageTypes[i] && currentStorageTypes[i].title === storagePetTypeValue">
                             <div class="col-xs-12" formArrayName="storagePetType" (change)="onChange(i)">
                                 <div class="row"
-                                     *ngFor="let orderStorageCalculator of orderStorageCalculator.get('storagePetType').value; let i = index"
-                                     [formGroupName]="i">
+                                     *ngFor="let orderStorageCalculator of orderStorageCalculator.get('storagePetType').value; let l = index"
+                                     [formGroupName]="l">
                                     <div class="col-xs-6">
                                         <label for="male">Αρσενικό</label>
                                         <input type="number" min="0" id="male" class="form-control"
