@@ -60,18 +60,20 @@
                         </div>
 
                         <div *ngIf="currentStorageTypes[i] && currentStorageTypes[i].title === storagePetTypeValue">
-                            <div class="col-xs-12" formArrayName="storagePetType" (change)="onChange(i)">
+                            <div class="col-xs-12" formArrayName="storagePetType">
                                 <div class="row"
                                      *ngFor="let orderStorageCalculator of orderStorageCalculator.get('storagePetType').value; let l = index"
                                      [formGroupName]="l">
                                     <div class="col-xs-6">
                                         <label for="male">Αρσενικό</label>
-                                        <input type="number" min="0" id="male" class="form-control"
+                                        <input (change)="onChangeStoragePetType(i)" type="number" min="0" id="male"
+                                               class="form-control"
                                                formControlName="male">
                                     </div>
                                     <div class="col-xs-6">
                                         <label for="female">Θηλυκό</label>
-                                        <input type="number" id="female" class="form-control" min="0"
+                                        <input (change)="onChangeStoragePetType(i)" type="number" id="female"
+                                               class="form-control" min="0"
                                                formControlName="female">
                                     </div>
                                 </div>

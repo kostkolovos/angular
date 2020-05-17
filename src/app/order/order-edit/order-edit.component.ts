@@ -199,22 +199,28 @@ export class OrderEditComponent implements OnInit {
         /*StorageType section*/
         switch (object.storage.storageTypes.title) {
             case this.storagePetTypeValue:
-                const menMax = object.storage.storagePetTypes.find(Boolean).male;
-                const femaleMax = object.storage.storagePetTypes.find(Boolean).female;
-                const storagePetTypeController = currentControl.get('storagePetType') as FormArray;
-                const currentStoragePetType = storagePetTypeController.value.find(Boolean);
-                const male = currentStoragePetType.male;
-                const female = currentStoragePetType.female;
-
-                storagePetTypeController.controls.find(Boolean).get('male').setValidators(Validators.max(menMax));
-                storagePetTypeController.controls.find(Boolean).get('female').setValidators(Validators.max(femaleMax));
-                currentControl.get('pieces').setValue(male + female);
                 currentControl.get('pieces').disable();
                 break;
             default:
                 currentControl.get('pieces').enable();
                 break;
         }
+    }
+
+    onChangeStoragePetType(orderStorageCalculatorIndex: number) {
+        const formArray = this.orderForm.get('orderStorageCalculators') as FormArray;
+        const currentControl = formArray.controls[orderStorageCalculatorIndex];
+        const object = currentControl.value as OrderStorageCalculator;
+        const menMax = object.storage.storagePetTypes.find(Boolean).male;
+        const femaleMax = object.storage.storagePetTypes.find(Boolean).female;
+        const storagePetTypeController = currentControl.get('storagePetType') as FormArray;
+        const currentStoragePetType = storagePetTypeController.value.find(Boolean);
+        const male = currentStoragePetType.male;
+        const female = currentStoragePetType.female;
+
+        storagePetTypeController.controls.find(Boolean).get('male').setValidators(Validators.max(menMax));
+        storagePetTypeController.controls.find(Boolean).get('female').setValidators(Validators.max(femaleMax));
+        currentControl.get('pieces').setValue(male + female);
     }
 
     addCustomerFormGroup(id = null, fullName = null, mobile = null) {
