@@ -5,8 +5,29 @@
             <fa-icon [icon]="faEllipsisV"></fa-icon>
             {{storage.price.total}}
             <fa-icon [icon]="faEuroSign"></fa-icon>&nbsp;<fa-icon [icon]="faEllipsisV"></fa-icon>
-            {{storage.pieces}}
-            <fa-icon [icon]="faBoxes"></fa-icon>
+
+            <ng-container *ngIf="storage.storageTypes.title === storagePetTypeValue">
+                {{storage.pieces}}
+                <fa-icon [icon]="faPaw"></fa-icon>
+
+                <ng-container *ngIf="storage.storagePetTypes[0].male">
+                    &nbsp;<fa-icon [icon]="faEllipsisV"></fa-icon>
+                    {{storage.storagePetTypes[0].male}}
+                    <fa-icon [icon]="faMars"></fa-icon>
+                </ng-container>
+
+                <ng-container *ngIf="storage.storagePetTypes[0].female">
+                    &nbsp;<fa-icon [icon]="faEllipsisV"></fa-icon>
+                    {{storage.storagePetTypes[0].female}}
+                    <fa-icon [icon]="faMars"></fa-icon>
+                </ng-container>
+            </ng-container>
+
+            <ng-container *ngIf="storage.storageTypes.title !== storagePetTypeValue">
+                {{storage.pieces}}
+                <fa-icon [icon]="faBoxes"></fa-icon>
+            </ng-container>
+
         </h4>
     </div>
 </a>
