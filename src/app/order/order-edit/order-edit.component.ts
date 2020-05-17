@@ -9,6 +9,7 @@ import {StorageTypeService} from '../../storage/storage-type.service';
 import {StorageTypes} from '../../apiEntities/storage-types-entity.model';
 import {StoragePetType} from '../../apiEntities/storage-pet-type-entity.model';
 import {Price} from '../../apiEntities/price-entity.model';
+import {OrderStorageCalculator} from '../../apiEntities/order-storage-calculator.model';
 
 @Component({
     selector: 'app-order-edit',
@@ -185,10 +186,17 @@ export class OrderEditComponent implements OnInit {
     onChange(i: number) {
         const formArray = this.orderForm.get('orderStorageCalculators') as FormArray;
         const currentControl = formArray.controls[i];
-        const object = currentControl.value;
+        const object = currentControl.value as OrderStorageCalculator;
         this.currentStorageTypes[i] = object.storage.storageTypes;
         currentControl.get('pieces').setValidators([Validators.max(object.storage.pieces), Validators.min(0), Validators.required]);
 
+        /*price section*/
+        currentControl.get('price').get('total').setValue(object.storage.price.total);
+        currentControl.get('price').get('initial').setValue(object.storage.price.initial);
+        currentControl.get('price').get('profit').setValue(object.storage.price.profit);
+        currentControl.get('price').get('shipping').setValue(object.storage.price.shipping);
+
+        /*StorageType section*/
         switch (object.storage.storageTypes.title) {
             case this.storagePetTypeValue:
                 const menMax = object.storage.storagePetTypes.find(Boolean).male;
