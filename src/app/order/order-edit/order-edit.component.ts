@@ -8,6 +8,7 @@ import {Storage} from '../../apiEntities/storage-entity.model';
 import {StorageTypeService} from '../../storage/storage-type.service';
 import {StorageTypes} from '../../apiEntities/storage-types-entity.model';
 import {StoragePetType} from '../../apiEntities/storage-pet-type-entity.model';
+import {Price} from '../../apiEntities/price-entity.model';
 
 @Component({
     selector: 'app-order-edit',
@@ -75,7 +76,8 @@ export class OrderEditComponent implements OnInit {
                             orderStorageCalculatorItem.id,
                             orderStorageCalculatorItem.pieces,
                             defaultSelect,
-                            storagePetType
+                            storagePetType,
+                            orderStorageCalculatorItem.price
                         ));
                 }
             }
@@ -122,7 +124,12 @@ export class OrderEditComponent implements OnInit {
         formArray.removeAt(i);
     }
 
-    addOrderStorageCalculatorsFormGroup(id = null, pieces = null, defaultSelect = null, storagePetTypes: StoragePetType[] = null) {
+    addOrderStorageCalculatorsFormGroup(
+        id = null, pieces = null,
+        defaultSelect = null,
+        storagePetTypes: StoragePetType[] = null,
+        price: Price = null
+    ) {
         let storagePetTypeMale = null;
         let storagePetTypeFemale = null;
         let storagePetTypeId = null;
@@ -131,6 +138,7 @@ export class OrderEditComponent implements OnInit {
         let piecesMax = null;
         let maleMax = null;
         let femaleMax = null;
+        let priceFormGroup = this.addPriceFormGroup();
 
         if (storagePetTypes) {
             /*Only on is expected*/
@@ -152,6 +160,10 @@ export class OrderEditComponent implements OnInit {
 
         }
 
+        if (price !== null) {
+            priceFormGroup = this.addPriceFormGroup(price.id, price.total, price.initial, price.profit, price.shipping);
+        }
+
         storagePetTypeArray.push(new FormGroup({
             id: new FormControl(storagePetTypeId),
             male: new FormControl(storagePetTypeMale, [Validators.max(maleMax), Validators.min(0)]),
@@ -165,7 +177,8 @@ export class OrderEditComponent implements OnInit {
                 [Validators.required, Validators.max(+piecesMax), Validators.min(0)]
             ),
             storage: new FormControl(this.storageApi[defaultSelect], Validators.required),
-            storagePetType: storagePetTypeArray
+            storagePetType: storagePetTypeArray,
+            price: priceFormGroup
         });
     }
 
@@ -201,6 +214,16 @@ export class OrderEditComponent implements OnInit {
             id: new FormControl(id),
             fullName: new FormControl(fullName),
             mobile: new FormControl(mobile)
+        });
+    }
+
+    addPriceFormGroup(id = null, total = null, initial = null, profit = null, shipping = null) {
+        return new FormGroup({
+            id: new FormControl(id),
+            total: new FormControl(total),
+            initial: new FormControl(initial),
+            profit: new FormControl(profit),
+            shipping: new FormControl(shipping),
         });
     }
 
