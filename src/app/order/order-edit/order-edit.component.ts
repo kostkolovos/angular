@@ -95,7 +95,7 @@ export class OrderEditComponent implements OnInit {
             orderStorageCalculators: orderStorageCalculatorsApi,
             description: new FormControl(orderDescription),
             customer: customerFormGroup,
-            orderPrice: new FormControl(orderPrice)
+            orderPrice: new FormControl({value: orderPrice, disabled: true})
         });
 
         this.currentStorageTypes = currentStorageTypes;
