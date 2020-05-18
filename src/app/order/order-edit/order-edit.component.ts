@@ -235,6 +235,7 @@ export class OrderEditComponent implements OnInit {
         currentControl.get('price').get('initial').setValue(object.storage.price.initial);
         currentControl.get('price').get('profit').setValue(object.storage.price.profit);
         currentControl.get('price').get('shipping').setValue(object.storage.price.shipping);
+        this.onChangePieces(i);
         /*Price section*/
 
         /*StorageType section*/
