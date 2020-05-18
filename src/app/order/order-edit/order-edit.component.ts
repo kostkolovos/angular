@@ -230,11 +230,12 @@ export class OrderEditComponent implements OnInit {
         this.currentStorageTypes[i] = object.storage.storageTypes;
         currentControl.get('pieces').setValidators([Validators.max(object.storage.pieces), Validators.min(0), Validators.required]);
 
-        /*price section*/
+        /*Price section*/
         currentControl.get('price').get('total').setValue(object.storage.price.total);
         currentControl.get('price').get('initial').setValue(object.storage.price.initial);
         currentControl.get('price').get('profit').setValue(object.storage.price.profit);
         currentControl.get('price').get('shipping').setValue(object.storage.price.shipping);
+        /*Price section*/
 
         /*StorageType section*/
         switch (object.storage.storageTypes.title) {
@@ -245,6 +246,7 @@ export class OrderEditComponent implements OnInit {
                 currentControl.get('pieces').enable();
                 break;
         }
+        /*StorageType section*/
     }
 
     onChangeStoragePetType(orderStorageCalculatorIndex: number) {
