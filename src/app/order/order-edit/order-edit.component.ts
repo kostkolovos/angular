@@ -122,6 +122,13 @@ export class OrderEditComponent implements OnInit {
         formArray.removeAt(i);
     }
 
+    onHiddenPrice(index: number) {
+        const formArray = this.orderForm.get('orderStorageCalculators') as FormArray;
+        const currentControl = formArray.controls[index];
+        const value = currentControl.get('price').get('hiddenPrice').value;
+        currentControl.get('price').get('hiddenPrice').setValue(!value);
+    }
+
     /*On Add Form methods*/
 
     onAddOrderStorageCalculators() {
@@ -206,6 +213,7 @@ export class OrderEditComponent implements OnInit {
             initial: new FormControl(initial),
             profit: new FormControl(profit),
             shipping: new FormControl(shipping),
+            hiddenPrice: new FormControl(true)
         });
     }
 

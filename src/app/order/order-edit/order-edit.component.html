@@ -58,11 +58,37 @@
                                    formControlName="finalPrice">
                         </div>
 
-                        <div class="col-xs-2">
+                        <div class="col-xs-2 btn-toolbar">
                             <br>
+                            <button class="btn btn-primary" type="button" (click)="onHiddenPrice(i)"
+                                    style="margin-top: 5px;">x
+                            </button>
                             <button class="btn btn-danger" type="button" (click)="onDeleteOrderStorageCalculators(i)"
                                     style="margin-top: 5px;">x
                             </button>
+                        </div>
+
+                        <div formArrayName="price" [hidden]="orderStorageCalculator.get('price').get('hiddenPrice').value">
+                            <input type="hidden" id="hiddenPrice" class="form-control" formControlName="hiddenPrice">
+                            <div class="col-xs-6">
+                                <label for="total">Σύνολο</label>
+                                <input type="number" id="total" class="form-control" formControlName="total">
+                            </div>
+                            <div class="col-xs-6">
+                                <label for="initial">Αρχική</label>
+                                <input type="number" id="initial" class="form-control" (change)="onChangePrice(i)"
+                                       formControlName="initial">
+                            </div>
+                            <div class="col-xs-6">
+                                <label for="profit">Κέρδος</label>
+                                <input type="number" id="profit" class="form-control" (change)="onChangePrice(i)"
+                                       formControlName="profit">
+                            </div>
+                            <div class="col-xs-6">
+                                <label for="shipping">Μεταφορικά</label>
+                                <input type="number" id="shipping" class="form-control" (change)="onChangePrice(i)"
+                                       formControlName="shipping">
+                            </div>
                         </div>
 
                         <div *ngIf="currentStorageTypes[i] && currentStorageTypes[i].title === storagePetTypeValue">
@@ -85,25 +111,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <ng-container formArrayName="price">
-                            <div class="col-xs-6">
-                                <label for="total">Σύνολο</label>
-                                <input type="number" id="total" class="form-control" formControlName="total">
-                            </div>
-                            <div class="col-xs-6">
-                                <label for="initial">Αρχική</label>
-                                <input type="number" id="initial" class="form-control" (change)="onChangePrice(i)" formControlName="initial">
-                            </div>
-                            <div class="col-xs-6">
-                                <label for="profit">Κέρδος</label>
-                                <input type="number" id="profit" class="form-control" (change)="onChangePrice(i)" formControlName="profit">
-                            </div>
-                            <div class="col-xs-6">
-                                <label for="shipping">Μεταφορικά</label>
-                                <input type="number" id="shipping" class="form-control" (change)="onChangePrice(i)" formControlName="shipping">
-                            </div>
-                        </ng-container>
 
                     </div>
                     <hr>
