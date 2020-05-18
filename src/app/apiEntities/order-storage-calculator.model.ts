@@ -10,6 +10,7 @@ export class OrderStorageCalculator {
     public pieces: number;
     public storagePetType: StoragePetType[];
     public price: Price;
+    public finalPrice: number;
 
     constructor(
         id: number,
@@ -17,7 +18,8 @@ export class OrderStorageCalculator {
         orders: Order,
         pieces: number,
         storagePetType: StoragePetType[],
-        price: Price
+        price: Price,
+        finalPrice: number
     ) {
         this.id = id;
         this.storage = storage;
@@ -25,5 +27,6 @@ export class OrderStorageCalculator {
         this.pieces = pieces;
         this.storagePetType = storagePetType;
         this.price = price;
+        this.finalPrice = finalPrice;
     }
 }

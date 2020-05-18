@@ -46,10 +46,16 @@
                             </select>
                         </div>
 
-                        <div class="col-xs-4">
+                        <div class="col-xs-2">
                             <label for="pieces">Τεμάχια</label>
-                            <input type="number" min="0" id="pieces" class="form-control"
+                            <input type="number" min="0" id="pieces" class="form-control" (change)="onChangePieces(i)"
                                    formControlName="pieces">
+                        </div>
+
+                        <div class="col-xs-2">
+                            <label for="finalPrice">Τελική Τιμή</label>
+                            <input type="number" min="0" id="finalPrice" class="form-control"
+                                   formControlName="finalPrice">
                         </div>
 
                         <div class="col-xs-2">
@@ -87,15 +93,15 @@
                             </div>
                             <div class="col-xs-6">
                                 <label for="initial">Αρχική</label>
-                                <input type="number" id="initial" class="form-control" formControlName="initial">
+                                <input type="number" id="initial" class="form-control" (change)="onChangePrice(i)" formControlName="initial">
                             </div>
                             <div class="col-xs-6">
                                 <label for="profit">Κέρδος</label>
-                                <input type="number" id="profit" class="form-control" formControlName="profit">
+                                <input type="number" id="profit" class="form-control" (change)="onChangePrice(i)" formControlName="profit">
                             </div>
                             <div class="col-xs-6">
                                 <label for="shipping">Μεταφορικά</label>
-                                <input type="number" id="shipping" class="form-control" formControlName="shipping">
+                                <input type="number" id="shipping" class="form-control" (change)="onChangePrice(i)" formControlName="shipping">
                             </div>
                         </ng-container>
 

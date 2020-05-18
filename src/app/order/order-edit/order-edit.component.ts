@@ -78,7 +78,8 @@ export class OrderEditComponent implements OnInit {
                             orderStorageCalculatorItem.pieces,
                             defaultSelect,
                             storagePetType,
-                            orderStorageCalculatorItem.price
+                            orderStorageCalculatorItem.price,
+                            orderStorageCalculatorItem.finalPrice
                         ));
                 }
             }
@@ -116,20 +117,23 @@ export class OrderEditComponent implements OnInit {
         return formArray.controls;
     }
 
-    onAddOrderStorageCalculators() {
-        (this.orderForm.get('orderStorageCalculators') as FormArray).push(this.addOrderStorageCalculatorsFormGroup());
-    }
-
     onDeleteOrderStorageCalculators(i: number) {
         const formArray = this.orderForm.get('orderStorageCalculators') as FormArray;
         formArray.removeAt(i);
+    }
+
+    /*On Add Form methods*/
+
+    onAddOrderStorageCalculators() {
+        (this.orderForm.get('orderStorageCalculators') as FormArray).push(this.addOrderStorageCalculatorsFormGroup());
     }
 
     addOrderStorageCalculatorsFormGroup(
         id = null, pieces = null,
         defaultSelect = null,
         storagePetTypes: StoragePetType[] = null,
-        price: Price = null
+        price: Price = null,
+        finalPrice = 0
     ) {
         let storagePetTypeMale = null;
         let storagePetTypeFemale = null;
@@ -179,9 +183,36 @@ export class OrderEditComponent implements OnInit {
             ),
             storage: new FormControl(this.storageApi[defaultSelect], Validators.required),
             storagePetType: storagePetTypeArray,
-            price: priceFormGroup
+            price: priceFormGroup,
+            finalPrice: new FormControl(
+                {value: finalPrice, disabled: disabledPieces},
+                [Validators.required, Validators.min(0)]
+            )
         });
     }
+
+    addCustomerFormGroup(id = null, fullName = null, mobile = null) {
+        return new FormGroup({
+            id: new FormControl(id),
+            fullName: new FormControl(fullName),
+            mobile: new FormControl(mobile)
+        });
+    }
+
+    addPriceFormGroup(id = null, total = null, initial = null, profit = null, shipping = null) {
+        return new FormGroup({
+            id: new FormControl(id),
+            total: new FormControl({value: total, disabled: true}),
+            initial: new FormControl(initial),
+            profit: new FormControl(profit),
+            shipping: new FormControl(shipping),
+        });
+    }
+
+    /*On Add Form methods*/
+
+
+    /*Change form methods*/
 
     onChange(i: number) {
         const formArray = this.orderForm.get('orderStorageCalculators') as FormArray;
@@ -221,24 +252,23 @@ export class OrderEditComponent implements OnInit {
         storagePetTypeController.controls.find(Boolean).get('male').setValidators(Validators.max(menMax));
         storagePetTypeController.controls.find(Boolean).get('female').setValidators(Validators.max(femaleMax));
         currentControl.get('pieces').setValue(male + female);
+        this.onChangePieces(orderStorageCalculatorIndex);
     }
 
-    addCustomerFormGroup(id = null, fullName = null, mobile = null) {
-        return new FormGroup({
-            id: new FormControl(id),
-            fullName: new FormControl(fullName),
-            mobile: new FormControl(mobile)
-        });
+    onChangePieces(index: number) {
+        const formArray = this.orderForm.get('orderStorageCalculators') as FormArray;
+        const currentControl = formArray.controls[index];
+        currentControl.get('finalPrice').setValue(currentControl.get('pieces').value * currentControl.get('price').get('total').value);
     }
 
-    addPriceFormGroup(id = null, total = null, initial = null, profit = null, shipping = null) {
-        return new FormGroup({
-            id: new FormControl(id),
-            total: new FormControl(total),
-            initial: new FormControl(initial),
-            profit: new FormControl(profit),
-            shipping: new FormControl(shipping),
-        });
+    onChangePrice(index: number) {
+        const formArray = this.orderForm.get('orderStorageCalculators') as FormArray;
+        const currentControl = formArray.controls[index];
+        const object = currentControl.value as OrderStorageCalculator;
+        const sum = object.price.initial + object.price.shipping + object.price.profit;
+        currentControl.get('price').get('total').setValue(sum);
+        this.onChangePieces(index);
     }
 
+    /*Change form methods*/
 }
