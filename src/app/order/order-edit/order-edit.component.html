@@ -37,7 +37,8 @@
                 <div class="col-xs-12" formArrayName="orderStorageCalculators">
                     <div class="row" *ngFor="let orderStorageCalculator of orderStorageCalculators; let i = index"
                          [formGroupName]="i" style="margin-top: 10px">
-                        <div class="col-xs-5">
+
+                        <div class="col-md-5 col-xs-8">
                             <label for="storage">Προΐόν</label>
                             <select (change)="onChange(i)" class="form-control" id="storage" formControlName="storage">
                                 <option *ngFor="let types of storageApi; let i = index" [ngValue]=types>
@@ -46,27 +47,55 @@
                             </select>
                         </div>
 
-                        <div class="col-xs-2">
+                        <div class="col-md-2 col-xs-2">
+                            <br>
+                            <button class="btn btn-danger" type="button"
+                                    (click)="onDeleteOrderStorageCalculators(i)"
+                                    style="margin-top: 5px;">
+                                <fa-icon [icon]="faWindowClose"></fa-icon>
+                            </button>
+                        </div>
+
+                        <div class="col-md-2 col-xs-6">
                             <label for="pieces">Τεμάχια</label>
-                            <input type="number" min="0" id="pieces" class="form-control" (change)="onChangePieces(i)"
+                            <input type="number" min="0" id="pieces" class="form-control"
+                                   (change)="onChangePieces(i)"
                                    formControlName="pieces">
                         </div>
 
-                        <div class="col-xs-2">
+                        <div *ngIf="currentStorageTypes[i] && currentStorageTypes[i].title === storagePetTypeValue">
+                            <div class="col-xs-6" formArrayName="storagePetType">
+                                <div class="row"
+                                     *ngFor="let orderStorageCalculator of orderStorageCalculator.get('storagePetType').value; let l = index"
+                                     [formGroupName]="l">
+                                    <div class="col-xs-6">
+                                        <label for="male">Αρσενικό</label>
+                                        <input (change)="onChangeStoragePetType(i)" type="number" min="0"
+                                               id="male"
+                                               class="form-control"
+                                               formControlName="male">
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <label for="female">Θηλυκό</label>
+                                        <input (change)="onChangeStoragePetType(i)" type="number" id="female"
+                                               class="form-control" min="0"
+                                               formControlName="female">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2 col-xs-6">
                             <label for="finalPrice">Τιμή</label>
                             <input type="number" min="0" id="finalPrice" class="form-control"
                                    formControlName="finalPrice">
                         </div>
 
-                        <div class="col-xs-3 btn-toolbar">
+                        <div class="col-md-3 col-xs-6">
                             <br>
                             <button class="btn btn-primary" type="button" (click)="onHiddenPrice(i)"
                                     style="margin-top: 5px;">
                                 <fa-icon [icon]="faListUl"></fa-icon>
-                            </button>
-                            <button class="btn btn-danger pull-right" type="button" (click)="onDeleteOrderStorageCalculators(i)"
-                                    style="margin-top: 5px;">
-                                <fa-icon [icon]="faWindowClose"></fa-icon>
                             </button>
                         </div>
 
@@ -94,26 +123,6 @@
                             </div>
                         </div>
 
-                        <div *ngIf="currentStorageTypes[i] && currentStorageTypes[i].title === storagePetTypeValue">
-                            <div class="col-xs-12" formArrayName="storagePetType">
-                                <div class="row"
-                                     *ngFor="let orderStorageCalculator of orderStorageCalculator.get('storagePetType').value; let l = index"
-                                     [formGroupName]="l">
-                                    <div class="col-xs-6">
-                                        <label for="male">Αρσενικό</label>
-                                        <input (change)="onChangeStoragePetType(i)" type="number" min="0" id="male"
-                                               class="form-control"
-                                               formControlName="male">
-                                    </div>
-                                    <div class="col-xs-6">
-                                        <label for="female">Θηλυκό</label>
-                                        <input (change)="onChangeStoragePetType(i)" type="number" id="female"
-                                               class="form-control" min="0"
-                                               formControlName="female">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
                     </div>
                     <hr>
