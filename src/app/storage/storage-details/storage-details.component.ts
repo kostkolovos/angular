@@ -3,7 +3,7 @@ import {Storage} from '../../apiEntities/storage-entity.model';
 import {StorageService} from '../storage.service';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {Subscription} from 'rxjs';
-import {faBoxes, faEdit, faEuroSign, faTrash, faMars, faVenus, faBook} from '@fortawesome/free-solid-svg-icons';
+import {faBoxes, faEdit, faEuroSign, faTrash, faMars, faVenus, faBook, faPaw} from '@fortawesome/free-solid-svg-icons';
 import {StorageTypeService} from '../storage-type.service';
 
 @Component({
@@ -22,6 +22,7 @@ export class StorageDetailsComponent implements OnInit, OnDestroy {
     faMars = faMars;
     faVenus = faVenus;
     faBook = faBook;
+    faPaw = faPaw;
     disabled: boolean;
     storagePetTypeValue = this.storageTypeService.getStoragePetTypeValue();
     bookletText: string;
