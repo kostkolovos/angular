@@ -274,6 +274,7 @@ export class OrderEditComponent implements OnInit {
         const formArray = this.orderForm.get('orderStorageCalculators') as FormArray;
         const currentControl = formArray.controls[index];
         currentControl.get('finalPrice').setValue(currentControl.get('pieces').value * currentControl.get('price').get('total').value);
+        this.onChangeOrderPrice();
     }
 
     onChangePrice(index: number) {
@@ -283,6 +284,18 @@ export class OrderEditComponent implements OnInit {
         const sum = object.price.initial + object.price.shipping + object.price.profit;
         currentControl.get('price').get('total').setValue(sum);
         this.onChangePieces(index);
+    }
+
+    onChangeOrderPrice() {
+        const formArray = this.orderForm.get('orderStorageCalculators') as FormArray;
+        let orderPriceSum = 0;
+
+        for (const orderStorageCalculators of formArray.controls) {
+            const orderStorage = orderStorageCalculators as FormGroup;
+            const currentFinalPrice = orderStorage.controls.finalPrice.value;
+            orderPriceSum += currentFinalPrice;
+        }
+        this.orderForm.get('orderPrice').setValue(orderPriceSum);
     }
 
     /*Change form methods*/
