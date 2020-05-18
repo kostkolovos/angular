@@ -47,7 +47,7 @@
                             </select>
                         </div>
 
-                        <div class="col-md-2 col-xs-2">
+                        <div class="col-md-1 col-xs-2">
                             <br>
                             <button class="btn btn-danger" type="button"
                                     (click)="onDeleteOrderStorageCalculators(i)"
@@ -64,7 +64,7 @@
                         </div>
 
                         <div *ngIf="currentStorageTypes[i] && currentStorageTypes[i].title === storagePetTypeValue">
-                            <div class="col-xs-6" formArrayName="storagePetType">
+                            <div class="col-xs-6 col-md-4" formArrayName="storagePetType">
                                 <div class="row"
                                      *ngFor="let orderStorageCalculator of orderStorageCalculator.get('storagePetType').value; let l = index"
                                      [formGroupName]="l">
@@ -91,7 +91,7 @@
                                    formControlName="finalPrice">
                         </div>
 
-                        <div class="col-md-3 col-xs-6">
+                        <div class="col-md-1 col-xs-6">
                             <br>
                             <button class="btn btn-primary" type="button" (click)="onHiddenPrice(i)"
                                     style="margin-top: 5px;">
