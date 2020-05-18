@@ -22,14 +22,21 @@
                 </div>
             </div>
 
-            <div class="row" formArrayName="customer">
-                <div class="col-xs-6">
-                    <label for="fullName">Όνομα</label>
-                    <input type="text" id="fullName" class="form-control" formControlName="fullName">
-                </div>
-                <div class="col-xs-6">
-                    <label for="mobile">Τηλέφωνο</label>
-                    <input type="text" id="mobile" class="form-control" formControlName="mobile">
+            <div class="row">
+                <ng-container formArrayName="customer">
+                    <div class="col-xs-4">
+                        <label for="fullName">Όνομα</label>
+                        <input type="text" id="fullName" class="form-control" formControlName="fullName">
+                    </div>
+                    <div class="col-xs-5 col-md-4">
+                        <label for="mobile">Τηλέφωνο</label>
+                        <input type="text" id="mobile" class="form-control" formControlName="mobile">
+                    </div>
+                </ng-container>
+
+                <div class="col-xs-3 col-md-4">
+                    <label for="orderPrice">Σύνολο</label>
+                    <input type="number" min="0" id="orderPrice" class="form-control" formControlName="orderPrice">
                 </div>
             </div>
 

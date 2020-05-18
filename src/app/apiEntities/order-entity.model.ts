@@ -9,6 +9,7 @@ export class Order {
     public orderStorageCalculators?: OrderStorageCalculator[];
     public description?: string;
     public customer: Customer;
+    public orderPrice: number;
 
     constructor(
         id: number,
@@ -18,7 +19,8 @@ export class Order {
         status: boolean,
         orderStorageCalculators: OrderStorageCalculator[],
         description: string,
-        customer: Customer
+        customer: Customer,
+        orderPrice: number
     ) {
         this.id = id;
         this.createdAt = createdAt;
@@ -27,5 +29,6 @@ export class Order {
         this.orderStorageCalculators = orderStorageCalculators;
         this.description = description;
         this.customer = customer;
+        this.orderPrice = orderPrice;
     }
 }
