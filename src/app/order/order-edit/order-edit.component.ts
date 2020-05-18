@@ -234,10 +234,10 @@ export class OrderEditComponent implements OnInit {
         currentControl.get('pieces').setValidators([Validators.max(object.storage.pieces), Validators.min(0), Validators.required]);
 
         /*Price section*/
-        currentControl.get('price').get('total').setValue(object.storage.price.total);
-        currentControl.get('price').get('initial').setValue(object.storage.price.initial);
-        currentControl.get('price').get('profit').setValue(object.storage.price.profit);
-        currentControl.get('price').get('shipping').setValue(object.storage.price.shipping);
+        currentControl.get('price').get('total').setValue(object.storage.price.total ? object.storage.price.total : 0);
+        currentControl.get('price').get('initial').setValue(object.storage.price.initial ? object.storage.price.initial : 0);
+        currentControl.get('price').get('profit').setValue(object.storage.price.profit ? object.storage.price.profit : 0);
+        currentControl.get('price').get('shipping').setValue(object.storage.price.shipping ? object.storage.price.shipping : 0);
         this.onChangePieces(i);
         /*Price section*/
 
