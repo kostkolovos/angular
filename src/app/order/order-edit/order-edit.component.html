@@ -85,6 +85,11 @@
                             </div>
                         </div>
 
+                        <div *ngIf="currentStorageTypes[i] && currentStorageTypes[i].title !== storagePetTypeValue">
+                            <div class="col-xs-12 col-md-4">
+                            </div>
+                        </div>
+
                         <div class="col-md-2 col-xs-6">
                             <label for="finalPrice">Τιμή</label>
                             <input type="number" min="0" id="finalPrice" class="form-control"
