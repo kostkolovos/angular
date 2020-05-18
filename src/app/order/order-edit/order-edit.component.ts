@@ -193,7 +193,7 @@ export class OrderEditComponent implements OnInit {
             storagePetType: storagePetTypeArray,
             price: priceFormGroup,
             finalPrice: new FormControl(
-                {value: finalPrice, disabled: disabledPieces},
+                {value: finalPrice, disabled: true},
                 [Validators.required, Validators.min(0)]
             )
         });
