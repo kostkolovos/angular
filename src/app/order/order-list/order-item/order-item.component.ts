@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Order} from '../../../apiEntities/order-entity.model';
-import {faBoxes, faMars, faVenus} from '@fortawesome/free-solid-svg-icons';
+import {faBoxes, faMars, faVenus, faEuroSign} from '@fortawesome/free-solid-svg-icons';
 import {StorageTypeService} from '../../../storage/storage-type.service';
 
 @Component({
@@ -12,6 +12,7 @@ export class OrderItemComponent implements OnInit {
     faBoxes = faBoxes;
     faMars = faMars;
     faVenus = faVenus;
+    faEuroSign = faEuroSign;
     storagePetTypeValue = this.storageTypeService.getStoragePetTypeValue();
 
     @Input() order: Order;
