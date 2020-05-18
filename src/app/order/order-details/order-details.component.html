@@ -43,8 +43,40 @@
     <div class="row" *ngFor="let orderStorageCalculator of order.orderStorageCalculators">
         <div class="col-xs-12">
             <h3>
-                {{orderStorageCalculator.storage.title}} -
-                {{orderStorageCalculator.pieces}} -
+                {{orderStorageCalculator.storage.title}}
+                <fa-icon [icon]="faEllipsisV"></fa-icon>
+                <ng-container *ngIf="orderStorageCalculator.storage.storageTypes.title !== storagePetTypeValue">
+                    {{orderStorageCalculator.pieces}}
+                    <fa-icon [icon]="faBoxes"></fa-icon>&nbsp;
+                    <fa-icon [icon]="faEllipsisV"></fa-icon>
+                </ng-container>
+
+                <ng-container *ngIf="orderStorageCalculator.storage.storageTypes.title === storagePetTypeValue">
+                    {{orderStorageCalculator.pieces}}
+                    <fa-icon [icon]="faPaw"></fa-icon>
+                    (
+
+                    <ng-container *ngIf="orderStorageCalculator.storagePetType[0].male">
+                        {{orderStorageCalculator.storagePetType[0].male}}
+                        <fa-icon [icon]="faMars"></fa-icon>
+                    </ng-container>
+
+                    <ng-container *ngIf="
+                    orderStorageCalculator.storagePetType[0].male && orderStorageCalculator.storagePetType[0].female">
+                        &
+                    </ng-container>
+
+                    <ng-container *ngIf="orderStorageCalculator.storagePetType[0].female">
+                        {{orderStorageCalculator.storagePetType[0].female}}
+                        <fa-icon [icon]="faVenus"></fa-icon>
+                    </ng-container>
+                    )
+
+                    {{orderStorageCalculator.storagePetType[0].booklet}}
+
+                    <fa-icon [icon]="faEllipsisV"></fa-icon>
+                </ng-container>
+
                 {{orderStorageCalculator.finalPrice}}
                 <fa-icon [icon]="faEuroSign"></fa-icon>
             </h3>

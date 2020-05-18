@@ -1,9 +1,10 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
-import {faBook, faBoxes, faEdit, faEuroSign, faMars, faTrash, faVenus} from '@fortawesome/free-solid-svg-icons';
+import {faBoxes, faEdit, faEuroSign, faMars, faTrash, faVenus, faEllipsisV, faPaw} from '@fortawesome/free-solid-svg-icons';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {OrderService} from '../order.service';
 import {Order} from '../../apiEntities/order-entity.model';
+import {StorageTypeService} from '../../storage/storage-type.service';
 
 @Component({
     selector: 'app-order-details',
@@ -20,15 +21,16 @@ export class OrderDetailsComponent implements OnInit, OnDestroy {
     faBoxes = faBoxes;
     faMars = faMars;
     faVenus = faVenus;
-    faBook = faBook;
     disabled: boolean;
-    bookletText: string;
-
+    faEllipsisV = faEllipsisV;
+    faPaw = faPaw;
+    storagePetTypeValue = this.storageTypeService.getStoragePetTypeValue();
 
     constructor(
         private orderService: OrderService,
         private route: ActivatedRoute,
-        private router: Router
+        private router: Router,
+        private storageTypeService: StorageTypeService
     ) {
     }
 

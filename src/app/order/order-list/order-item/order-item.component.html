@@ -12,7 +12,7 @@
                             {{storagePetType.male}}
                             <fa-icon [icon]="faMars"></fa-icon>
                         </ng-container>
-
+                        <ng-container *ngIf="storagePetType.male && storagePetType.female"> &</ng-container>
                         <ng-container *ngIf="storagePetType.female">
                             {{storagePetType.female}}
                             <fa-icon [icon]="faVenus"></fa-icon>
