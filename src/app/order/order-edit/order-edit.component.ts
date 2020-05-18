@@ -124,6 +124,7 @@ export class OrderEditComponent implements OnInit {
     onDeleteOrderStorageCalculators(i: number) {
         const formArray = this.orderForm.get('orderStorageCalculators') as FormArray;
         formArray.removeAt(i);
+        this.onChangeOrderPrice();
     }
 
     onHiddenPrice(index: number) {
