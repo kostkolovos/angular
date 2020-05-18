@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
-import {faSave, faWindowClose} from '@fortawesome/free-solid-svg-icons';
+import {faSave, faWindowClose, faListUl} from '@fortawesome/free-solid-svg-icons';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {OrderService} from '../order.service';
 import {StorageService} from '../../storage/storage.service';
@@ -21,6 +21,7 @@ export class OrderEditComponent implements OnInit {
     editMode = false;
     orderForm: FormGroup;
     faSave = faSave;
+    faListUl = faListUl;
     faWindowClose = faWindowClose;
     storageApi: Storage[];
     storagePetTypeValue = this.storageTypeService.getStoragePetTypeValue();

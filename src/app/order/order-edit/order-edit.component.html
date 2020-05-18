@@ -61,14 +61,16 @@
                         <div class="col-xs-2 btn-toolbar">
                             <br>
                             <button class="btn btn-primary" type="button" (click)="onHiddenPrice(i)"
-                                    style="margin-top: 5px;">x
+                                    style="margin-top: 5px;">
+                                <fa-icon [icon]="faListUl"></fa-icon>
                             </button>
                             <button class="btn btn-danger" type="button" (click)="onDeleteOrderStorageCalculators(i)"
                                     style="margin-top: 5px;">x
                             </button>
                         </div>
 
-                        <div formArrayName="price" [hidden]="orderStorageCalculator.get('price').get('hiddenPrice').value">
+                        <div formArrayName="price"
+                             [hidden]="orderStorageCalculator.get('price').get('hiddenPrice').value">
                             <input type="hidden" id="hiddenPrice" class="form-control" formControlName="hiddenPrice">
                             <div class="col-xs-6">
                                 <label for="total">Σύνολο</label>
