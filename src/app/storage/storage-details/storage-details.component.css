@@ -1,0 +1,6 @@
+@media (max-width: 768px) {
+    .btn {
+        white-space: normal !important;
+        max-width: 111px;
+    }
+}
