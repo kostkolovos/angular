@@ -113,6 +113,11 @@ export class OrderEditComponent implements OnInit {
         });
 
         this.currentStorageTypes = currentStorageTypes;
+
+        if (this.populateStorage) {
+            /*On init set all values for first (and only) item*/
+            this.onChange(0);
+        }
     }
 
 
