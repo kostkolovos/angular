@@ -220,7 +220,7 @@ export class OrderEditComponent implements OnInit {
     addCustomerFormGroup(id = null, fullName = null, mobile = null) {
         return new FormGroup({
             id: new FormControl(id),
-            fullName: new FormControl(fullName),
+            fullName: new FormControl(fullName, Validators.required),
             mobile: new FormControl(mobile)
         });
     }
