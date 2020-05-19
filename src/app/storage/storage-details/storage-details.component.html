@@ -14,6 +14,10 @@
                     <fa-icon [icon]="faEdit"></fa-icon>
                     Επεξεργασία
                 </button>
+                <button class="btn btn-success" (click)="onAddOrder()">
+                    <fa-icon [icon]="faCashRegister"></fa-icon>
+                    Παραγγελία
+                </button>
                 <button class="btn btn-danger" *ngIf="disabled" (click)="onDisableStorage()">
                     <fa-icon [icon]="faTrash"></fa-icon>
                     Απενεργοποίηση

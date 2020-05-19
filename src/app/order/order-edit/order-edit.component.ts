@@ -26,6 +26,7 @@ export class OrderEditComponent implements OnInit {
     storageApi: Storage[];
     storagePetTypeValue = this.storageTypeService.getStoragePetTypeValue();
     currentStorageTypes: StorageTypes[];
+    populateStorage: number;
 
     constructor(
         private activatedRoute: ActivatedRoute,
@@ -39,6 +40,13 @@ export class OrderEditComponent implements OnInit {
 
     ngOnInit(): void {
         this.storageApi = this.storageService.getAvailableStorages();
+
+        this.activatedRoute.queryParams.subscribe(value => {
+            if (value.hasOwnProperty('storage')) {
+                this.populateStorage = value.storage;
+            }
+        });
+
         this.activatedRoute.params.subscribe((params: Params) => {
             this.id = +params.id;
             this.editMode = params.id != null;
@@ -87,7 +95,13 @@ export class OrderEditComponent implements OnInit {
                 }
             }
         } else {
-            orderStorageCalculatorsApi.push(this.addOrderStorageCalculatorsFormGroup());
+            let defaultSelectStorage = null;
+            if (this.populateStorage) {
+                const storagePopulate = this.storageService.getStorage(+this.populateStorage);
+                const currentStorage = this.storageApi.find(types => types.id === storagePopulate.id);
+                defaultSelectStorage = this.storageApi.indexOf(currentStorage);
+            }
+            orderStorageCalculatorsApi.push(this.addOrderStorageCalculatorsFormGroup(null, null, defaultSelectStorage));
         }
 
         this.orderForm = new FormGroup({
