@@ -39,7 +39,7 @@ export class OrderEditComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.storageApi = this.storageService.getAvailableStorages();
+        this.storageApi = this.storageService.getStorages();
 
         this.activatedRoute.queryParams.subscribe(value => {
             if (value.hasOwnProperty('storage')) {
