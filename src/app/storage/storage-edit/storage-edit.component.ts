@@ -32,7 +32,7 @@ export class StorageEditComponent implements OnInit {
             method: 'POST',
             headers: {
                 'Content-Type': 'text/plain;charset=UTF-8',
-                Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE1OTY5OTY5NzAsImV4cCI6MTU5NzAwMDU3MCwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoibWF4aSJ9.WITtEJiXM-CSFP-TZjT-Eas7usWPXwYzPpZnfHuLfgSN9apwF-0o_w37BBWKqUvrmfn0r2Ce5SUMSlZmu1iPSEBI93BM8zDtJ8rAfuXg4mnA-X75O759Jef-IrSQxjdcLxyB5SVqfdzoPRUOr-snR5PAi71UzqhhtpfRjyUCbANXat2nmuiQ9Pwf_IXNhmyL6DXAhdYAc-QLUJfBDsWoEDZu-v0d8Se9HFOegJHCRG-6qwjaNtbCwEn4dnDo4eZPWL40XHY_eety_c54mPGw5kyNd_Ta8DzZBTJg-aS1lF8H6-v6nxXFjdpXIr4lGF2ZX2Y6FltLMrK7B-iT4rblIJd3FacYh-JSTY2iB0w-NYQ5BuhPeAbL8ztVVd2mKGXOeppSWsj2hMt0iuXqUhRsvdX2KAoW6CcBVW5tO8ACunw6FGAnS31pMry3-XOO-W84B4rvTr0__8PdgUzulpTfDAWzLFT3YzJE6qv1sbj7v4xIjk_DRpLNLkSrGDiDDNz9YOX6FjMoF45nNyxA9oPAdgpr1zyOdX9vYyyOPemitfyDtw0pDuydxPblFWa2ttXoG35AfC4dygLnoMRSHSQ6mqXJ2y5XvSXzOEbVD8zWVV6guhuE3yuA1xJFUKeCUezpa8iWDbdeRAz0NXovVjWv3Y_XyXltIGKSY3WdA48byz4'
+                Authorization: 'Bearer ' /** TODO get token*/
             },
             /*params: {
                 page: '1'
