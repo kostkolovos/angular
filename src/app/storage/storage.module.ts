@@ -8,7 +8,7 @@ import {StorageDetailsComponent} from './storage-details/storage-details.compone
 import {SharedModule} from '../shared/shared.module';
 import {StorageEditComponent} from './storage-edit/storage-edit.component';
 import {ReactiveFormsModule} from '@angular/forms';
-
+import {AngularFileUploaderModule} from 'angular-file-uploader';
 
 @NgModule({
     declarations: [StorageStartComponent, StorageListComponent, StorageItemComponent, StorageDetailsComponent, StorageEditComponent],
@@ -19,7 +19,8 @@ import {ReactiveFormsModule} from '@angular/forms';
         CommonModule,
         StorageRoutingModule,
         SharedModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        AngularFileUploaderModule
     ]
 })
 export class StorageModule {
