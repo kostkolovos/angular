@@ -6,6 +6,7 @@ import {faSave, faWindowClose} from '@fortawesome/free-solid-svg-icons';
 import {StorageTypeService} from '../storage-type.service';
 import {StorageTypes} from '../../apiEntities/storage-types-entity.model';
 import {environment} from '../../../environments/environment';
+import {AuthService} from '../../auth/auth.service';
 
 @Component({
     selector: 'app-storage-edit',
@@ -32,7 +33,7 @@ export class StorageEditComponent implements OnInit {
             method: 'POST',
             headers: {
                 'Content-Type': 'text/plain;charset=UTF-8',
-                Authorization: 'Bearer ' /** TODO get token*/
+                Authorization: null
             },
             /*params: {
                 page: '1'
@@ -62,7 +63,8 @@ export class StorageEditComponent implements OnInit {
         private storageService: StorageService,
         private storageTypeService: StorageTypeService,
         private router: Router,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private authService: AuthService
     ) {
     }
 
@@ -70,6 +72,7 @@ export class StorageEditComponent implements OnInit {
         this.activatedRoute.params.subscribe((params: Params) => {
             this.id = +params.id;
             this.editMode = params.id != null;
+            this.afuConfig.uploadAPI.headers.Authorization = 'Bearer ' + this.authService.user.value._token;
             this.initForm();
         });
     }
