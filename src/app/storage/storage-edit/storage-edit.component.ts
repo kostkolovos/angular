@@ -34,7 +34,7 @@ export class StorageEditComponent implements OnInit {
             headers: {
                 Authorization: null
             },
-            responseType: 'blob',
+            responseType: 'json',
         },
         theme: 'dragNDrop',
         hideProgressBar: false,
