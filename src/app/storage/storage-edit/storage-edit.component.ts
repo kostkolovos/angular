@@ -32,7 +32,6 @@ export class StorageEditComponent implements OnInit {
             url: environment.apiUrl + 'api/media_objects',
             method: 'POST',
             headers: {
-                'Content-Type': 'text/plain;charset=UTF-8',
                 Authorization: null
             },
             /*params: {
