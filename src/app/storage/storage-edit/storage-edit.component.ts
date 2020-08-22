@@ -113,6 +113,12 @@ export class StorageEditComponent implements OnInit {
                 storagePetType.push(this.addFormGroupPetType());
             }
 
+            if (storage.images.length) {
+                for (const image of storage.images) {
+                    this.storageImages.push(environment.apiUrl + 'media/' + image.filePath);
+                }
+            }
+
         } else {
             storagePrice = this.addPriceFormGroup();
             storagePetType.push(this.addFormGroupPetType());
