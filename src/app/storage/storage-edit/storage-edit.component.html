@@ -138,6 +138,15 @@
                     </div>
                 </div>
             </div>
+
+            <div *ngIf="storageImages.length >0">
+                <div class="row" *ngFor="let images of storageImages">
+                    <div class="col-xs-12">
+                        <img [src]="images" class="img-responsive">
+                    </div>
+                </div>
+            </div>
+
         </form>
     </div>
 </div>

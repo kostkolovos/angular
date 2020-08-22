@@ -24,6 +24,7 @@ export class StorageEditComponent implements OnInit {
     storagePetTypeValue = this.storageTypeService.getStoragePetTypeValue();
     bookletStates = this.storageTypeService.getBookletValues();
     defaultBookletStates = null;
+    storageImages: string[];
     afuConfig = {
         multiple: true,
         formatsAllowed: '.jpg,.png',
@@ -74,6 +75,7 @@ export class StorageEditComponent implements OnInit {
     }
 
     private initForm() {
+        this.storageImages = [];
         let storageTitle = '';
         let storageId = null;
         let storageDescription = '';
@@ -233,8 +235,7 @@ export class StorageEditComponent implements OnInit {
     }
 
     imageUpload(event) {
-        console.log(event);
-        // get response from api
+        this.storageImages.push(environment.apiUrl + event.body.contentUrl);
     }
 
 }
