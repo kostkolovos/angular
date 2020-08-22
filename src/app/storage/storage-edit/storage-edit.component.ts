@@ -248,4 +248,9 @@ export class StorageEditComponent implements OnInit {
         storageImages.setValue(oldValue);
     }
 
+    onDeleteImage(image: MediaObject) {
+        const storageImages = this.storageForm.get('images').value as MediaObject[];
+        storageImages.splice(storageImages.indexOf(image), 1);
+    }
+
 }
