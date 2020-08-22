@@ -2,6 +2,7 @@ import {StorageTypes} from './storage-types-entity.model';
 import {StoragePetType} from './storage-pet-type-entity.model';
 import {OrderStorageCalculator} from './order-storage-calculator.model';
 import {Price} from './price-entity.model';
+import {MediaObject} from './media-object-entity.model';
 
 export class Storage {
     public id?: number;
@@ -15,6 +16,7 @@ export class Storage {
     public storageTypes?: StorageTypes;
     public storagePetTypes?: StoragePetType[];
     public orderStorageCalculators?: OrderStorageCalculator[];
+    public images?: MediaObject[];
 
 
     constructor(
@@ -28,7 +30,8 @@ export class Storage {
         price: Price,
         storageTypes: StorageTypes,
         storagePetTypes: StoragePetType[],
-        orderStorageCalculators: OrderStorageCalculator[]
+        orderStorageCalculators: OrderStorageCalculator[],
+        images: MediaObject[]
     ) {
         this.title = title;
         this.createdAt = createdAt;
@@ -41,5 +44,6 @@ export class Storage {
         this.storageTypes = storageTypes;
         this.storagePetTypes = storagePetTypes;
         this.orderStorageCalculators = orderStorageCalculators;
+        this.images = images;
     }
 }
