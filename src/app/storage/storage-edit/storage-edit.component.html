@@ -139,8 +139,8 @@
                 </div>
             </div>
 
-            <div *ngIf="storageImages.length >0">
-                <div class="row" *ngFor="let images of storageImages">
+            <div *ngIf="getStorageImages">
+                <div class="row" *ngFor="let images of getStorageImages">
                     <div class="col-xs-12">
                         <img [src]=" imageRenderingPath+images.filePath" class="img-responsive">
                     </div>

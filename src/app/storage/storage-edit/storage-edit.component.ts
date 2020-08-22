@@ -25,7 +25,6 @@ export class StorageEditComponent implements OnInit {
     storagePetTypeValue = this.storageTypeService.getStoragePetTypeValue();
     bookletStates = this.storageTypeService.getBookletValues();
     defaultBookletStates = null;
-    storageImages: MediaObject[];
     imageRenderingPath = environment.apiUrl + 'media/';
     afuConfig = {
         multiple: true,
@@ -77,7 +76,7 @@ export class StorageEditComponent implements OnInit {
     }
 
     private initForm() {
-        this.storageImages = [];
+        let storageImages = [];
         let storageTitle = '';
         let storageId = null;
         let storageDescription = '';
@@ -90,6 +89,7 @@ export class StorageEditComponent implements OnInit {
 
         if (this.editMode) {
             const storage = this.storageService.getStorage(this.id);
+            storageImages = storage.images;
             storageId = storage.id;
             storageTitle = storage.title;
             storageDescription = storage.description;
@@ -115,12 +115,6 @@ export class StorageEditComponent implements OnInit {
                 storagePetType.push(this.addFormGroupPetType());
             }
 
-            if (storage.images.length) {
-                for (const image of storage.images) {
-                    this.storageImages.push(image);
-                }
-            }
-
         } else {
             storagePrice = this.addPriceFormGroup();
             storagePetType.push(this.addFormGroupPetType());
@@ -133,7 +127,8 @@ export class StorageEditComponent implements OnInit {
             pieces: new FormControl(storagePieces, [Validators.required, Validators.min(0)]),
             price: storagePrice,
             storageTypes: new FormControl(this.storageTypesApi[defaultSelect], Validators.required),
-            storagePetTypes: storagePetType
+            storagePetTypes: storagePetType,
+            images: new FormControl(storageImages),
         });
 
         const storagePetTypesControl = this.storageForm.get('storagePetTypes') as FormArray;
@@ -183,6 +178,10 @@ export class StorageEditComponent implements OnInit {
     get controls() { // a getter!
         const formArray = this.storageForm.get('storagePetTypes') as FormArray;
         return formArray.controls;
+    }
+
+    get getStorageImages() { // a getter!
+        return this.storageForm.get('images').value;
     }
 
     addFormGroupPetType(microchip = null, male = 0, female = 0, booklet = null) {
@@ -243,7 +242,10 @@ export class StorageEditComponent implements OnInit {
     }
 
     imageUpload(event) {
-        this.storageImages.push(event.body);
+        const storageImages = this.storageForm.get('images');
+        const oldValue = storageImages.value as MediaObject[];
+        oldValue.push(event.body);
+        storageImages.setValue(oldValue);
     }
 
 }
