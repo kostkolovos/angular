@@ -7,6 +7,7 @@ import {StorageTypeService} from '../storage-type.service';
 import {StorageTypes} from '../../apiEntities/storage-types-entity.model';
 import {environment} from '../../../environments/environment';
 import {AuthService} from '../../auth/auth.service';
+import {MediaObject} from '../../apiEntities/media-object-entity.model';
 
 @Component({
     selector: 'app-storage-edit',
@@ -24,7 +25,8 @@ export class StorageEditComponent implements OnInit {
     storagePetTypeValue = this.storageTypeService.getStoragePetTypeValue();
     bookletStates = this.storageTypeService.getBookletValues();
     defaultBookletStates = null;
-    storageImages: string[];
+    storageImages: MediaObject[];
+    imageRenderingPath = environment.apiUrl + 'media/';
     afuConfig = {
         multiple: true,
         formatsAllowed: '.jpg,.png',
@@ -115,7 +117,7 @@ export class StorageEditComponent implements OnInit {
 
             if (storage.images.length) {
                 for (const image of storage.images) {
-                    this.storageImages.push(environment.apiUrl + 'media/' + image.filePath);
+                    this.storageImages.push(image);
                 }
             }
 
@@ -241,7 +243,7 @@ export class StorageEditComponent implements OnInit {
     }
 
     imageUpload(event) {
-        this.storageImages.push(environment.apiUrl + event.body.contentUrl);
+        this.storageImages.push(event.body);
     }
 
 }
