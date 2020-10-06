@@ -4,7 +4,7 @@
 
 export const environment = {
     production: false,
-    apiUrl: 'http://localhost:81/',
+    apiUrl: 'http://localhost:8081/',
     applicationTitle: 'Application',
     favIconHeader: 'favicon.ico' // Use  assets/images/ path to save your file
 };
