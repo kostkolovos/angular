@@ -3,6 +3,7 @@ import {AuthService} from '../auth/auth.service';
 import {Subscription} from 'rxjs';
 import {faWarehouse, faSignOutAlt, faSignInAlt, faShippingFast, faCashRegister} from '@fortawesome/free-solid-svg-icons';
 import {environment} from '../../environments/environment';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
     selector: 'app-header',
@@ -20,7 +21,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
     faCashRegister = faCashRegister;
     applicationTitle = environment.applicationTitle;
 
-    constructor(private authService: AuthService) {
+    constructor(private authService: AuthService, public translate: TranslateService) {
+        translate.addLangs(['gr']);
+        translate.setDefaultLang('gr');
+
+        const browserLang = translate.getBrowserLang();
+        translate.use(browserLang.match(/gr/) ? browserLang : 'eg');
     }
 
     ngOnInit(): void {
