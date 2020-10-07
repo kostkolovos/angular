@@ -10,5 +10,24 @@
     "orders": "Orders",
     "login": "Login",
     "logout": "Logout"
+  },
+  "order": {
+    "edit": "Edit",
+    "disable": "Disable",
+    "name": "Name",
+    "phone": "Phone",
+    "price": "Price",
+    "description": "Description",
+    "save": "Save",
+    "cancel": "Cancel",
+    "item": "Item",
+    "pieces": "Pieces",
+    "male": "Male",
+    "female": "Female",
+    "sum": "Total",
+    "initial": "Initial",
+    "profit": "Profit",
+    "transportation": "Transportation",
+    "addItem": "Add Item"
   }
 }

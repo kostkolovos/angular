@@ -15,13 +15,13 @@
                 <div class="col-xs-6">
                     <button class="btn btn-primary" (click)="onEditOrder()">
                         <fa-icon [icon]="faEdit"></fa-icon>
-                        Επεξεργασία
+                        {{ 'order.edit' | translate }}
                     </button>
                 </div>
                 <div class="col-xs-6">
                     <button class="btn btn-danger pull-right" *ngIf="disabled" (click)="onDisableOrder()">
                         <fa-icon [icon]="faTrash"></fa-icon>
-                        Απενεργοποίηση
+                        {{ 'order.disable' | translate }}
                     </button>
                 </div>
             </div>
@@ -32,10 +32,10 @@
     <div class="row">
         <div class="col-xs-12">
             <div class="col-xs-6">
-                <h3><label>Όνομα</label> {{order.customer.fullName}}</h3>
+                <h3><label> {{ 'order.name' | translate }}</label> {{order.customer.fullName}}</h3>
             </div>
             <div class="col-xs-6">
-                <h3><label>Τηλέφωνο</label><a href="tel: {{order.customer.mobile}}"> {{order.customer.mobile}}</a></h3>
+                <h3><label>{{ 'order.phone' | translate }}</label><a href="tel: {{order.customer.mobile}}"> {{order.customer.mobile}}</a></h3>
             </div>
         </div>
     </div>
@@ -86,7 +86,7 @@
 
     <div class="row">
         <div class="col-xs-4">
-            <h3><label>Σύνολο</label> {{order.orderPrice}}
+            <h3><label>{{ 'order.price' | translate }}</label> {{order.orderPrice}}
                 <fa-icon [icon]="faEuroSign"></fa-icon>
             </h3>
         </div>
@@ -95,7 +95,7 @@
     <div class="row">
         <div class="col-xs-12">
             <h3>
-                <label>Περιγραφή</label>
+                <label>{{ 'order.description' | translate }}</label>
                 {{order.description}}
             </h3>
         </div>

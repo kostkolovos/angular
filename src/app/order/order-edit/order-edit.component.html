@@ -9,13 +9,13 @@
                         <div class="col-xs-6">
                             <button class="btn btn-success" type="submit" [disabled]="!orderForm.valid">
                                 <fa-icon [icon]="faSave"></fa-icon>
-                                Αποθήκευση
+                                {{ 'order.save' | translate }}
                             </button>
                         </div>
                         <div class="col-xs-6">
                             <button class="btn btn-danger pull-right" type="button" (click)="onCancel()">
                                 <fa-icon [icon]="faWindowClose"></fa-icon>
-                                Ακύρωση
+                                {{ 'order.cancel' | translate }}
                             </button>
                         </div>
                     </div>
@@ -25,17 +25,17 @@
             <div class="row">
                 <ng-container formArrayName="customer">
                     <div class="col-xs-4">
-                        <label for="fullName">Όνομα</label>
+                        <label for="fullName">{{ 'order.name' | translate }}</label>
                         <input type="text" id="fullName" class="form-control" formControlName="fullName">
                     </div>
                     <div class="col-xs-5 col-md-4">
-                        <label for="mobile">Τηλέφωνο</label>
+                        <label for="mobile">{{ 'order.phone' | translate }}</label>
                         <input type="text" id="mobile" class="form-control" formControlName="mobile">
                     </div>
                 </ng-container>
 
                 <div class="col-xs-3 col-md-4">
-                    <label for="orderPrice">Σύνολο</label>
+                    <label for="orderPrice">{{ 'order.price' | translate }}</label>
                     <input type="number" min="0" id="orderPrice" class="form-control" formControlName="orderPrice">
                 </div>
             </div>
@@ -46,7 +46,7 @@
                          [formGroupName]="i" style="margin-top: 10px">
 
                         <div class="col-md-5 col-xs-8">
-                            <label for="storage">Προΐόν</label>
+                            <label for="storage">{{ 'order.item' | translate }}</label>
                             <select (change)="onChange(i)" class="form-control" id="storage" formControlName="storage">
                                 <option *ngFor="let types of storageApi; let i = index" [ngValue]=types>
                                     {{ types.title }}
@@ -64,7 +64,7 @@
                         </div>
 
                         <div class="col-md-2 col-xs-6">
-                            <label for="pieces">Τεμάχια</label>
+                            <label for="pieces">{{ 'order.pieces' | translate }}</label>
                             <input type="number" min="0" id="pieces" class="form-control"
                                    (change)="onChangePieces(i)"
                                    formControlName="pieces">
@@ -74,7 +74,7 @@
                             <div class="col-xs-6 col-md-4" formArrayName="storagePetType">
                                 <ng-container [formGroupName]="0">
                                     <div class="col-xs-6">
-                                        <label for="male">Αρσενικό</label>
+                                        <label for="male">{{ 'order.male' | translate }}</label>
                                         <input (change)="onChangeStoragePetType(i)" type="number"
                                                min="0"
                                                id="male"
@@ -82,7 +82,7 @@
                                                formControlName="male">
                                     </div>
                                     <div class="col-xs-6">
-                                        <label for="female">Θηλυκό</label>
+                                        <label for="female">{{ 'order.female' | translate }}</label>
                                         <input (change)="onChangeStoragePetType(i)" type="number"
                                                id="female"
                                                class="form-control" min="0"
@@ -97,7 +97,7 @@
                         </div>
 
                         <div class="col-md-2 col-xs-6">
-                            <label for="finalPrice">Τιμή</label>
+                            <label for="finalPrice">{{ 'order.price' | translate }}</label>
                             <input type="number" min="0" id="finalPrice" class="form-control"
                                    formControlName="finalPrice">
                         </div>
@@ -114,21 +114,21 @@
                              [hidden]="orderStorageCalculator.get('price').get('hiddenPrice').value">
                             <input type="hidden" id="hiddenPrice" class="form-control" formControlName="hiddenPrice">
                             <div class="col-xs-6">
-                                <label for="total">Σύνολο</label>
+                                <label for="total">{{ 'order.sum' | translate }}</label>
                                 <input type="number" id="total" class="form-control" formControlName="total">
                             </div>
                             <div class="col-xs-6">
-                                <label for="initial">Αρχική</label>
+                                <label for="initial">{{ 'order.initial' | translate }}</label>
                                 <input type="number" id="initial" class="form-control" (change)="onChangePrice(i)"
                                        formControlName="initial">
                             </div>
                             <div class="col-xs-6">
-                                <label for="profit">Κέρδος</label>
+                                <label for="profit">{{ 'order.profit' | translate }}</label>
                                 <input type="number" id="profit" class="form-control" (change)="onChangePrice(i)"
                                        formControlName="profit">
                             </div>
                             <div class="col-xs-6">
-                                <label for="shipping">Μεταφορικά</label>
+                                <label for="shipping">{{ 'order.transportation' | translate }}</label>
                                 <input type="number" id="shipping" class="form-control" (change)="onChangePrice(i)"
                                        formControlName="shipping">
                             </div>
@@ -140,7 +140,7 @@
                     <div class="row">
                         <div class="col-xs-12">
                             <button class="btn btn-primary" type="button" (click)="onAddOrderStorageCalculators()">
-                                Προσθήκη προϊόντος
+                                {{ 'order.addItem' | translate }}
                             </button>
                         </div>
                     </div>
@@ -151,7 +151,7 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="form-group">
-                        <label for="description">Σχόλια</label>
+                        <label for="description">{{ 'order.description' | translate }}</label>
                         <textarea name="description" id="description" class="form-control" rows="4"
                                   formControlName="description"></textarea>
                     </div>

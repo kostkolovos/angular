@@ -10,5 +10,24 @@
     "orders": "أوامر",
     "login": "الإتصال",
     "logout": "تسجيل خروج"
+  },
+  "order": {
+    "edit": "تعديل",
+    "disable": "تعطيل",
+    "name": "اسم",
+    "phone": "هاتف",
+    "price": "السعر",
+    "description": "وصف",
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "item": "بند",
+    "pieces": "قطع",
+    "male": "الذكر",
+    "female": "أنثى",
+    "sum": "مجموع",
+    "initial": "مبدئي",
+    "profit": "الربح",
+    "transportation": "أجرة النقل",
+    "addItem": "اضافة عنصر"
   }
 }
