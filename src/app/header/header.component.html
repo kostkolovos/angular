@@ -13,19 +13,19 @@
                 <li routerLinkActive="active">
                     <a (click)="collapsed=true" routerLink="/storage" *ngIf="isAuthenticated">
                         <fa-icon [icon]="faWarehouse"></fa-icon>
-                        Αποθήκη
+                        {{ 'header.storage' | translate }}
                     </a>
                 </li>
                 <li routerLinkActive="active">
                     <a (click)="collapsed=true" routerLink="/order" *ngIf="isAuthenticated">
                         <fa-icon [icon]="faCashRegister"></fa-icon>
-                        Παραγγελίες
+                        {{ 'header.orders' | translate }}
                     </a>
                 </li>
                 <li routerLinkActive="active">
                     <a (click)="collapsed=true" routerLink="/auth" *ngIf="!isAuthenticated">
                         <fa-icon [icon]="faSignInAlt"></fa-icon>
-                        {{ 'auth.login' | translate }}
+                        {{ 'header.login' | translate }}
                     </a>
                 </li>
             </ul>
@@ -44,7 +44,7 @@
                 <li *ngIf="isAuthenticated">
                     <a style="cursor: pointer" (click)="onLogout()">
                         <fa-icon [icon]="faSignOutAlt"></fa-icon>
-                        Αποσύνδεση
+                        {{ 'header.logout' | translate }}
                     </a>
                 </li>
             </ul>

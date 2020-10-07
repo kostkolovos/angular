@@ -1,0 +1,14 @@
+{
+  "auth": {
+    "username": "Username",
+    "password": "Password",
+    "login": "Login",
+    "signUp": "SignUP"
+  },
+  "header": {
+    "storage": "Storage",
+    "orders": "Orders",
+    "login": "Login",
+    "logout": "Logout"
+  }
+}

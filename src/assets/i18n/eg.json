@@ -4,5 +4,11 @@
     "password": "الشفرة",
     "login": "الإتصال",
     "signUp": "سجل"
+  },
+  "header": {
+    "storage": "تخزين",
+    "orders": "أوامر",
+    "login": "الإتصال",
+    "logout": "تسجيل خروج"
   }
 }
