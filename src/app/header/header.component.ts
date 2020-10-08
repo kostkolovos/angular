@@ -26,7 +26,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         translate.setDefaultLang('eg');
 
         const browserLang = translate.getBrowserLang();
-        // translate.use(browserLang.match(/gr|eg|en/) ? browserLang : 'eg');
+        translate.use(browserLang.match(/gr|eg|en/) ? browserLang : 'eg');
     }
 
     ngOnInit(): void {
