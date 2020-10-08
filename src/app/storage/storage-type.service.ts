@@ -3,6 +3,7 @@ import {Subject} from 'rxjs';
 import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {StorageTypes} from '../apiEntities/storage-types-entity.model';
+import {TranslationService} from '../shared/translation.service';
 
 @Injectable({
     providedIn: 'root'
@@ -13,7 +14,7 @@ export class StorageTypeService {
 
     private storageTypes: StorageTypes[] = [];
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private translationService: TranslationService) {
     }
 
     getstorageTypes() {
@@ -66,7 +67,7 @@ export class StorageTypeService {
 
     getBookletValues() {
         return [
-            {value: null, text: 'Χωρίς'},
+            {value: null, text: this.translationService.getTranslation('storage.without')},
             {value: 'GR', text: 'Ελληνικό'},
             {value: 'EU', text: 'Ευρωπαικό'},
         ];

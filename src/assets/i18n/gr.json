@@ -44,6 +44,7 @@
     "microchip": "Microchip",
     "delete": "Διαγραφή",
     "newStorage": "Νέα Αποθήκη",
-    "chooseOrCreate": "Διαλέξτε ή δημιουργήστε μια αποθήκη"
+    "chooseOrCreate": "Διαλέξτε ή δημιουργήστε μια αποθήκη",
+    "without": "Χωρίς"
   }
 }

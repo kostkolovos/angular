@@ -44,6 +44,7 @@
     "microchip": "Microchip",
     "delete": "Delete",
     "newStorage": "New Storage",
-    "chooseOrCreate": "Choose or Create a Storage"
+    "chooseOrCreate": "Choose or Create a Storage",
+    "without": "Without"
   }
 }

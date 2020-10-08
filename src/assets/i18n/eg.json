@@ -44,6 +44,7 @@
     "microchip": "Microchip",
     "delete": "حذف",
     "newStorage": "تخزين جديد",
-    "chooseOrCreate": "اختر أو أنشئ مساحة تخزين"
+    "chooseOrCreate": "اختر أو أنشئ مساحة تخزين",
+    "without": "بدون"
   }
 }
