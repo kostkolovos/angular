@@ -33,5 +33,17 @@
     "newOrder": "New Order",
     "active": "Active",
     "inactive": "Inactive"
+  },
+  "mobileBack": {
+    "backToList": "Back To List"
+  },
+  "storage": {
+    "booklet": "Booklet",
+    "title": "Title",
+    "type": "Type",
+    "microchip": "Microchip",
+    "delete": "Delete",
+    "newStorage": "New Storage",
+    "chooseOrCreate": "Choose or Create a Storage"
   }
 }

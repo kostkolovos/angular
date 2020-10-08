@@ -33,5 +33,17 @@
     "newOrder": "طلب جديد",
     "active": "نشيط",
     "inactive": "غير نشط"
+  },
+  "mobileBack": {
+    "backToList": "العودة للقائمة"
+  },
+  "storage": {
+    "booklet": "كتيب",
+    "title": "عنوان",
+    "type": "نوع",
+    "microchip": "Microchip",
+    "delete": "حذف",
+    "newStorage": "تخزين جديد",
+    "chooseOrCreate": "اختر أو أنشئ مساحة تخزين"
   }
 }

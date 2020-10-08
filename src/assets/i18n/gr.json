@@ -33,5 +33,17 @@
     "newOrder": "Νέα Παραγγελία",
     "active": "Ενεργές",
     "inactive": "Απενεργοποιημένες"
+  },
+  "mobileBack": {
+    "backToList": "Πίσω στην λίστα"
+  },
+  "storage": {
+    "booklet": "Βιβλιάριο",
+    "title": "Τίτλος",
+    "type": "Είδος",
+    "microchip": "Microchip",
+    "delete": "Διαγραφή",
+    "newStorage": "Νέα Αποθήκη",
+    "chooseOrCreate": "Διαλέξτε ή δημιουργήστε μια αποθήκη"
   }
 }
