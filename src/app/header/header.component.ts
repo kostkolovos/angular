@@ -22,11 +22,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
     applicationTitle = environment.applicationTitle;
 
     constructor(private authService: AuthService, public translate: TranslateService) {
-        translate.addLangs(['gr', 'eg', 'en']);
+        translate.addLangs(['eg', 'gr', 'en']);
         translate.setDefaultLang('eg');
 
         const browserLang = translate.getBrowserLang();
-        translate.use(browserLang.match(/gr|eg|en/) ? browserLang : 'eg');
+        // translate.use(browserLang.match(/gr|eg|en/) ? browserLang : 'eg');
     }
 
     ngOnInit(): void {
