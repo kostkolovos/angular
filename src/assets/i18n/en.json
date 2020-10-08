@@ -28,6 +28,10 @@
     "initial": "Initial",
     "profit": "Profit",
     "transportation": "Transportation",
-    "addItem": "Add Item"
+    "addItem": "Add Item",
+    "chooseOrCreate": "Choose or Create a Order",
+    "newOrder": "New Order",
+    "active": "Active",
+    "inactive": "Inactive"
   }
 }

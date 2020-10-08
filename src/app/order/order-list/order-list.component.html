@@ -4,7 +4,7 @@
         <div class="col-xs-6">
             <button class="btn btn-primary" (click)="onNewOrder()">
                 <fa-icon [icon]="faPlus"></fa-icon>
-                Νέα Παραγγελία
+                {{ 'order.newOrder' | translate }}
             </button>
         </div>
 
@@ -12,11 +12,11 @@
         <div class="col-xs-6">
             <button class="btn btn-success pull-right" *ngIf="pipeStatus" (click)="onChangeStatus()">
                 <fa-icon [icon]="faCheck"></fa-icon>
-                Ενεργές
+                {{ 'order.active' | translate }}
             </button>
             <button class="btn btn-danger pull-right" *ngIf="!pipeStatus" (click)="onChangeStatus()">
                 <fa-icon [icon]="faMinus"></fa-icon>
-                Απενεργοποιημένες
+                {{ 'order.inactive' | translate }}
             </button>
         </div>
 

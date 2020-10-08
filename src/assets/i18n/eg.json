@@ -28,6 +28,10 @@
     "initial": "مبدئي",
     "profit": "الربح",
     "transportation": "أجرة النقل",
-    "addItem": "اضافة عنصر"
+    "addItem": "اضافة عنصر",
+    "chooseOrCreate": "اختر أو أنشئ طلبًا",
+    "newOrder": "طلب جديد",
+    "active": "نشيط",
+    "inactive": "غير نشط"
   }
 }
