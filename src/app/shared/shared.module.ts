@@ -8,8 +8,8 @@ import {MobileBackComponent} from './mobile-back/mobile-back.component';
 import {TranslateModule} from '@ngx-translate/core';
 
 @NgModule({
+    imports: [CommonModule, FontAwesomeModule, TranslateModule],
     declarations: [DropdownDirective, StatusPipe, LoaderComponent, MobileBackComponent],
-    imports: [CommonModule, FontAwesomeModule],
     exports: [DropdownDirective, CommonModule, StatusPipe, LoaderComponent, FontAwesomeModule, MobileBackComponent, TranslateModule]
 })
 export class SharedModule {
