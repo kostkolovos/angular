@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
-import {tap} from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -8,14 +7,14 @@ import {tap} from 'rxjs/operators';
 
 /*Class to get the translation in services*/
 export class TranslationService {
-    returnTranslation: any;
+    returnTranslation: string;
 
     constructor(public translateService: TranslateService) {
     }
 
     getTranslation(requestText: string) {
 
-        this.translateService.getTranslation(this.translateService.currentLang).subscribe((translation) => {
+        this.translateService.getTranslation(this.translateService.currentLang).subscribe((translation: object) => {
             if (translation) {
                 const text = requestText.split('.');
                 this.returnTranslation = translation[text[0]][text[1]];
