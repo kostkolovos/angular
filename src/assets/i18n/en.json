@@ -45,6 +45,10 @@
     "delete": "Delete",
     "newStorage": "New Storage",
     "chooseOrCreate": "Choose or Create a Storage",
-    "without": "Without"
+    "without": "Without",
+    "greek": "Greek",
+    "european": "European",
+    "general": "General",
+    "pets": "Pets"
   }
 }

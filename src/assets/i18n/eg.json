@@ -45,6 +45,10 @@
     "delete": "حذف",
     "newStorage": "تخزين جديد",
     "chooseOrCreate": "اختر أو أنشئ مساحة تخزين",
-    "without": "بدون"
+    "without": "بدون",
+    "greek": "اليونانية",
+    "european": "الأوروبي",
+    "general": "جنرال لواء",
+    "pets": "الحيوانات الأليفة"
   }
 }
