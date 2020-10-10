@@ -62,7 +62,7 @@
                             <label for="storageTypes">{{ 'storage.type' | translate }}</label>
                             <select class="form-control" id="storageTypes" formControlName="storageTypes">
                                 <option *ngFor="let types of storageTypesApi" [ngValue]="types">
-                                    {{ typeText(types.title) }}
+                                    {{ typeText(types.title) | translate }}
                                 </option>
                             </select>
                         </div>
@@ -96,7 +96,7 @@
                                         <label for="booklet">{{ 'storage.booklet' | translate }}</label>
                                         <select formControlName="booklet" id="booklet" class="form-control">
                                             <option *ngFor="let state of bookletStates" [ngValue]="state.value"
-                                                    [selected]="state.value === null">{{ state.text}}
+                                                    [selected]="state.value === null">{{ state.text | translate }}
                                             </option>
                                         </select>
                                     </div>

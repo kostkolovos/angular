@@ -3,7 +3,6 @@ import {Subject} from 'rxjs';
 import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {StorageTypes} from '../apiEntities/storage-types-entity.model';
-import {TranslationService} from '../shared/translation.service';
 
 @Injectable({
     providedIn: 'root'
@@ -14,7 +13,7 @@ export class StorageTypeService {
 
     private storageTypes: StorageTypes[] = [];
 
-    constructor(private http: HttpClient, private translationService: TranslationService) {
+    constructor(private http: HttpClient) {
     }
 
     getstorageTypes() {
@@ -67,9 +66,9 @@ export class StorageTypeService {
 
     getBookletValues() {
         return [
-            {value: null, text: this.translationService.getTranslation('storage.without')},
-            {value: 'GR', text: 'Ελληνικό'},
-            {value: 'EU', text: 'Ευρωπαικό'},
+            {value: null, text: 'storage.without'},
+            {value: 'GR', text: 'storage.greek'},
+            {value: 'EU', text: 'storage.european'},
         ];
     }
 
@@ -80,8 +79,8 @@ export class StorageTypeService {
 
     getTypeValues() {
         return [
-            {value: 'Simple', text: 'Γενικό'},
-            {value: 'StoragePetType', text: 'Κατοικίδια'},
+            {value: 'Simple', text: 'storage.general'},
+            {value: 'StoragePetType', text: 'storage.pets'},
         ];
     }
 
