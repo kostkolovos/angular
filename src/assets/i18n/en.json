@@ -50,5 +50,15 @@
     "european": "European",
     "general": "General",
     "pets": "Pets"
+  },
+  "replaceTexts": {
+    "selectFileBtn": "Choose images",
+    "resetBtn": "Reset",
+    "uploadBtn": "Upload images",
+    "dragNDropBox": "Drag and Drop",
+    "attachPinBtn": "Attach Files...",
+    "afterUploadMsg_success": "Uploaded successfully !",
+    "afterUploadMsg_error": "Upload error !",
+    "sizeLimit": "Image size limit"
   }
 }

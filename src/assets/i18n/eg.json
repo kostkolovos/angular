@@ -50,5 +50,15 @@
     "european": "الأوروبي",
     "general": "جنرال لواء",
     "pets": "الحيوانات الأليفة"
+  },
+  "replaceTexts": {
+    "selectFileBtn": "اختر الصور",
+    "resetBtn": "إعادة تعيين",
+    "uploadBtn": "تحميل الصور",
+    "dragNDropBox": "السحب والإفلات",
+    "attachPinBtn": "إرفاق ملفات...",
+    "afterUploadMsg_success": "تم الرفع بنجاح !",
+    "afterUploadMsg_error": "خطأ في التحميل !",
+    "sizeLimit": "حد حجم الصورة"
   }
 }

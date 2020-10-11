@@ -8,6 +8,10 @@ import {StorageTypes} from '../../apiEntities/storage-types-entity.model';
 import {environment} from '../../../environments/environment';
 import {AuthService} from '../../auth/auth.service';
 import {MediaObject} from '../../apiEntities/media-object-entity.model';
+import * as gr from '../../../assets/i18n/gr.json';
+import * as eg from '../../../assets/i18n/eg.json';
+import * as en from '../../../assets/i18n/en.json';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
     selector: 'app-storage-edit',
@@ -43,16 +47,7 @@ export class StorageEditComponent implements OnInit {
         hideResetBtn: false,
         hideSelectBtn: false,
         fileNameIndex: false,
-        replaceTexts: {
-            selectFileBtn: 'Διαλέξτε εικόνες',
-            resetBtn: 'Επαναφορά',
-            uploadBtn: 'Ανέβασμα εικόνων',
-            dragNDropBox: 'Σύρετε και Αφήστε',
-            attachPinBtn: 'Επισύναψη Αρχείων...',
-            afterUploadMsg_success: 'Ανέβηκε επιτυχώς !',
-            afterUploadMsg_error: 'Σφάλμα ανεβάσματος !',
-            sizeLimit: 'Όριο μεγέθους εικόνων'
-        }
+        replaceTexts: {}
     };
     resetVar = false;
 
@@ -62,7 +57,8 @@ export class StorageEditComponent implements OnInit {
         private storageTypeService: StorageTypeService,
         private router: Router,
         private route: ActivatedRoute,
-        private authService: AuthService
+        private authService: AuthService,
+        public translateService: TranslateService
     ) {
     }
 
@@ -72,6 +68,7 @@ export class StorageEditComponent implements OnInit {
             this.editMode = params.id != null;
             this.afuConfig.uploadAPI.headers.Authorization = 'Bearer ' + this.authService.user.value._token;
             this.initForm();
+            this.setReplaceText();
         });
     }
 
@@ -253,4 +250,13 @@ export class StorageEditComponent implements OnInit {
         storageImages.splice(storageImages.indexOf(image), 1);
     }
 
+    setReplaceText() {
+        if (this.translateService.currentLang === 'gr') {
+            this.afuConfig.replaceTexts = gr.replaceTexts;
+        } else if (this.translateService.currentLang === 'eg') {
+            this.afuConfig.replaceTexts = eg.replaceTexts;
+        } else {
+            this.afuConfig.replaceTexts = en.replaceTexts;
+        }
+    }
 }

@@ -50,5 +50,15 @@
     "european": "Ευρωπαικό",
     "general": "Γενικό",
     "pets": "Κατοικίδια"
+  },
+  "replaceTexts": {
+    "selectFileBtn": "Διαλέξτε εικόνες",
+    "resetBtn": "Επαναφορά",
+    "uploadBtn": "Ανέβασμα εικόνων",
+    "dragNDropBox": "Σύρετε και Αφήστε",
+    "attachPinBtn": "Επισύναψη Αρχείων...",
+    "afterUploadMsg_success": "Ανέβηκε επιτυχώς !",
+    "afterUploadMsg_error": "Σφάλμα ανεβάσματος !",
+    "sizeLimit": "Όριο μεγέθους εικόνων"
   }
 }
