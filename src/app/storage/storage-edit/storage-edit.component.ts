@@ -251,12 +251,16 @@ export class StorageEditComponent implements OnInit {
     }
 
     setReplaceText() {
-        if (this.translateService.currentLang === 'gr') {
-            this.afuConfig.replaceTexts = gr.replaceTexts;
-        } else if (this.translateService.currentLang === 'eg') {
-            this.afuConfig.replaceTexts = eg.replaceTexts;
-        } else {
-            this.afuConfig.replaceTexts = en.replaceTexts;
+        switch (this.translateService.currentLang) {
+            case 'gr':
+                this.afuConfig.replaceTexts = gr.replaceTexts;
+                break;
+            case 'eg':
+                this.afuConfig.replaceTexts = eg.replaceTexts;
+                break;
+            case 'en':
+                this.afuConfig.replaceTexts = en.replaceTexts;
+                break;
         }
     }
 }
