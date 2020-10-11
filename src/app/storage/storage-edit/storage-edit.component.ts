@@ -8,9 +8,9 @@ import {StorageTypes} from '../../apiEntities/storage-types-entity.model';
 import {environment} from '../../../environments/environment';
 import {AuthService} from '../../auth/auth.service';
 import {MediaObject} from '../../apiEntities/media-object-entity.model';
-import * as gr from '../../../assets/i18n/gr.json';
-import * as eg from '../../../assets/i18n/eg.json';
-import * as en from '../../../assets/i18n/en.json';
+import gr from '../../../assets/i18n/gr.json';
+import eg from '../../../assets/i18n/eg.json';
+import en from '../../../assets/i18n/en.json';
 import {TranslateService} from '@ngx-translate/core';
 
 @Component({
