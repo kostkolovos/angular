@@ -74,7 +74,7 @@ export class AuthService {
     }
 
     private handleError(errorResponse: HttpErrorResponse) {
-        let errorMessage = 'Unknown Error!';
+        let errorMessage = 'loginError.unknownError';
 
         if (!errorResponse.error) {
             return throwError(errorMessage);
@@ -82,10 +82,10 @@ export class AuthService {
 
         switch (errorResponse.error.message) {
             case 'Invalid credentials.':
-                errorMessage = 'Please provide valid credentials';
+                errorMessage = 'loginError.validCredentials';
                 break;
             case 'Account is disabled.':
-                errorMessage = 'Account is disabled, please contact the admin.';
+                errorMessage = 'loginError.disabledAccount';
                 break;
         }
 

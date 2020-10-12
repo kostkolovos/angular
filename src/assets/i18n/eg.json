@@ -60,5 +60,10 @@
     "afterUploadMsg_success": "تم الرفع بنجاح !",
     "afterUploadMsg_error": "خطأ في التحميل !",
     "sizeLimit": "حد حجم الصورة"
+  },
+  "loginError": {
+    "validCredentials": "يرجى تقديم أوراق اعتماد صالحة",
+    "disabledAccount": "الحساب معطل ، يرجى الاتصال بالمسؤول",
+    "unknownError": "خطأ غير معروف!"
   }
 }

@@ -60,5 +60,10 @@
     "afterUploadMsg_success": "Uploaded successfully !",
     "afterUploadMsg_error": "Upload error !",
     "sizeLimit": "Image size limit"
+  },
+  "loginError": {
+    "validCredentials": "Please provide valid credentials",
+    "disabledAccount": "Account is disabled, please contact the admin",
+    "unknownError": "Unknown Error!"
   }
 }

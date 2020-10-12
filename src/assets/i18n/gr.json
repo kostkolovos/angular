@@ -60,5 +60,10 @@
     "afterUploadMsg_success": "Ανέβηκε επιτυχώς !",
     "afterUploadMsg_error": "Σφάλμα ανεβάσματος !",
     "sizeLimit": "Όριο μεγέθους εικόνων"
+  },
+  "loginError": {
+    "validCredentials": "Μη έγκυρα στοιχεία, παρακαλώ προσπαθήστε ξανά",
+    "disabledAccount": "Ο λογαριασμός είναι απενεργοποιημένος, επικοινωνήστε με τον διαχειριστή",
+    "unknownError": "Αγνωστο σφάλμα!"
   }
 }

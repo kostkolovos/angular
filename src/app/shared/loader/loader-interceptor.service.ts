@@ -36,9 +36,8 @@ export class LoaderInterceptorService implements HttpInterceptor {
                         }
                     },
                     err => {
-                       /* alert('error' + err.error.code);
                         this.removeRequest(req);
-                        observer.error(err);*/
+                        observer.error(err);
                         this.router.navigate(['']);
                     },
                     () => {
