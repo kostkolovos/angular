@@ -32,7 +32,8 @@
             <ul class="nav navbar-nav navbar-center">
                 <li>
                     <div class="form-group">
-                        <select class="form-control" #langSelect (change)="translate.use(langSelect.value)">
+                        <select class="form-control" style="margin-top: 7px;" #langSelect
+                                (change)="translate.use(langSelect.value)">
                             <option class="form-control" *ngFor="let lang of translate.getLangs()" [value]="lang"
                                     [selected]="lang === translate.currentLang">{{ lang }}
                             </option>
