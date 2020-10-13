@@ -5,26 +5,26 @@ import {AuthService} from './auth.service';
 import {exhaustMap, take} from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class AuthInterceptorService implements HttpInterceptor {
 
-  constructor(private authService: AuthService) {
-  }
+    constructor(private authService: AuthService) {
+    }
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    this.authService.user.subscribe();
-    return this.authService.user.pipe(
-        /*count of the items you get and unsubscribe (only only once)*/
-        take(1),
-        /*Take on observable (take return user) and use it to return another one (the http)*/
-        exhaustMap(user => {
-          if (!user) {
-            return next.handle(req);
-          }
-          const modifiedRequest = req.clone({headers: new HttpHeaders().set('Authorization', 'Bearer ' + user.token)});
-          modifiedRequest.headers.append('Access-Control-Allow-Headers', 'Authorization');
-          return next.handle(modifiedRequest);
-        }));
-  }
+    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        this.authService.apiToken.subscribe();
+        return this.authService.apiToken.pipe(
+            /*count of the items you get and unsubscribe (only only once)*/
+            take(1),
+            /*Take on observable (take return api token) and use it to return another one (the http)*/
+            exhaustMap(apiToken => {
+                if (!apiToken) {
+                    return next.handle(req);
+                }
+                const modifiedRequest = req.clone({headers: new HttpHeaders().set('Authorization', 'Bearer ' + apiToken.token)});
+                modifiedRequest.headers.append('Access-Control-Allow-Headers', 'Authorization');
+                return next.handle(modifiedRequest);
+            }));
+    }
 }

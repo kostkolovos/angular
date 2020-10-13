@@ -12,7 +12,7 @@ import {TranslateService} from '@ngx-translate/core';
 })
 export class HeaderComponent implements OnInit, OnDestroy {
     collapsed = true;
-    private userSubscribe: Subscription;
+    private apiTokenSubscribe: Subscription;
     isAuthenticated = false;
     faWarehouse = faWarehouse;
     faSignOutAlt = faSignOutAlt;
@@ -30,13 +30,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
-        this.userSubscribe = this.authService.user.subscribe(user => {
-            this.isAuthenticated = !!user;
+        this.apiTokenSubscribe = this.authService.apiToken.subscribe(apiToken => {
+            this.isAuthenticated = !!apiToken;
         });
     }
 
     ngOnDestroy(): void {
-        this.userSubscribe.unsubscribe();
+        this.apiTokenSubscribe.unsubscribe();
     }
 
     onLogout() {

@@ -1,4 +1,4 @@
-export class User {
+export class ApiToken {
     public _refreshToken: string;
     public _token: string;
 

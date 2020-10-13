@@ -66,7 +66,7 @@ export class StorageEditComponent implements OnInit {
         this.activatedRoute.params.subscribe((params: Params) => {
             this.id = +params.id;
             this.editMode = params.id != null;
-            this.afuConfig.uploadAPI.headers.Authorization = 'Bearer ' + this.authService.user.value._token;
+            this.afuConfig.uploadAPI.headers.Authorization = 'Bearer ' + this.authService.apiToken.value._token;
             this.initForm();
             this.setReplaceText();
         });

@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {catchError, tap} from 'rxjs/operators';
 import {BehaviorSubject, throwError} from 'rxjs';
-import {User} from '../apiEntities/api-token.model';
+import {ApiToken} from '../apiEntities/api-token.model';
 import {Router} from '@angular/router';
 import {environment} from '../../environments/environment';
 
@@ -22,7 +22,7 @@ interface SignUpResponce {
 })
 export class AuthService {
 
-    user = new BehaviorSubject<User>(null); // Subscribe in previews events like login and get token
+    apiToken = new BehaviorSubject<ApiToken>(null); // Subscribe in previews events like login and get token
     tokenExpirationTime: any;
     private hardCodeExpirationTimer = 3600000;
 
@@ -39,29 +39,29 @@ export class AuthService {
     }
 
     autoLogin() {
-        const userData: { _token: string, _refreshToken: string } = JSON.parse(localStorage.getItem('token'));
-        if (!userData) {
+        const apiTokenData: { _token: string, _refreshToken: string } = JSON.parse(localStorage.getItem('token'));
+        if (!apiTokenData) {
             return;
         }
 
-        const loadedUser = new User(userData._token, userData._refreshToken);
+        const loadedApiToken = new ApiToken(apiTokenData._token, apiTokenData._refreshToken);
 
-        this.http.post<LoginResponce>(environment.apiUrl + 'refresh_token', {refresh_token: loadedUser.refreshToken}).subscribe(
+        this.http.post<LoginResponce>(environment.apiUrl + 'refresh_token', {refresh_token: loadedApiToken.refreshToken}).subscribe(
             response => {
-                loadedUser._refreshToken = response.refresh_token;
-                loadedUser._token = response.token;
-                localStorage.setItem('token', JSON.stringify(loadedUser));
+                loadedApiToken._refreshToken = response.refresh_token;
+                loadedApiToken._token = response.token;
+                localStorage.setItem('token', JSON.stringify(loadedApiToken));
             }, error => {
                 if (error.error.code === 401) {
                     this.logout();
                 }
             }
         );
-        this.user.next(loadedUser);
+        this.apiToken.next(loadedApiToken);
     }
 
     logout() {
-        this.user.next(null);
+        this.apiToken.next(null);
         this.router.navigate(['/auth']);
         localStorage.removeItem('token');
     }
@@ -93,8 +93,8 @@ export class AuthService {
     }
 
     private handleAuthentication(token: string, refreshToken: string) {
-        const user = new User(token, refreshToken);
-        this.user.next(user);
-        localStorage.setItem('token', JSON.stringify(user));
+        const apiToken = new ApiToken(token, refreshToken);
+        this.apiToken.next(apiToken);
+        localStorage.setItem('token', JSON.stringify(apiToken));
     }
 }
