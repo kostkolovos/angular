@@ -3,6 +3,7 @@ import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse} from
 import {LoaderService} from './loader.service';
 import {Observable} from 'rxjs';
 import {Router} from '@angular/router';
+import {AuthService} from '../../auth/auth.service';
 
 @Injectable({
     providedIn: 'root'
@@ -10,7 +11,7 @@ import {Router} from '@angular/router';
 export class LoaderInterceptorService implements HttpInterceptor {
     private requests: HttpRequest<any>[] = [];
 
-    constructor(private loaderService: LoaderService, private router: Router) {
+    constructor(private loaderService: LoaderService, private router: Router, private authService: AuthService) {
     }
 
     removeRequest(req: HttpRequest<any>) {
@@ -38,7 +39,12 @@ export class LoaderInterceptorService implements HttpInterceptor {
                     err => {
                         this.removeRequest(req);
                         observer.error(err);
-                        this.router.navigate(['']);
+                        if (err.status === 401) {
+                            // unauthorized action logout from system
+                            this.authService.logout();
+                        } else {
+                            this.router.navigate(['']);
+                        }
                     },
                     () => {
                         this.removeRequest(req);
