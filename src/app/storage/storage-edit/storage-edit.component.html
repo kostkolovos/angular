@@ -142,10 +142,14 @@
             <div *ngIf="getStorageImages">
                 <div class="row" *ngFor="let image of getStorageImages">
                     <div class="col-xs-12">
-                        <img [src]=" imageRenderingPath+image.filePath" class="img-responsive">
+                        <img [src]="imageRenderingPath+image.filePath" class="img-responsive">
                         <button class="btn btn-danger pull-right" type="button" (click)="onDeleteImage(image)">
                             <fa-icon [icon]="faWindowClose"></fa-icon>
                             {{ 'storage.delete' | translate }}
+                        </button>
+                        <button class="btn btn-primary pull-left" type="button" (click)="onDownload(image)">
+                            <fa-icon [icon]="faDownload"></fa-icon>
+                            {{ 'storage.download' | translate }}
                         </button>
                     </div>
                 </div>

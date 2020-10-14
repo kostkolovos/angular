@@ -4,6 +4,7 @@ import {Subject} from 'rxjs';
 import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {tap} from 'rxjs/operators';
+import {MediaObject} from '../apiEntities/media-object-entity.model';
 
 @Injectable({
     providedIn: 'root'
@@ -11,6 +12,7 @@ import {tap} from 'rxjs/operators';
 export class StorageService {
     storagesChanged = new Subject<Storage[]>();
     storageUrl = environment.apiUrl + 'api/storages';
+    imageRenderingPath = environment.apiUrl + 'api/media';
 
     private storages: Storage[] = [];
 
@@ -64,5 +66,28 @@ export class StorageService {
         const storage = this.getStorage(index);
         storage.status = false;
         this.updateStorages(index, storage);
+    }
+
+    getImage(image: MediaObject) {
+        return this.http.get(this.imageRenderingPath + '/download/' + image.id, {responseType: 'blob'}).subscribe(val => {
+            const url = URL.createObjectURL(val);
+            this.downloadUrl(url, this.generateUID(14));
+            URL.revokeObjectURL(url);
+        });
+    }
+
+    downloadUrl(url: string, fileName: string) {
+        const a: any = document.createElement('a');
+        a.href = url;
+        a.download = fileName;
+        document.body.appendChild(a);
+        a.style = 'display: none';
+        a.click();
+        a.remove();
+    }
+
+    generateUID(length) {
+        return window.btoa(Array.from(window.crypto.getRandomValues(new Uint8Array(length * 2)))
+            .map((b) => String.fromCharCode(b)).join('')).replace(/[+/]/g, '').substring(0, length);
     }
 }

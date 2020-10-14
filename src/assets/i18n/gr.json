@@ -49,7 +49,8 @@
     "greek": "Ελληνικό",
     "european": "Ευρωπαικό",
     "general": "Γενικό",
-    "pets": "Κατοικίδια"
+    "pets": "Κατοικίδια",
+    "download": "Κατέβασμα"
   },
   "replaceTexts": {
     "selectFileBtn": "Διαλέξτε εικόνες",

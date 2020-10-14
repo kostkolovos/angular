@@ -49,7 +49,8 @@
     "greek": "اليونانية",
     "european": "الأوروبي",
     "general": "جنرال لواء",
-    "pets": "الحيوانات الأليفة"
+    "pets": "الحيوانات الأليفة",
+    "download": "تحميل"
   },
   "replaceTexts": {
     "selectFileBtn": "اختر الصور",

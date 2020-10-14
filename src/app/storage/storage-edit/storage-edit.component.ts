@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {StorageService} from '../storage.service';
-import {faSave, faWindowClose} from '@fortawesome/free-solid-svg-icons';
+import {faSave, faWindowClose, faDownload} from '@fortawesome/free-solid-svg-icons';
 import {StorageTypeService} from '../storage-type.service';
 import {StorageTypes} from '../../apiEntities/storage-types-entity.model';
 import {environment} from '../../../environments/environment';
@@ -24,6 +24,7 @@ export class StorageEditComponent implements OnInit {
     storageForm: FormGroup;
     faSave = faSave;
     faWindowClose = faWindowClose;
+    faDownload = faDownload;
     storageTypesApi: StorageTypes[];
     currentType: StorageTypes;
     storagePetTypeValue = this.storageTypeService.getStoragePetTypeValue();
@@ -253,5 +254,9 @@ export class StorageEditComponent implements OnInit {
     setReplaceText() {
         const languages = {gr, eg, en};
         this.afuConfig.replaceTexts = languages[this.translateService.currentLang].replaceTexts;
+    }
+
+    onDownload(image: MediaObject) {
+        return this.storageService.getImage(image);
     }
 }
