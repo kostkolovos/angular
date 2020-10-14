@@ -117,7 +117,7 @@ export class StorageEditComponent implements OnInit {
             if (storage.storageLinks.length) {
                 for (const storageLink of storage.storageLinks) {
                     links.push(
-                        this.addFormGroupStorageLink(storageLink.id, storageLink.url)
+                        this.addFormGroupStorageLink(storageLink.url)
                     );
                 }
             }
@@ -248,10 +248,9 @@ export class StorageEditComponent implements OnInit {
         });
     }
 
-    addFormGroupStorageLink(id = null, url = null) {
+    addFormGroupStorageLink(url = null) {
         return new FormGroup({
-            id: new FormControl(id),
-            url: new FormControl(url)
+            url: new FormControl(url, Validators.required)
         });
     }
 
