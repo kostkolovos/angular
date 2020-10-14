@@ -75,7 +75,7 @@ export class StorageEditComponent implements OnInit {
 
     private initForm() {
         let storageImages = [];
-        const storageLinks = new FormArray([]);
+        const links = new FormArray([]);
         let storageTitle = '';
         let storageId = null;
         let storageDescription = '';
@@ -116,7 +116,7 @@ export class StorageEditComponent implements OnInit {
 
             if (storage.storageLinks.length) {
                 for (const storageLink of storage.storageLinks) {
-                    storageLinks.push(
+                    links.push(
                         this.addFormGroupStorageLink(storageLink.id, storageLink.url)
                     );
                 }
@@ -135,7 +135,7 @@ export class StorageEditComponent implements OnInit {
             storageTypes: new FormControl(this.storageTypesApi[defaultSelect], Validators.required),
             storagePetTypes: storagePetType,
             images: new FormControl(storageImages),
-            links: storageLinks
+            storageLinks: links
         });
 
         const storagePetTypesControl = this.storageForm.get('storagePetTypes') as FormArray;
@@ -192,7 +192,7 @@ export class StorageEditComponent implements OnInit {
     }
 
     get getStorageLinks() { // a getter!
-        const formArray = this.storageForm.get('links') as FormArray;
+        const formArray = this.storageForm.get('storageLinks') as FormArray;
         return formArray.controls;
     }
 
