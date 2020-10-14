@@ -280,4 +280,9 @@ export class StorageEditComponent implements OnInit {
     onDownload(image: MediaObject) {
         return this.storageService.getImage(image);
     }
+
+    onDeleteStorageLink(i: number) {
+        const formArray = this.storageForm.get('storageLinks') as FormArray;
+        formArray.removeAt(i);
+    }
 }
