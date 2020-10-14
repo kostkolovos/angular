@@ -80,6 +80,19 @@
                 </div>
             </div>
 
+            <div *ngIf="getStorageLinks" formArrayName="links">
+                <div class="row" *ngFor="let storageLinks of getStorageLinks; let i = index" [formGroupName]="i" style="margin-top: 10px">
+                    <div class="col-xs-12">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                    <label for="microchip">{{ 'storage.link' | translate }}</label>
+                                    <input type="text" class="form-control" id="url" formControlName="url">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div *ngIf="currentType && currentType.title === storagePetTypeValue">
                 <div class="col-xs-12" formArrayName="storagePetTypes">
                     <div class="row" *ngFor="let ingredientCtrl of controls; let i = index" [formGroupName]="i"

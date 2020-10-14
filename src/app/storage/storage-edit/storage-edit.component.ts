@@ -75,6 +75,7 @@ export class StorageEditComponent implements OnInit {
 
     private initForm() {
         let storageImages = [];
+        const storageLinks = new FormArray([]);
         let storageTitle = '';
         let storageId = null;
         let storageDescription = '';
@@ -113,11 +114,18 @@ export class StorageEditComponent implements OnInit {
                 storagePetType.push(this.addFormGroupPetType());
             }
 
+            if (storage.storageLinks.length) {
+                for (const storageLink of storage.storageLinks) {
+                    storageLinks.push(
+                        this.addFormGroupStorageLink(storageLink.id, storageLink.url)
+                    );
+                }
+            }
+
         } else {
             storagePrice = this.addPriceFormGroup();
             storagePetType.push(this.addFormGroupPetType());
         }
-
         this.storageForm = new FormGroup({
             title: new FormControl(storageTitle, Validators.required),
             id: new FormControl(storageId),
@@ -127,6 +135,7 @@ export class StorageEditComponent implements OnInit {
             storageTypes: new FormControl(this.storageTypesApi[defaultSelect], Validators.required),
             storagePetTypes: storagePetType,
             images: new FormControl(storageImages),
+            links: storageLinks
         });
 
         const storagePetTypesControl = this.storageForm.get('storagePetTypes') as FormArray;
@@ -182,6 +191,11 @@ export class StorageEditComponent implements OnInit {
         return this.storageForm.get('images').value;
     }
 
+    get getStorageLinks() { // a getter!
+        const formArray = this.storageForm.get('links') as FormArray;
+        return formArray.controls;
+    }
+
     addFormGroupPetType(microchip = null, male = 0, female = 0, booklet = null) {
 
         return new FormGroup({
@@ -231,6 +245,13 @@ export class StorageEditComponent implements OnInit {
             initial: new FormControl(initial),
             profit: new FormControl(profit),
             shipping: new FormControl(shipping)
+        });
+    }
+
+    addFormGroupStorageLink(id = null, url = null) {
+        return new FormGroup({
+            id: new FormControl(id),
+            url: new FormControl(url)
         });
     }
 
