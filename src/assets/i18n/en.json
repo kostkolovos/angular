@@ -50,7 +50,10 @@
     "european": "European",
     "general": "General",
     "pets": "Pets",
-    "download": "Download"
+    "download": "Download",
+    "links": "Links",
+    "link": "Link",
+    "addStorageLink": "Add link"
   },
   "replaceTexts": {
     "selectFileBtn": "Choose images",

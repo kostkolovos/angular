@@ -78,5 +78,19 @@
             </div>
         </div>
 
+        <div class="row" *ngIf="storage.storageLinks">
+            <div class="col-xs-12">
+                <h3>
+                    <label>{{ 'storage.links' | translate }}: </label>
+                    <ng-container *ngFor="let storageLink of storage.storageLinks; let i = index;let first = first">
+                        <a [href]="storageLink.url" target="_blank">
+                            {{ 'storage.link' | translate }}
+                            <ng-container *ngIf="!first">{{i}}</ng-container>
+                        </a>
+                    </ng-container>
+                </h3>
+            </div>
+        </div>
+
     </div>
 </div>

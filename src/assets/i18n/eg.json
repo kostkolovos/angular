@@ -50,7 +50,10 @@
     "european": "الأوروبي",
     "general": "جنرال لواء",
     "pets": "الحيوانات الأليفة",
-    "download": "تحميل"
+    "download": "تحميل",
+    "links": "الروابط",
+    "link": "حلقة الوصل",
+    "addStorageLink": "إضافة رابط"
   },
   "replaceTexts": {
     "selectFileBtn": "اختر الصور",

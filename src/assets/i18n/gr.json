@@ -50,7 +50,10 @@
     "european": "Ευρωπαικό",
     "general": "Γενικό",
     "pets": "Κατοικίδια",
-    "download": "Κατέβασμα"
+    "download": "Κατέβασμα",
+    "links": "Σύνδεσμοι",
+    "link": "Σύνδεσμος",
+    "addStorageLink": "Προσθήκη Συνδέσμου"
   },
   "replaceTexts": {
     "selectFileBtn": "Διαλέξτε εικόνες",
