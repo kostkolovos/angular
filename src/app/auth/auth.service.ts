@@ -5,6 +5,7 @@ import {BehaviorSubject, throwError} from 'rxjs';
 import {ApiToken} from '../apiEntities/api-token.model';
 import {Router} from '@angular/router';
 import {environment} from '../../environments/environment';
+import {UserService} from '../user/user.service';
 
 interface LoginResponce {
     token: string;
@@ -26,7 +27,7 @@ export class AuthService {
     tokenExpirationTime: any;
     private hardCodeExpirationTimer = 3600000;
 
-    constructor(private http: HttpClient, private router: Router) {
+    constructor(private http: HttpClient, private router: Router, private userService: UserService) {
     }
 
     login(username: string, password: string) {
@@ -67,10 +68,7 @@ export class AuthService {
     }
 
     signUp(username: string, password: string) {
-        return this.http.post<SignUpResponce>(
-            environment.apiUrl + 'api/users',
-            {username, password}
-        ).pipe(catchError(this.handleError));
+        return this.userService.addUser(username, password).pipe(catchError(this.handleError));
     }
 
     private handleError(errorResponse: HttpErrorResponse) {

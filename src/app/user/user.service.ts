@@ -33,4 +33,11 @@ export class UserService {
         this.userChanged.next(this.user);
     }
 
+    addUser(username: string, password: string) {
+        return this.http.post<User>(
+            environment.apiUrl + 'api/users',
+            {username, password}
+        );
+    }
+
 }
