@@ -80,6 +80,14 @@
                 </div>
             </div>
 
+            <div class="row">
+                <div class="col-xs-12">
+                    <button class="btn btn-primary" type="button" (click)="onAddStorageLink()">
+                        {{ 'storage.addStorageLink' | translate }}
+                    </button>
+                </div>
+            </div>
+
             <div *ngIf="getStorageLinks" formArrayName="storageLinks">
                 <div class="row" *ngFor="let storageLinks of getStorageLinks; let i = index" [formGroupName]="i"
                      style="margin-top: 10px">

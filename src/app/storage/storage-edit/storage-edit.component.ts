@@ -285,4 +285,8 @@ export class StorageEditComponent implements OnInit {
         const formArray = this.storageForm.get('storageLinks') as FormArray;
         formArray.removeAt(i);
     }
+
+    onAddStorageLink() {
+        (this.storageForm.get('storageLinks') as FormArray).push(this.addFormGroupStorageLink());
+    }
 }
