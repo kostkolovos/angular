@@ -3,6 +3,7 @@ import {Subject} from 'rxjs';
 import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {StorageTypes} from '../apiEntities/storage-types-entity.model';
+import {tap} from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -17,13 +18,7 @@ export class StorageTypeService {
     }
 
     getstorageTypes() {
-
-        if (this.storageTypes.length === 0) {
-            this.fetchstorageTypes();
-        }
-
         return this.storageTypes.slice();
-
     }
 
     setstorageTypes(storageTypes: StorageTypes[]) {
@@ -54,9 +49,11 @@ export class StorageTypeService {
 
 
     fetchstorageTypes() {
-        this.http.get<StorageTypes[]>(this.storageTypeUrl).subscribe((storageTypes => {
-            this.setstorageTypes(storageTypes['hydra:member']);
-        }));
+        return this.http.get<StorageTypes[]>(this.storageTypeUrl).pipe(
+            tap(storageTypes => {
+                this.setstorageTypes(storageTypes['hydra:member']);
+            })
+        );
     }
 
 
