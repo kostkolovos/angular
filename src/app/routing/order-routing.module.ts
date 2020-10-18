@@ -14,9 +14,9 @@ const routes: Routes = [{
     component: OrderComponent,
     canActivate: [AuthGuard],
     children: [
-        {path: '', component: OrderStartComponent, resolve: [OrderResolverService]},
+        {path: '', component: OrderStartComponent, resolve: [OrderResolverService, OrderProgressResolverService]},
         {path: 'new', component: OrderEditComponent, resolve: [OrderResolverService, StorageResolverService, OrderProgressResolverService]},
-        {path: ':id', component: OrderDetailsComponent, resolve: [OrderResolverService]},
+        {path: ':id', component: OrderDetailsComponent, resolve: [OrderResolverService, OrderProgressResolverService]},
         {
             path: ':id/edit',
             component: OrderEditComponent,

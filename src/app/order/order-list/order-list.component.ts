@@ -4,6 +4,7 @@ import {faCheck, faMinus, faPlus} from '@fortawesome/free-solid-svg-icons';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Order} from '../../apiEntities/order-entity.model';
 import {OrderService} from '../order.service';
+import {OrderProgressService} from '../order-progress.service';
 
 @Component({
     selector: 'app-order-list',
@@ -17,8 +18,15 @@ export class OrderListComponent implements OnInit, OnDestroy {
     faPlus = faPlus;
     faCheck = faCheck;
     faMinus = faMinus;
+    orderProgress = this.orderProgressService.getOrdersProgress();
+    pipeProgress = this.orderProgress.find(types => types.sort === 1).id;
 
-    constructor(private router: Router, private route: ActivatedRoute, private orderService: OrderService) {
+    constructor(
+        private router: Router,
+        private route: ActivatedRoute,
+        private orderService: OrderService,
+        private orderProgressService: OrderProgressService
+    ) {
     }
 
     ngOnInit(): void {
@@ -37,6 +45,10 @@ export class OrderListComponent implements OnInit, OnDestroy {
 
     onChangeStatus() {
         this.pipeStatus = !this.pipeStatus;
+    }
+
+    onChangeProgress(progress) {
+        this.pipeProgress = progress;
     }
 
     ngOnDestroy(): void {

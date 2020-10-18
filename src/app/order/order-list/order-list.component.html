@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-xs-12 btn-toolbar">
 
-        <div class="col-xs-6">
+        <div class="col-md-4">
             <button class="btn btn-primary" (click)="onNewOrder()">
                 <fa-icon [icon]="faPlus"></fa-icon>
                 {{ 'order.newOrder' | translate }}
@@ -9,7 +9,7 @@
         </div>
 
 
-        <div class="col-xs-6">
+        <div class="col-md-4">
             <button class="btn btn-success pull-right" *ngIf="pipeStatus" (click)="onChangeStatus()">
                 <fa-icon [icon]="faCheck"></fa-icon>
                 {{ 'order.active' | translate }}
@@ -20,13 +20,26 @@
             </button>
         </div>
 
+        <div class="col-md-4">
+            <select class='form-control'
+                    #mySelect
+                    (change)='onChangeProgress(mySelect.value)'>
+                <option class='option'
+                        *ngFor='let option of orderProgress'
+                        [value]="option.id"
+                        [selected]="option.id === pipeProgress">
+                    {{option.title}}
+                </option>
+            </select>
+        </div>
+
     </div>
 </div>
 <hr>
 <div class="row">
     <div class="col-xs-12">
         <app-order-item
-                *ngFor="let orderEl of orders | filterStatus:pipeStatus; let i = index"
+                *ngFor="let orderEl of orders | filterStatus:pipeStatus | filterProgress:pipeProgress; let i = index"
                 [order]="orderEl"
                 [index]="orderEl.id">
         </app-order-item>

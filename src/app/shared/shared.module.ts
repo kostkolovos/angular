@@ -6,11 +6,14 @@ import {LoaderComponent} from './loader/loader.component';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {MobileBackComponent} from './mobile-back/mobile-back.component';
 import {TranslateModule} from '@ngx-translate/core';
+import {ProgressPipe} from './progress.pipe';
 
 @NgModule({
     imports: [CommonModule, FontAwesomeModule, TranslateModule],
-    declarations: [DropdownDirective, StatusPipe, LoaderComponent, MobileBackComponent],
-    exports: [DropdownDirective, CommonModule, StatusPipe, LoaderComponent, FontAwesomeModule, MobileBackComponent, TranslateModule]
+    declarations: [DropdownDirective, StatusPipe, LoaderComponent, MobileBackComponent, ProgressPipe],
+    exports: [
+        DropdownDirective, CommonModule, StatusPipe, LoaderComponent, FontAwesomeModule, MobileBackComponent, TranslateModule, ProgressPipe
+    ]
 })
 export class SharedModule {
 }
