@@ -33,7 +33,7 @@ export class StorageEditComponent implements OnInit {
     imageRenderingPath = environment.apiUrl + 'media/';
     afuConfig = {
         multiple: true,
-        formatsAllowed: '.jpg,.png',
+        formatsAllowed: '.jpg,.png,.jpeg',
         maxSize: '3',
         uploadAPI: {
             url: environment.apiUrl + 'api/media_objects',
