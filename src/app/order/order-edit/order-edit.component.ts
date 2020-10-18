@@ -10,6 +10,8 @@ import {StorageTypes} from '../../apiEntities/storage-types-entity.model';
 import {StoragePetType} from '../../apiEntities/storage-pet-type-entity.model';
 import {Price} from '../../apiEntities/price-entity.model';
 import {OrderStorageCalculator} from '../../apiEntities/order-storage-calculator.model';
+import {OrderProgressService} from '../order-progress.service';
+import {OrderProgress} from '../../apiEntities/order.progress.model';
 
 @Component({
     selector: 'app-order-edit',
@@ -27,6 +29,8 @@ export class OrderEditComponent implements OnInit {
     storagePetTypeValue = this.storageTypeService.getStoragePetTypeValue();
     currentStorageTypes: StorageTypes[];
     populateStorage: number;
+    orderProgress = this.orderProgressService.getOrdersProgress();
+    currentOrderProgress: OrderProgress;
 
     constructor(
         private activatedRoute: ActivatedRoute,
@@ -34,7 +38,8 @@ export class OrderEditComponent implements OnInit {
         private router: Router,
         private route: ActivatedRoute,
         private storageService: StorageService,
-        private storageTypeService: StorageTypeService
+        private storageTypeService: StorageTypeService,
+        private orderProgressService: OrderProgressService
     ) {
     }
 
@@ -63,9 +68,13 @@ export class OrderEditComponent implements OnInit {
         let storagePetType: StoragePetType[];
         let customerFormGroup = this.addCustomerFormGroup();
         let orderPrice = 0;
+        this.currentOrderProgress = this.orderProgress.find(types => types.sort === 1);
+        let orderProgressSelected = this.orderProgress.indexOf(this.currentOrderProgress);
 
         if (this.editMode) {
             const order = this.orderService.getOrder(this.id);
+            this.currentOrderProgress = this.orderProgress.find(progress => progress.id === order.orderProgress.id);
+            orderProgressSelected = this.orderProgress.indexOf(this.currentOrderProgress);
             orderId = order.id;
             orderDescription = order.description;
             customerFormGroup = this.addCustomerFormGroup(order.customer.id, order.customer.fullName, order.customer.mobile);
@@ -109,7 +118,8 @@ export class OrderEditComponent implements OnInit {
             orderStorageCalculators: orderStorageCalculatorsApi,
             description: new FormControl(orderDescription),
             customer: customerFormGroup,
-            orderPrice: new FormControl({value: orderPrice, disabled: true})
+            orderPrice: new FormControl({value: orderPrice, disabled: true}),
+            orderProgress: new FormControl(this.orderProgress[orderProgressSelected], Validators.required),
         });
 
         this.currentStorageTypes = currentStorageTypes;
