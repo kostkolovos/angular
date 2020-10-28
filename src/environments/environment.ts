@@ -6,7 +6,17 @@ export const environment = {
     production: false,
     apiUrl: 'http://localhost:8081/',
     applicationTitle: 'Application',
-    favIconHeader: 'favicon.ico' // Use  assets/images/ path to save your file
+    favIconHeader: 'favicon.ico', // Use  assets/images/ path to save your file
+    firebaseConfig: {
+        apiKey: 'AIzaSyDD6rmg_rLfVN6WnWHZYLTuMUz53JrVSTk',
+        authDomain: 'peiratokatastasi.firebaseapp.com',
+        databaseURL: 'https://peiratokatastasi.firebaseio.com',
+        projectId: 'peiratokatastasi',
+        storageBucket: 'peiratokatastasi.appspot.com',
+        messagingSenderId: '745562733523',
+        appId: '1:745562733523:web:c5d9c8284fac2d0d4b0d26',
+        measurementId: 'G-J905G4HXVR'
+    }
 };
 
 /*
