@@ -6,6 +6,7 @@ import {environment} from '../../environments/environment';
 import {TranslateService} from '@ngx-translate/core';
 import {UserService} from '../user/user.service';
 import {User} from '../apiEntities/user-entity.model';
+import {FirebaseService} from '../shared/firebase.service';
 
 @Component({
     selector: 'app-header',
@@ -23,7 +24,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
     applicationTitle = environment.applicationTitle;
     userLanguageSubscription: Subscription;
 
-    constructor(private authService: AuthService, public translate: TranslateService, public userService: UserService) {
+    constructor(
+        private authService: AuthService,
+        public translate: TranslateService,
+        public userService: UserService,
+        public firebaseService: FirebaseService
+    ) {
         translate.addLangs(['eg', 'gr', 'en']);
         translate.setDefaultLang('gr');
         const browserLang = translate.getBrowserLang();
@@ -34,7 +40,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.apiTokenSubscribe = this.authService.apiToken.subscribe(apiToken => {
             this.isAuthenticated = !!apiToken;
             if (this.isAuthenticated) {
-                this.userService.getUser();
+                const user = this.userService.getUser();
+                this.firebaseService.requestPermission();
             }
         });
 
@@ -52,5 +59,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     onLogout() {
         this.collapsed = true;
         this.authService.logout();
+        this.firebaseService.deleteToken();
     }
 }

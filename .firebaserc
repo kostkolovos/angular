@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "peiratokatastasi": {
+      "hosting": {
+        "project": [
+          "peiratokatastasi"
+        ]
+      }
+    }
+  }
+}

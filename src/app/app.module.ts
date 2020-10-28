@@ -1,6 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-
 import {AppComponent} from './app.component';
 import {CoreModule} from './shared/core.module';
 import {AppRoutingModule} from './routing/app-routing.module';
@@ -13,6 +12,8 @@ import {StorageModule} from './storage/storage.module';
 import {SharedModule} from './shared/shared.module';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {AngularFireMessagingModule} from '@angular/fire/messaging';
+import {AngularFireModule} from '@angular/fire';
 
 @NgModule({
     declarations: [
@@ -34,7 +35,9 @@ import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
                 useFactory: HttpLoaderFactory,
                 deps: [HttpClient]
             }
-        })
+        }),
+        AngularFireModule.initializeApp(environment.firebaseConfig),
+        AngularFireMessagingModule
     ],
     providers: [],
     bootstrap: [AppComponent],
