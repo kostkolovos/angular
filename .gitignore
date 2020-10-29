@@ -48,6 +48,3 @@ Thumbs.db
 /src/assets/images
 /src/environments/environment.prod.ts
 /src/environments/environment.ts
-/.firebase
-/.firebaserc
-/firebase.json
